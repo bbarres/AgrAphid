@@ -53,18 +53,21 @@ JDDmicro@other$xy<-JDD[,c("longitude","latitude")]
 #now we analyse the adegenet format dataset with dapc
 JDDade<-JDDmicro
 #determination of the number of clusters
-clustJDDade<- find.clusters(JDDade,max.n.clust=35)
-#with 40 PCs, we lost nearly no information
-clustJDDade<- find.clusters(JDDade,n.pca=30,max.n.clust=35) #chose 5 clusters
+clustJDDade<-find.clusters(JDDade,max.n.clust=30)
+#with 50 PCs, we lost nearly no information and after K=5, the decrease of 
+#the BIC value is smaller, so we chose the maximum number of clusters to be 5 
 #which individuals in which clusters per population
 table(pop(JDDade),clustJDDade$grp)
-#DAPC by itself, first we try to optimized the number of principal component 
-#(PCs) to retain to perform the analysis
+#We try to optimize the number of principal component (PCs) to retain to 
+#perform the analysis
 dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=5,n.pca=30)
 temp<-optim.a.score(dapcJDDade)
-dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=5,n.pca=15)
+dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=4,n.pca=15)
 temp<-optim.a.score(dapcJDDade)
-dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=3,n.pca=7)
+#the optimal number of PCs fell between 5 and 9 (depending on the run), so we 
+#chose the smallest number of PCs (5) in order to avoid overfitting of the 
+#model. Then we do the actual DAPC anlysis
+dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=3,n.pca=5)
 #STRUCTURE-like graphic
 compoplot(dapcJDDade,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
@@ -76,6 +79,29 @@ scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
         main="Axis 1 & 2",solid=0.3,pch=19,cex=3,scree.da=FALSE)
 scatter(dapcJDDade,xax=2,yax=3,cstar=1,cell=0,clab=0,col=coloor,
         solid=0.3,pch=19,cex=3,scree.da=FALSE)
+
+#Run the 'find.clusters' and DAPC analysis for K=2 to 5
+clustJDDade2<-find.clusters(JDDade,n.pca=50,n.clust=2)
+dapcJDDade2<-dapc(JDDade,clustJDDade2$grp,n.da=1,n.pca=2)
+compoplot(dapcJDDade2,lab=pop(JDDade),legend=FALSE,
+          cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
+clustJDDade3<-find.clusters(JDDade,n.pca=50,n.clust=3)
+dapcJDDade3<-dapc(JDDade,clustJDDade3$grp,n.da=2,n.pca=3)
+compoplot(dapcJDDade3,lab=pop(JDDade),legend=FALSE,
+          cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
+clustJDDade4<-find.clusters(JDDade,n.pca=50,n.clust=4)
+dapcJDDade4<-dapc(JDDade,clustJDDade4$grp,n.da=3,n.pca=4)
+compoplot(dapcJDDade4,lab=pop(JDDade),legend=FALSE,
+          cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
+clustJDDade5<-find.clusters(JDDade,n.pca=50,n.clust=5)
+dapcJDDade5<-dapc(JDDade,clustJDDade5$grp,n.da=3,n.pca=5)
+compoplot(dapcJDDade5,lab=pop(JDDade),legend=FALSE,
+          cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
+
+
+
+
+
 
 
 ###############################################################################
@@ -124,9 +150,9 @@ scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
 #admixture and correlation of allele frequencies. Each run consisted of a 
 #burn-in period of 10.000 iterations followed by 50.000 simulations. One 
 #hundred repetitions of each run were performed for K ranging from 1 to 10. 
-#Before importing the file, replace white space in the column header names with 
-#underscore, replace "?1" by "alpha", and remove double white spaces or it
-#will provoc importation problem or failure
+#Before importing the file, replace white space in the column header names 
+#with underscore, replace "?1" by "alpha", and remove double white spaces or 
+#it will provoc importation problem or failure
 
 resstr_cccons<-read.table(file="AgrAphout.str", header=T,sep=" ",
                           blank.lines.skip=T)
@@ -201,8 +227,8 @@ plotdeltaK<-function(datadeltaK,nb_K,titre){
   par(op)
 }
 
-#the same function using log(deltaK), just in order to see smaller variation of 
-#deltaK
+#the same function using log(deltaK), just in order to see smaller variation 
+#of deltaK
 
 #a function to plot variation of Delta K and Ln(P(X|K)) with K. 
 plotlogdeltaK<-function(datadeltaK,nb_K,titre){
@@ -246,34 +272,37 @@ scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
         solid=0.3,pch=19,cex=3,scree.da=FALSE)
 #oilseed_rape
 points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==1,1],
-       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==1,2],col="black",
-       ,cex=2,bg="black",pch=21)
+       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==1,2],
+       col="black",cex=2,bg="black",pch=21)
 #peach
 points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==3,1],
-       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==3,2],col="black",
-       ,cex=2,bg="black",pch=21)
+       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==3,2],
+       col="black",cex=2,bg="black",pch=21)
 #tobacco
 points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==4,1],
-       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==4,2],col="black",
-       ,cex=2,bg="black",pch=21)
+       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==4,2],
+       col="black",cex=2,bg="black",pch=21)
 #other_crop
 points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==2,1],
-       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==2,2],col="black",
-       ,cex=2,bg="black",pch=21)
+       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==2,2],
+       col="black",cex=2,bg="black",pch=21)
 
 
 scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
         solid=0.0,pch=19,cex=3,scree.da=FALSE)
-points(dapcJDDade$ind.coord[,1],dapcJDDade$ind.coord[,2],col=coloor[dapcJDDade$assign],
-       pch=(as.numeric(as.factor(JDDade@other$host))+20),cex=2)
+points(dapcJDDade$ind.coord[,1],dapcJDDade$ind.coord[,2],
+       col=coloor[dapcJDDade$assign],cex=2,
+       pch=(as.numeric(as.factor(JDDade@other$host))+20))
 
 scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
         solid=0.0,pch=19,cex=3,scree.da=FALSE)
-points(dapcJDDade$ind.coord[,1],dapcJDDade$ind.coord[,2],col=coloor[dapcJDDade$assign],
-       pch=21,bg=coloor[(as.numeric(as.factor(JDDade@other$host)))])
+points(dapcJDDade$ind.coord[,1],dapcJDDade$ind.coord[,2],
+       col=coloor[dapcJDDade$assign],pch=21,
+       bg=coloor[(as.numeric(as.factor(JDDade@other$host)))])
 
 
-plot(JDDade@other$xy,cex=3,col=dapcJDDade$assign,pch=as.numeric(as.factor(JDDade@other$host)))
+plot(JDDade@other$xy,cex=3,col=dapcJDDade$assign,
+     pch=as.numeric(as.factor(JDDade@other$host)))
 
 
 
