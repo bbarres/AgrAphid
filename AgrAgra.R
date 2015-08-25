@@ -74,6 +74,7 @@ compoplot(dapcJDDade,lab=pop(JDDade),legend=FALSE,
 #scatter plot
 scatter(dapcJDDade,xax=1, yax=2,col=coloor)
 scatter(dapcJDDade,xax=1, yax=3,col=coloor)
+scatter(dapcJDDade,xax=2, yax=3,col=coloor)
 #a more beautifull scatter plot
 scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
         main="Axis 1 & 2",solid=0.3,pch=19,cex=3,scree.da=FALSE)
@@ -98,10 +99,29 @@ dapcJDDade5<-dapc(JDDade,clustJDDade5$grp,n.da=3,n.pca=5)
 compoplot(dapcJDDade5,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
 
+write.table(dapcJDDade2$posterior,file="AgrAphDAPCK2.txt",sep="\t",
+            quote=FALSE,row.names=TRUE,col.names=FALSE)
+write.table(dapcJDDade3$posterior,file="AgrAphDAPCK3.txt",sep="\t",
+            quote=FALSE,row.names=TRUE,col.names=FALSE)
+write.table(dapcJDDade4$posterior,file="AgrAphDAPCK4.txt",sep="\t",
+            quote=FALSE,row.names=TRUE,col.names=FALSE)
+write.table(dapcJDDade5$posterior,file="AgrAphDAPCK5.txt",sep="\t",
+            quote=FALSE,row.names=TRUE,col.names=FALSE)
 
+barplot(t(dapcJDDade5$posterior),col=coloor,beside=FALSE,border=NA,
+        space=0,ylim=c(-0.1,1.1),las=1,axisnames=FALSE,axes=FALSE)
+#drawing an external rectangle
+rect((0-dim(JDDade$tab)[1]/600),
+     0-1/500,
+     dim(JDDade$tab)[1]+dim(JDDade$tab)[1]/600,
+     1+1/500,
+     lwd=3)
+#deliminated the different populations
+rect(c(0,1,35),rep(0,3),c(1,35,46),rep(1,3),lwd=2)
+#add some legend
+mtext("K=5",side=2,las=1,cex=1.5,adj=0,line=2)
 
-
-
+#export as a pdf file 12 X 3 inches
 
 
 ###############################################################################
