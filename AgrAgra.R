@@ -108,18 +108,95 @@ write.table(dapcJDDade4$posterior,file="AgrAphDAPCK4.txt",sep="\t",
 write.table(dapcJDDade5$posterior,file="AgrAphDAPCK5.txt",sep="\t",
             quote=FALSE,row.names=TRUE,col.names=FALSE)
 
+#gathering the effecive of the populations
+effpop<-as.numeric(table(JDDade$pop))
+#here are the names of the populations
+poptiquet<-levels(JDDade$pop)
+
+structplot<-function(qmat,coolcol,colbord,effP,nameP,leg_y,mef)
+  #'qmat': the q-matrix like matrix
+  #'coolcol': a vector of colors
+  #'colbord': the color of the line between individuals
+  #'effP': a vector giving the number of individuals in each population
+  #'nameP': a list giving the names of the different populations
+  #'leg_y': a characters string used for the Y-axis legend
+  #'mef': a vector of length 5 to pimp the graph. Each 1 value add a feature
+  #the first is for the external rectangle, the second is to deliminate the 
+  #different populations, the third is for adding an x-axis with tick, the 
+  #fourth is for adding the name of the different populations and the fifth 
+  #is for adding a Y legend
+{
+  barplot(qmat,col=coolcol,beside=FALSE,border=colbord,
+          space=0,ylim=c(-0.05,1.05),axisnames=FALSE,axes=FALSE)
+  
+  if(mef[1]==1) {
+    #drawing an external rectangle
+    rect(0-1/dim(qmat)[2],
+         0-1/500,
+         dim(qmat)[2]+1/dim(qmat)[2],
+         1+1/500,
+         lwd=3)
+  }
+ 
+  if(mef[2]==1) {
+    #deliminated the different populations
+    rect(c(0,cumsum(effP))[1:length(effP)],
+         rep(0,length(effP)),
+         cumsum(effP),
+         rep(1,length(effP)),
+         lwd=2)
+  }
+ 
+
+  if(mef[3]==1) {
+    #add an x-axis
+    axis(1,at=c(0,cumsum(effP))[1:length(effP)]+
+           (cumsum(effP)-c(0,cumsum(effP))[1:length(effP)])/2,
+         labels=FALSE,pos=0,lwd.ticks=2)
+  }
+
+  if(mef[4]==1) {
+    #add the name of the different populations
+    text(c(0,cumsum(effP))[1:length(effP)]+
+           (cumsum(effP)-c(0,cumsum(effP))[1:length(effP)])/2,
+         rep(par("usr")[3],length(effP)),labels=nameP,srt=0,xpd=TRUE,pos=1)
+  }
+
+  
+  if(mef[5]==1) {
+    #add some legend on the Y-axis
+    mtext(leg_y,side=2,las=1,cex=1.5,adj=0.5,line=1)
+  }
+  
+}
+
+
+structplot(t(dapcJDDade5$posterior),rainbow(5),"grey70",effpop,poptiquet,"K=5",c(1,1,1,1,1))
+structplot(t(dapcJDDade5$posterior),coloor,NA,effpop,poptiquet,"K=5",c(1,0,1,0,1))
+structplot(t(dapcJDDade2$posterior),coloor,0,effpop,poptiquet,"K=2",c(0,1,0,1,0))
+
 barplot(t(dapcJDDade5$posterior),col=coloor,beside=FALSE,border=NA,
-        space=0,ylim=c(-0.1,1.1),las=1,axisnames=FALSE,axes=FALSE)
+        space=0,ylim=c(-0.05,1.05),axisnames=FALSE,axes=FALSE)
 #drawing an external rectangle
-rect((0-dim(JDDade$tab)[1]/600),
+rect(0-1/dim(JDDade$tab)[1],
      0-1/500,
-     dim(JDDade$tab)[1]+dim(JDDade$tab)[1]/600,
+     dim(JDDade$tab)[1]+1/dim(JDDade$tab)[1],
      1+1/500,
      lwd=3)
 #deliminated the different populations
-rect(c(0,1,35),rep(0,3),c(1,35,46),rep(1,3),lwd=2)
+rect(c(0,cumsum(effpop))[1:length(effpop)],
+     rep(0,length(effpop)),
+     cumsum(effpop),
+     rep(1,length(effpop)),
+     lwd=2)
 #add some legend
 mtext("K=5",side=2,las=1,cex=1.5,adj=0,line=2)
+axis(1,at=c(0,cumsum(effpop))[1:length(effpop)]+
+       (cumsum(effpop)-c(0,cumsum(effpop))[1:length(effpop)])/2,
+     labels=FALSE,pos=0,lwd.ticks=2)
+text(c(0,cumsum(effpop))[1:length(effpop)]+
+       (cumsum(effpop)-c(0,cumsum(effpop))[1:length(effpop)])/2,
+     rep(par("usr")[3],length(effpop)),labels=poptiquet,srt=0,xpd=TRUE,pos=1)
 
 #export as a pdf file 12 X 3 inches
 
