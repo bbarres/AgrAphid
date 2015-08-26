@@ -193,11 +193,11 @@ structplot(t(dapcJDDade2$posterior),coloor,effpop,poptiquet,
 
 #Now, we can easily plot several structure-like plot in the same figure
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(3,0,0,0))
-structplot(t(dapcJDDade5$posterior),rainbow(5),effpop,poptiquet,
+structplot(t(dapcJDDade5$posterior)[c(4,1,2,5,3),],rainbow(5),effpop,poptiquet,
            leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
-structplot(t(dapcJDDade4$posterior),rainbow(5),effpop,poptiquet,
+structplot(t(dapcJDDade4$posterior)[c(1,4,3,2),],rainbow(5),effpop,poptiquet,
            leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
-structplot(t(dapcJDDade3$posterior),rainbow(5),effpop,poptiquet,
+structplot(t(dapcJDDade3$posterior)[c(1,3,2),],rainbow(5),effpop,poptiquet,
            leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
 structplot(t(dapcJDDade2$posterior),rainbow(5),effpop,poptiquet,
            leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord="grey70",
@@ -206,9 +206,33 @@ par(op)
 
 #export to pdf 15 X 4 inches
 
+#we can also plot the individuals in the DA plans
+scatter(dapcJDDade5,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
+        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
+scatter(dapcJDDade5,xax=2,yax=3,cstar=1,cell=0,clab=0,main="Axis 2 & 3",
+        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
+
 #alternatively, you can import a q-matrix file and use the function in the 
 #same manner. Be careful howerer to respect the order of the individuals and 
 #the order of their respective populations
+strK2<-t(read.table("outK2.str",header=FALSE,sep="\t")[,c(-1)])
+strK3<-t(read.table("outK3.str",header=FALSE,sep="\t")[,c(-1)])
+strK4<-t(read.table("outK4.str",header=FALSE,sep="\t")[,c(-1)])
+strK5<-t(read.table("outK5.str",header=FALSE,sep="\t")[,c(-1)])
+
+
+op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(3,0,0,0))
+structplot(strK5,rainbow(5),effpop,poptiquet,
+           leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+structplot(strK4,rainbow(5),effpop,poptiquet,
+           leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+structplot(strK3,rainbow(5),effpop,poptiquet,
+           leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+structplot(strK2,rainbow(5),effpop,poptiquet,
+           leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord="grey70",
+           distxax=0.08)
+par(op)
+
 
 
 ###############################################################################
