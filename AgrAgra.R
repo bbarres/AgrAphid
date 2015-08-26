@@ -99,6 +99,7 @@ dapcJDDade5<-dapc(JDDade,clustJDDade5$grp,n.da=3,n.pca=5)
 compoplot(dapcJDDade5,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
 
+#in case we need the q-matrix of the individuals for other purposes
 write.table(dapcJDDade2$posterior,file="AgrAphDAPCK2.txt",sep="\t",
             quote=FALSE,row.names=TRUE,col.names=FALSE)
 write.table(dapcJDDade3$posterior,file="AgrAphDAPCK3.txt",sep="\t",
@@ -108,26 +109,32 @@ write.table(dapcJDDade4$posterior,file="AgrAphDAPCK4.txt",sep="\t",
 write.table(dapcJDDade5$posterior,file="AgrAphDAPCK5.txt",sep="\t",
             quote=FALSE,row.names=TRUE,col.names=FALSE)
 
-#gathering the effecive of the populations
-effpop<-as.numeric(table(JDDade$pop))
-#here are the names of the populations
-poptiquet<-levels(JDDade$pop)
 
-structplot<-function(qmat,coolcol,colbord,effP,nameP,leg_y,mef)
+###############################################################################
+#Defining a function to make structure-like plot
+###############################################################################
+
+structplot<-function(qmat,coolcol,effP,nameP,leg_y="",cexpop=1,cexy=2,
+                     mef=c(1,1,1,1,1),colbord="NA",angl=0,distxax=0.005)
   #'qmat': the q-matrix like matrix
-  #'coolcol': a vector of colors
-  #'colbord': the color of the line between individuals
+  #'coolcol': a vector of colors, for the different genetic clusters
   #'effP': a vector giving the number of individuals in each population
   #'nameP': a list giving the names of the different populations
   #'leg_y': a characters string used for the Y-axis legend
+  #'cexpop': the cex factor for the population name on the x-axis
+  #'cexy': the cex factor for the Y-legend
   #'mef': a vector of length 5 to pimp the graph. Each 1 value add a feature
   #the first is for the external rectangle, the second is to deliminate the 
   #different populations, the third is for adding an x-axis with tick, the 
   #fourth is for adding the name of the different populations and the fifth 
   #is for adding a Y legend
+  #'colbord': the color of the line between individuals
+  #'angl': the angle of the tag of the x-axis
+  #'distxax': control the distance of the tag to the x-axis
+
 {
   barplot(qmat,col=coolcol,beside=FALSE,border=colbord,
-          space=0,ylim=c(-0.05,1.05),axisnames=FALSE,axes=FALSE)
+          space=0,ylim=c(-0.03,1.03),axisnames=FALSE,axes=FALSE)
   
   if(mef[1]==1) {
     #drawing an external rectangle
@@ -147,7 +154,6 @@ structplot<-function(qmat,coolcol,colbord,effP,nameP,leg_y,mef)
          lwd=2)
   }
  
-
   if(mef[3]==1) {
     #add an x-axis
     axis(1,at=c(0,cumsum(effP))[1:length(effP)]+
@@ -159,46 +165,50 @@ structplot<-function(qmat,coolcol,colbord,effP,nameP,leg_y,mef)
     #add the name of the different populations
     text(c(0,cumsum(effP))[1:length(effP)]+
            (cumsum(effP)-c(0,cumsum(effP))[1:length(effP)])/2,
-         rep(par("usr")[3],length(effP)),labels=nameP,srt=0,xpd=TRUE,pos=1)
+         rep(par("usr")[3]-distxax,length(effP)),labels=nameP,srt=angl,
+         xpd=NA,pos=1,cex=cexpop)
   }
 
-  
   if(mef[5]==1) {
     #add some legend on the Y-axis
-    mtext(leg_y,side=2,las=1,cex=1.5,adj=0.5,line=1)
+    mtext(leg_y,side=2,las=1,cex=cexy,adj=0.5,line=1)
   }
   
 }
 
+#some examples of the use of the function
+#first you need to gather the number of individuals in each populations
+effpop<-as.numeric(table(JDDade$pop))
+#the names of the different populations might be useful too
+poptiquet<-levels(JDDade$pop)
+#be careful to use the same dataset that has been used for the DAPC 
+#computation
+structplot(t(dapcJDDade5$posterior),rainbow(5),effpop,poptiquet)
+structplot(t(dapcJDDade5$posterior),rainbow(5),effpop,poptiquet,
+           colbord="grey70",leg_y="K=5",angl=30,distxax=0.01)
+structplot(t(dapcJDDade5$posterior),coloor,effpop,poptiquet,
+           leg_y="K=5",mef=c(1,0,1,1,1),cexpop=0.5,cexy=5)
+structplot(t(dapcJDDade2$posterior),coloor,effpop,poptiquet,
+           colbord=0,leg_y="K=2",mef=c(0,1,0,1,1))
 
-structplot(t(dapcJDDade5$posterior),rainbow(5),"grey70",effpop,poptiquet,"K=5",c(1,1,1,1,1))
-structplot(t(dapcJDDade5$posterior),coloor,NA,effpop,poptiquet,"K=5",c(1,0,1,0,1))
-structplot(t(dapcJDDade2$posterior),coloor,0,effpop,poptiquet,"K=2",c(0,1,0,1,0))
+#Now, we can easily plot several structure-like plot in the same figure
+op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(3,0,0,0))
+structplot(t(dapcJDDade5$posterior),rainbow(5),effpop,poptiquet,
+           leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+structplot(t(dapcJDDade4$posterior),rainbow(5),effpop,poptiquet,
+           leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+structplot(t(dapcJDDade3$posterior),rainbow(5),effpop,poptiquet,
+           leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+structplot(t(dapcJDDade2$posterior),rainbow(5),effpop,poptiquet,
+           leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord="grey70",
+           distxax=0.08)
+par(op)
 
-barplot(t(dapcJDDade5$posterior),col=coloor,beside=FALSE,border=NA,
-        space=0,ylim=c(-0.05,1.05),axisnames=FALSE,axes=FALSE)
-#drawing an external rectangle
-rect(0-1/dim(JDDade$tab)[1],
-     0-1/500,
-     dim(JDDade$tab)[1]+1/dim(JDDade$tab)[1],
-     1+1/500,
-     lwd=3)
-#deliminated the different populations
-rect(c(0,cumsum(effpop))[1:length(effpop)],
-     rep(0,length(effpop)),
-     cumsum(effpop),
-     rep(1,length(effpop)),
-     lwd=2)
-#add some legend
-mtext("K=5",side=2,las=1,cex=1.5,adj=0,line=2)
-axis(1,at=c(0,cumsum(effpop))[1:length(effpop)]+
-       (cumsum(effpop)-c(0,cumsum(effpop))[1:length(effpop)])/2,
-     labels=FALSE,pos=0,lwd.ticks=2)
-text(c(0,cumsum(effpop))[1:length(effpop)]+
-       (cumsum(effpop)-c(0,cumsum(effpop))[1:length(effpop)])/2,
-     rep(par("usr")[3],length(effpop)),labels=poptiquet,srt=0,xpd=TRUE,pos=1)
+#export to pdf 15 X 4 inches
 
-#export as a pdf file 12 X 3 inches
+#alternatively, you can import a q-matrix file and use the function in the 
+#same manner. Be careful howerer to respect the order of the individuals and 
+#the order of their respective populations
 
 
 ###############################################################################
