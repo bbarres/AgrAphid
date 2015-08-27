@@ -49,6 +49,11 @@ JDDmicro<-df2genind(JDD[,c("MP_27","MP_39","MP_44","MP_5","MP_7","MP_23",
                     pop=JDD$year,ploidy=2)
 #include the coordinates of the samples
 JDDmicro@other$xy<-JDD[,c("longitude","latitude")]
+#we can also include the resistance genotypes as supplementary information
+JDDmicro@other$KDR<-JDD[,"KDR"]
+JDDmicro@other$sKDR<-JDD[,"sKDR"]
+JDDmicro@other$MACE<-JDD[,"MACE"]
+JDDmicro@other$R81T<-JDD[,"R81T"]
 
 #now we analyse the adegenet format dataset with dapc
 JDDade<-JDDmicro
@@ -75,11 +80,6 @@ compoplot(dapcJDDade,lab=pop(JDDade),legend=FALSE,
 scatter(dapcJDDade,xax=1, yax=2,col=coloor)
 scatter(dapcJDDade,xax=1, yax=3,col=coloor)
 scatter(dapcJDDade,xax=2, yax=3,col=coloor)
-#a more beautifull scatter plot
-scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
-        main="Axis 1 & 2",solid=0.3,pch=19,cex=3,scree.da=FALSE)
-scatter(dapcJDDade,xax=2,yax=3,cstar=1,cell=0,clab=0,col=coloor,
-        solid=0.3,pch=19,cex=3,scree.da=FALSE)
 
 #Run the 'find.clusters' and DAPC analysis for K=2 to 5
 clustJDDade2<-find.clusters(JDDade,n.pca=50,n.clust=2)
@@ -98,6 +98,44 @@ clustJDDade5<-find.clusters(JDDade,n.pca=50,n.clust=5)
 dapcJDDade5<-dapc(JDDade,clustJDDade5$grp,n.da=3,n.pca=5)
 compoplot(dapcJDDade5,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
+
+#a more beautifull scatter plot, the colors are matching colors used in 
+#the structure-like plot
+scatter(dapcJDDade5,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
+        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
+scatter(dapcJDDade5,xax=2,yax=3,cstar=1,cell=0,clab=0,main="Axis 2 & 3",
+        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
+
+#the same plot with resistance genotypes added
+scatter(dapcJDDade5,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
+        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
+#adding KDR resistotype
+points(dapcJDDade5$ind.coord[,1],dapcJDDade5$ind.coord[,2],pch=21,xpd=NA,
+       col="black",cex=1.5,bg=as.numeric(as.factor(JDDmicro@other$KDR)))
+legend("topright",levels(as.factor(JDDmicro@other$KDR)),col="black",pch=21,
+       pt.bg=levels(as.factor(as.numeric(as.factor(JDDmicro@other$KDR)))),
+       xpd=NA)
+title("KDR resistotypes")
+
+#adding sKDR resistotype
+scatter(dapcJDDade5,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
+        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
+points(dapcJDDade5$ind.coord[,1],dapcJDDade5$ind.coord[,2],pch=21,xpd=NA,
+       col="black",cex=1.5,bg=as.numeric(as.factor(JDDmicro@other$sKDR)))
+legend("topright",levels(as.factor(JDDmicro@other$sKDR)),col="black",pch=21,
+       pt.bg=levels(as.factor(as.numeric(as.factor(JDDmicro@other$sKDR)))),
+       xpd=NA)
+title("sKDR resistotypes")
+
+#adding MACE resistotype
+scatter(dapcJDDade5,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
+        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
+points(dapcJDDade5$ind.coord[,1],dapcJDDade5$ind.coord[,2],pch=21,xpd=NA,
+       col="black",cex=1.5,bg=as.numeric(as.factor(JDDmicro@other$MACE)))
+legend("topright",levels(as.factor(JDDmicro@other$MACE)),col="black",pch=21,
+       pt.bg=levels(as.factor(as.numeric(as.factor(JDDmicro@other$MACE)))),
+       xpd=NA)
+title("MACE resistotypes")
 
 #in case we need the q-matrix of the individuals for other purposes
 write.table(dapcJDDade2$posterior,file="AgrAphDAPCK2.txt",sep="\t",
@@ -206,12 +244,6 @@ par(op)
 
 #export to pdf 15 X 4 inches
 
-#we can also plot the individuals in the DA plans
-scatter(dapcJDDade5,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
-        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
-scatter(dapcJDDade5,xax=2,yax=3,cstar=1,cell=0,clab=0,main="Axis 2 & 3",
-        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
-
 #alternatively, you can import a q-matrix file and use the function in the 
 #same manner. Be careful howerer to respect the order of the individuals and 
 #the order of their respective populations
@@ -247,6 +279,8 @@ JDDall<-df2genind(JDD[,c("MP_27","MP_39","MP_44","MP_5","MP_7","MP_23",
                   pop=JDD$year,ploidy=2)
 #include the coordinates of the samples
 JDDall@other$xy<-JDD[,c("longitude","latitude")]
+
+
 
 #now we analyse the adegenet format dataset with dapc
 JDDade<-JDDall
