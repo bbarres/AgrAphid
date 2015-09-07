@@ -279,8 +279,10 @@ par(op)
 
 
 #or with space between populations
-coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2")
-op<-par(mfrow=c(3,1),mar=c(0,3,0,0),oma=c(8,0,0,0))
+coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
+op<-par(mfrow=c(4,1),mar=c(0,3,0,0),oma=c(8,0,0,0))
+structplot(strK5,coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
 structplot(strK4,coloor,effpop,poptiquet,spacepop=2,
            leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
 structplot(strK3,coloor,effpop,poptiquet,spacepop=2,
