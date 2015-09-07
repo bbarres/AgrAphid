@@ -277,14 +277,16 @@ structplot(strK2,rainbow(5),effpop,poptiquet,
            distxax=0.08)
 par(op)
 
+
 #or with space between populations
+coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2")
 op<-par(mfrow=c(3,1),mar=c(0,3,0,0),oma=c(8,0,0,0))
-structplot(strK4,coloor,effpop,poptiquet,spacepop=10,
-           leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
-structplot(strK3,coloor,effpop,poptiquet,spacepop=10,
-           leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
-structplot(strK2,coloor,effpop,poptiquet,spacepop=10,
-           leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
+structplot(strK4,coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+structplot(strK3,coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+structplot(strK2,coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord="grey70",
            distxax=0.15,angl=0,cexpop=1.5)
 par(op)
 #export to pdf 25 x 5 inches
