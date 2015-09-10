@@ -167,11 +167,11 @@ structplot<-function(qmat,coolcol,effP,nameP,leg_y="",cexpop=1,cexy=2,
   #the first is for the external rectangle, the second is to deliminate the 
   #different populations, the third is for adding an x-axis with tick, the 
   #fourth is for adding the name of the different populations and the fifth 
-#is for adding a Y legend
-#'colbord': the color of the line between individuals
-#'angl': the angle of the tag of the x-axis
-#'distxax': control the distance of the tag to the x-axis
-#'spacepop': space between populations, in number of bars
+  #is for adding a Y legend
+  #'colbord': the color of the line between individuals
+  #'angl': the angle of the tag of the x-axis
+  #'distxax': control the distance of the tag to the x-axis
+  #'spacepop': space between populations, in number of bars
 
 {
   vecspace<-c(rep(0,effP[1]))
