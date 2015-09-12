@@ -321,7 +321,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(0,0,0,0))
 for (i in 1:100){
   temp<-K2_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=2",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
+             leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
 par(op)
@@ -343,7 +343,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(0,0,0,0))
 for (i in 1:100){
   temp<-K3_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=2",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
+             leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
 par(op)
@@ -365,7 +365,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(0,0,0,0))
 for (i in 1:100){
   temp<-K4_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=2",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
+             leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
 par(op)
@@ -387,7 +387,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(0,0,0,0))
 for (i in 1:100){
   temp<-K5_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=2",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
+             leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
 par(op)
