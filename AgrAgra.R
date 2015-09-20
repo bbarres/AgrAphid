@@ -339,13 +339,14 @@ effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
 
-op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(0,0,0,0))
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(0,0,3,0))
 for (i in 1:100){
   temp<-K3_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
              leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
+title(main="K=3",cex.main=3,outer=TRUE)
 par(op)
 
 
