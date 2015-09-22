@@ -405,9 +405,9 @@ strK4<-t(read.table("AgrAccconsK4.outfile",header=FALSE,sep="\t")[,c(-1)])
 strK5<-t(read.table("AgrAccconsK5.outfile",header=FALSE,sep="\t")[,c(-1)])
 
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(3,0,0,0))
-structplot(strK5,coloor,effpop,poptiquet,spacepop=2,
+structplot(strK5[c(4,1,2,5,3),],coloor,effpop,poptiquet,spacepop=2,
            leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
-structplot(strK4,coloor,effpop,poptiquet,spacepop=2,
+structplot(strK4[c(2,4,1,3),],coloor,effpop,poptiquet,spacepop=2,
            leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
 structplot(strK3,coloor,effpop,poptiquet,spacepop=2,
            leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
