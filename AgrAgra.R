@@ -317,15 +317,16 @@ effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
 
-op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(0,0,0,0))
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K2_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
              leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
+title(main="K=2",cex.main=2.5,outer=TRUE)
 par(op)
-
+#export pdf 25 x 12
 
 #for K=3
 K3_100runs<-read.table("AgrAccconsK3.perm_datafile",header=FALSE,
@@ -343,12 +344,12 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K3_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
+             leg_y="K=3",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
-title(main="K=3",cex.main=3,outer=TRUE)
+title(main="K=3",cex.main=2.5,outer=TRUE)
 par(op)
-
+#export pdf 25 x 12
 
 #for K=4
 K4_100runs<-read.table("AgrAccconsK4.perm_datafile",header=FALSE,
@@ -362,15 +363,16 @@ effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
 
-op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(0,0,0,0))
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K4_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
+             leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
+title(main="K=4",cex.main=2.5,outer=TRUE)
 par(op)
-
+#export pdf 25 x 12
 
 #for K=5
 K5_100runs<-read.table("AgrAccconsK5.perm_datafile",header=FALSE,
@@ -384,14 +386,16 @@ effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
 
-op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(0,0,0,0))
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K5_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
+             leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
+title(main="K=5",cex.main=2.5,outer=TRUE)
 par(op)
+#export pdf 25 x 12
 
 
 #the plot for the different K values
