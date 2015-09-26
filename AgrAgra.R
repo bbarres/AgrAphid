@@ -305,9 +305,9 @@ par(op)
 #We first need to edit a little the output file in excel prior to the 
 #importation: just keep the q matrix without any other information
 
+#for K=2
 K2_100runs<-read.table("AgrAccconsK2.perm_datafile",header=FALSE,
                        blank.lines.skip=TRUE,sep="\t")[,c(-1)]
-
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K2_100runs<-split(K2_100runs,rep(1:100,each=309))
@@ -316,7 +316,7 @@ coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
-
+#now we can plot the 100 runs on the same figure
 op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K2_100runs[[i]]
@@ -331,7 +331,6 @@ par(op)
 #for K=3
 K3_100runs<-read.table("AgrAccconsK3.perm_datafile",header=FALSE,
                        blank.lines.skip=TRUE,sep="\t")[,c(-1)]
-
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K3_100runs<-split(K3_100runs,rep(1:100,each=309))
@@ -339,7 +338,7 @@ coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
-
+#now we can plot the 100 runs on the same figure
 op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K3_100runs[[i]]
@@ -354,7 +353,6 @@ par(op)
 #for K=4
 K4_100runs<-read.table("AgrAccconsK4.perm_datafile",header=FALSE,
                        blank.lines.skip=TRUE,sep="\t")[,c(-1)]
-
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K4_100runs<-split(K4_100runs,rep(1:100,each=309))
@@ -362,7 +360,7 @@ coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
-
+#now we can plot the 100 runs on the same figure
 op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K4_100runs[[i]]
@@ -377,7 +375,6 @@ par(op)
 #for K=5
 K5_100runs<-read.table("AgrAccconsK5.perm_datafile",header=FALSE,
                        blank.lines.skip=TRUE,sep="\t")[,c(-1)]
-
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K5_100runs<-split(K5_100runs,rep(1:100,each=309))
@@ -385,7 +382,7 @@ coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
-
+#now we can plot the 100 runs on the same figure
 op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K5_100runs[[i]]
