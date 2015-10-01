@@ -617,18 +617,6 @@ plot(JDDade@other$xy,cex=3,col=dapcJDDade$assign,
      pch=as.numeric(as.factor(JDDade@other$host)))
 
 
-
-# BRADEpop<-genind2genpop(BRADE,process.other=T,missing="0")
-# 
-# image(alt,col=brewer.pal(9,"Greys"))
-# stars(table(pop(JDDade),dapcJDDade$assign),draw.segment=TRUE,
-#       locations=JDDade@other$xy,
-#       #locations=cbind(jitter(BRADEpop@other$xy$longitude,200),
-#       #                jitter(BRADEpop@other$xy$latitude,200)),
-#       add=T,len=0.5)
-
-
-
 ###############################################################################
 #END
 ###############################################################################
