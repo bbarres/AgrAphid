@@ -427,8 +427,6 @@ JDDall<-df2genind(JDD[,c("MP_27","MP_39","MP_44","MP_5","MP_7","MP_23",
 #include the coordinates of the samples
 JDDall@other$xy<-JDD[,c("longitude","latitude")]
 
-
-
 #now we analyse the adegenet format dataset with dapc
 JDDade<-JDDall
 #determination of the number of clusters
