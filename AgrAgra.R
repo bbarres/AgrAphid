@@ -445,6 +445,12 @@ dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=3,n.pca=10)
 #STRUCTURE-like graphic
 compoplot(dapcJDDade,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
+#or with the function we designed
+poptiquet<-c("2000","2001","2002","2003","2004","2005","2006","2007")
+structplot(t(dapcJDDade$posterior),coloor,summary(JDDade)$pop.eff,
+           poptiquet,spacepop=2,leg_y="Assignement",cexy=1.2,mef=c(0,1,1,1,0),
+           colbord=NA,angl=0)
+title(main="DAPC",cex.main=1.5,outer=FALSE)
 #scatter plot
 scatter(dapcJDDade,xax=1, yax=2,col=coloor)
 #a more beautifull scatter plot
