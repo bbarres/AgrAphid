@@ -450,7 +450,7 @@ poptiquet<-c("2000","2001","2002","2003","2004","2005","2006","2007")
 structplot(t(dapcJDDade$posterior),coloor,summary(JDDade)$pop.eff,
            poptiquet,spacepop=2,leg_y="Assignement",cexy=1.2,mef=c(0,1,1,1,0),
            colbord="grey70",angl=0,distxax=0.001)
-title(main="DAPC",cex.main=1.5,outer=FALSE)
+title(main="DAPC clusterisation",cex.main=1.5,outer=FALSE)
 #scatter plot
 scatter(dapcJDDade,xax=1, yax=2,col=coloor)
 #a more beautifull scatter plot
