@@ -150,83 +150,11 @@ write.table(dapcJDDade5$posterior,file="AgrAphDAPCK5.txt",sep="\t",
 
 
 ###############################################################################
-#Defining a function to make structure-like plot
+#Structure-like plot
 ###############################################################################
 
-structplot<-function(qmat,coolcol,effP,nameP,leg_y="",cexpop=1,cexy=2,
-                     mef=c(1,1,1,1,1),colbord="NA",angl=0,distxax=0.005,
-                     spacepop=0)
-  #'qmat': the q-matrix like matrix
-  #'coolcol': a vector of colors, for the different genetic clusters
-  #'effP': a vector giving the number of individuals in each population
-  #'nameP': a list giving the names of the different populations
-  #'leg_y': a characters string used for the Y-axis legend
-  #'cexpop': the cex factor for the population name on the x-axis
-  #'cexy': the cex factor for the Y-legend
-  #'mef': a vector of length 5 to pimp the graph. Each 1 value add a feature
-  #the first is for the external rectangle, the second is to deliminate the 
-  #different populations, the third is for adding an x-axis with tick, the 
-  #fourth is for adding the name of the different populations and the fifth 
-  #is for adding a Y legend
-  #'colbord': the color of the line between individuals
-  #'angl': the angle of the tag of the x-axis
-  #'distxax': control the distance of the tag to the x-axis
-  #'spacepop': space between populations, in number of bars
-
-{
-  vecspace<-c(rep(0,effP[1]))
-  for (i in 1:(length(effP)-1)) {
-    vecspace<-c(vecspace,spacepop,rep(0,effP[i+1]-1))
-  }
-  
-  barplot(qmat,col=coolcol,beside=FALSE,border=colbord,
-          space=vecspace,ylim=c(-0.03,1.03),axisnames=FALSE,axes=FALSE)
-  
-  if(mef[1]==1) {
-    #drawing an external rectangle
-    rect(0-1/dim(qmat)[2],
-         0-1/500,
-         dim(qmat)[2]+spacepop*(length(effP)-1)+1/dim(qmat)[2],
-         1+1/500,
-         lwd=3)
-  }
-  
-  if(mef[2]==1) {
-    decal<-c(0,cumsum(rep(spacepop,length(effP)-1)))
-    #deliminated the different populations
-    rect(c(0,cumsum(effP))[1:length(effP)]+decal,
-         rep(0,length(effP)),
-         cumsum(effP)+decal,
-         rep(1,length(effP)),
-         lwd=2)
-  }
-  
-  if(mef[3]==1) {
-    decal<-c(0,cumsum(rep(spacepop,length(effP)-1)))
-    #add an x-axis
-    axis(1,at=c(0,cumsum(effP))[1:length(effP)]+decal+
-           (cumsum(effP)-c(0,cumsum(effP))[1:length(effP)])/2,
-         labels=FALSE,pos=0,lwd.ticks=2,lwd=0)
-  }
-  
-  if(mef[4]==1) {
-    decal<-c(0,cumsum(rep(spacepop,length(effP)-1)))
-    #add the name of the different populations
-    text(c(0,cumsum(effP))[1:length(effP)]+decal+
-           (cumsum(effP)-c(0,cumsum(effP))[1:length(effP)])/2,
-         rep(par("usr")[3]-distxax,length(effP)),labels=nameP,srt=angl,
-         xpd=NA,pos=1,cex=cexpop)
-  }
-  
-  if(mef[5]==1) {
-    #add some legend on the Y-axis
-    mtext(leg_y,side=2,las=1,cex=cexy,adj=0.5,line=1)
-  }
-  
-}
-
-
-#some examples of the use of the function
+#some examples of the use of the function you can load from 
+#'Agra_strplot_fun.R'
 #first you need to gather the number of individuals in each populations
 effpop<-as.numeric(table(JDDade$pop))
 #the names of the different populations might be useful too
@@ -256,15 +184,15 @@ par(op)
 
 #export to pdf 15 X 4 inches
 
-#alternatively, you can import a q-matrix file and use the function in the 
-#same manner. Be careful howerer to respect the order of the individuals and 
-#the order of their respective populations
+#alternatively, you can import a q-matrix output file from STRUCTURE software 
+#and use the function in the same manner. Be careful howerer to respect the 
+#order of the individuals and the order of their respective populations
 strK2<-t(read.table("outK2.str",header=FALSE,sep="\t")[,c(-1)])
 strK3<-t(read.table("outK3.str",header=FALSE,sep="\t")[,c(-1)])
 strK4<-t(read.table("outK4.str",header=FALSE,sep="\t")[,c(-1)])
 strK5<-t(read.table("outK5.str",header=FALSE,sep="\t")[,c(-1)])
 
-
+#plot with different K values
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(3,0,0,0))
 structplot(strK5,rainbow(5),effpop,poptiquet,
            leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
@@ -277,8 +205,7 @@ structplot(strK2,rainbow(5),effpop,poptiquet,
            distxax=0.08)
 par(op)
 
-
-#or with space between populations
+#same plot with space between populations
 coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
 op<-par(mfrow=c(4,1),mar=c(0,3,0,0),oma=c(8,0,0,0))
 structplot(strK5,coloor,effpop,poptiquet,spacepop=2,
@@ -295,7 +222,7 @@ par(op)
 
 
 ###############################################################################
-#plot a list of structure output file
+#plot a list of 100 STRUCTURE output files for each K
 ###############################################################################
 
 #Usually, you run STRUCTURE several times for the same K values. After that, 
@@ -394,6 +321,9 @@ title(main="K=5",cex.main=2.5,outer=TRUE)
 par(op)
 #export pdf 25 x 12
 
+###############################################################################
+#plot of the clusterisation for different K value after CLUMPP averaging
+###############################################################################
 
 #the plot for the different K values
 strK2<-t(read.table("AgrAccconsK2.outfile",header=FALSE,sep="\t")[,c(-1)])
@@ -474,104 +404,11 @@ scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
 #with underscore, replace "?1" by "alpha", and remove double white spaces or 
 #it will provoc importation problem or failure
 
+#run the 'Agra_deltaKplot_fun.R' code before running this code
+
 resstr_cccons<-read.table(file="AgrAphout.str", header=T,sep=" ",
                           blank.lines.skip=T)
-
-#a function which compute delta K values, nb_K is the number of different K 
-#considered, and nb_rep is the number of repetition of each K
-chooseK<-function(str_out,nb_K,nb_rep) {
-  datatable<-data.frame("K"=c(rep(1:nb_K,each=nb_rep)),"Ln(Pd)"=str_out[,4])
-  Lprim<-c(rep("NA",nb_rep))
-  for (i in ((nb_rep+1):(nb_K*nb_rep))) {
-    Lprim<-c(Lprim,str_out[i,4]-str_out[i-nb_rep,4])
-  }
-  datatable<-data.frame(datatable,as.numeric(Lprim))
-  Lsecond<-c(rep("NA",nb_rep))
-  for (i in (((2*nb_rep)+1):(nb_K*nb_rep))) {
-    Lsecond<-c(Lsecond,abs(datatable[i,3]-datatable[i-nb_rep,3]))
-  }
-  Lsecond<-c(Lsecond,rep("NA",nb_rep))
-  datatable<-data.frame(datatable,as.numeric(Lsecond))
-  reztable<-data.frame("K"=c(1:nb_K))
-  meanL<-c()
-  sdL<-c()
-  for (i in (1:nb_K)) {
-    meanL<-c(meanL,mean(datatable[datatable$K==i,2]))
-    sdL<-c(sdL,sd(datatable[datatable$K==i,2]))
-  }
-  reztable<-data.frame(reztable,meanL,sdL)
-  meanLprime<-c()
-  sdLprime<-c()
-  for (i in (1:nb_K)) {
-    meanLprime<-c(meanLprime,mean(as.numeric(datatable[datatable$K==i,3])))
-    sdLprime<-c(sdLprime,sd(datatable[datatable$K==i,3]))
-  }
-  reztable<-data.frame(reztable,meanLprime,sdLprime)
-  meanLsecond<-c()
-  sdLsecond<-c()
-  for (i in (1:nb_K)) {
-    meanLsecond<-c(meanLsecond,mean(as.numeric(datatable[datatable$K==i,4])))
-    sdLsecond<-c(sdLsecond,sd(datatable[datatable$K==i,4]))
-  }
-  reztable<-data.frame(reztable,meanLsecond,sdLsecond)
-  deltaK<-c()
-  for (i in (1:nb_K)) {
-    deltaK<-c(deltaK,reztable[reztable$K==i,6]/reztable[reztable$K==i,3])
-  }
-  reztable<-data.frame(reztable,deltaK)
-  return(reztable)
-}
-
 deltastr_cccons<-chooseK(resstr_cccons,10,100)
-
-#a function to plot variation of Delta K and Ln(P(X|K)) with K. 
-plotdeltaK<-function(datadeltaK,nb_K,titre){
-  #'datadeltak': the output file of 'chooseK' function
-  #'nb_K': the number of different K considered
-  #'titre': the title of the plot you want to be displayed
-  op<-par(pty="s")
-  plot(datadeltaK[1:(nb_K-2),8],type="b",pch=24,cex=2.5,lwd=4,lty=1,
-       col="transparent",bg="white",bty="n",ann=F)
-  par(new=TRUE)
-  plot(datadeltaK[1:(nb_K-2),8],type="b",pch=24,bty="n",xaxt="n",yaxt="n",
-       ann=F,cex=2.5,lwd=4,lty=1)
-  axis(side=1,at=seq(1,13,1),lwd=3,font.axis=2)
-  axis(side=2,lwd=3,font.axis=2)
-  title(ylab="Delta K",font.lab=2,cex.lab=1.5)
-  par(new=TRUE)
-  plot(datadeltaK[1:(nb_K-2),2],type="b",pch=22,cex=2.5,lwd=4,lty=2,
-       col="grey50",bg="white",bty="n",xaxt="n",yaxt="n",ann=F)
-  axis(side=4,lwd=3,font.axis=2,col="grey50")
-  mtext("Ln(P(X|K))", side=4, line=4,font=2,cex=1,col="grey50")
-  title(main=titre,xlab="K",font.lab=2,cex.lab=1.5,cex.main=2)
-  par(op)
-}
-
-#the same function using log(deltaK), just in order to see smaller variation 
-#of deltaK
-
-#a function to plot variation of Delta K and Ln(P(X|K)) with K. 
-plotlogdeltaK<-function(datadeltaK,nb_K,titre){
-  #'datadeltak': the output file of 'chooseK' function
-  #'nb_K': the number of different K considered
-  #'titre': the title of the plot you want to be displayed
-  op<-par(pty="s")
-  plot(log(datadeltaK[1:(nb_K-2),8]+1),type="b",pch=24,cex=2.5,lwd=4,lty=1,
-       col="transparent",bg="white",bty="n",ann=F)
-  par(new=TRUE)
-  plot(log(datadeltaK[1:(nb_K-2),8]+1),type="b",pch=24,bty="n",xaxt="n",yaxt="n",
-       ann=F,cex=2.5,lwd=4,lty=1)
-  axis(side=1,at=seq(1,13,1),lwd=3,font.axis=2)
-  axis(side=2,lwd=3,font.axis=2)
-  title(ylab="Ln(Delta K+1)",font.lab=2,cex.lab=1.5)
-  par(new=TRUE)
-  plot(datadeltaK[1:(nb_K-2),2],type="b",pch=22,cex=2.5,lwd=4,lty=2,
-       col="grey50",bg="white",bty="n",xaxt="n",yaxt="n",ann=F)
-  axis(side=4,lwd=3,font.axis=2,col="grey50")
-  mtext("Ln(P(X|K))", side=4, line=4,font=2,cex=1,col="grey50")
-  title(main=titre,xlab="K",font.lab=2,cex.lab=1.5,cex.main=2)
-  par(op)
-}
 
 op<-par(mfrow=c(1,2))
 plotdeltaK(deltastr_cccons,10,
