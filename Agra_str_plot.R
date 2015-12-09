@@ -155,6 +155,7 @@ write.table(dapcJDDade5$posterior,file="AgrAphDAPCK5.txt",sep="\t",
 
 #some examples of the use of the function you can load from 
 #'Agra_strplot_fun.R'
+#'
 #first you need to gather the number of individuals in each populations
 effpop<-as.numeric(table(JDDade$pop))
 #the names of the different populations might be useful too
