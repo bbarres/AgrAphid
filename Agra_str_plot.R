@@ -155,7 +155,7 @@ write.table(dapcJDDade5$posterior,file="AgrAphDAPCK5.txt",sep="\t",
 
 #some examples of the use of the function you can load from 
 #'Agra_strplot_fun.R'
-#'
+
 #first you need to gather the number of individuals in each populations
 effpop<-as.numeric(table(JDDade$pop))
 #the names of the different populations might be useful too
@@ -182,7 +182,6 @@ structplot(t(dapcJDDade2$posterior),rainbow(5),effpop,poptiquet,
            leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord="grey70",
            distxax=0.08)
 par(op)
-
 #export to pdf 15 X 4 inches
 
 #alternatively, you can import a q-matrix output file from STRUCTURE software 
