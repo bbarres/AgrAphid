@@ -398,7 +398,7 @@ scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
 
 #Analyzes were performed using STRUCTURE2.3.4 software, with a model allowing 
 #admixture and correlation of allele frequencies. Each run consisted of a 
-#burn-in period of 10.000 iterations followed by 50.000 simulations. One 
+#burn-in period of 10.000 iterations followed by 100.000 simulations. One 
 #hundred repetitions of each run were performed for K ranging from 1 to 10. 
 #Before importing the file, replace white space in the column header names 
 #with underscore, replace "?1" by "alpha", and remove double white spaces or 
