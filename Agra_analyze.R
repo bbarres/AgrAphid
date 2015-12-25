@@ -42,7 +42,7 @@ coloor<-c("orange","green","blue","yellow","hotpink")
 
 #split the Agraphid samples in two set for each year: before August and after
 #August
-as.Date(datAgra$sampling_date,format="%Y/%m/%d")<as.Date("2001-08-01")
+datAgra$sampling_date<as.Date("2001-08-01")
 
 
 
