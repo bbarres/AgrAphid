@@ -20,6 +20,8 @@ setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
 #first, we load the genetic dataset
 datAgra<-read.table("AgrAph2.dat",header=T,sep="\t")
 head(datAgra)
+#turn the 'sampling_date column in the R 'date format'
+datAgra$sampling_date<-as.Date(datAgra$sampling_date,format="%Y/%m/%d")
 #a summary of the different variables
 summary(datAgra)
 colnames(datAgra)
@@ -33,11 +35,14 @@ JDD<-drop.levels(JDD)
 #let's define a set of color for keeping some consistency in the plots
 coloor<-c("orange","green","blue","yellow","hotpink")
 
+
 ###############################################################################
-#
+#Diversity indices
 ###############################################################################
 
-
+#split the Agraphid samples in two set for each year: before August and after
+#August
+as.Date(datAgra$sampling_date,format="%Y/%m/%d")<as.Date("2001-08-01")
 
 
 
