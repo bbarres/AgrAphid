@@ -76,10 +76,18 @@ TempAgra<-datAgra[!is.na(datAgra$semester),]
 #To compute the diversity indices, we need a presence/absence of MLG table
 AgrOcc<-table(TempAgra$semester,TempAgra$MLG_ID)
 
-plot(specnumber(AgrOcc)/rowSums(AgrOcc),type="b",title="G/N")
-plot(diversity(AgrOcc,index="shannon"),type="b")
-plot(diversity(AgrOcc,index="simpson"),type="b")
-plot(diversity(AgrOcc,index="invsimpson"),type="b")
+def.par <- par(no.readonly = TRUE)
+layout(matrix(c(1,2,3,4,5),5,1,byrow=TRUE),
+       widths=c(2,2,2,2,2),heights=c(1,1,1,1,1))
+par(mar = c(2,2,1,1))
+barplot(rowSums(AgrOcc),axes=TRUE,axisnames=FALSE)
+plot(specnumber(AgrOcc)/rowSums(AgrOcc),type="b",main="G/N")
+plot(diversity(AgrOcc,index="shannon"),type="b",main="Shannon")
+plot(diversity(AgrOcc,index="simpson"),type="b",main="Simpson")
+plot(diversity(AgrOcc,index="invsimpson"),type="b",main="Invert Simpson")
+
+
+par(def.par)
 
 
 ###############################################################################
