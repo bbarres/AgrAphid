@@ -82,11 +82,13 @@ layout(matrix(c(1,2,3,4,5),5,1,byrow=TRUE),
 par(mar = c(2,2,1,1))
 barplot(rowSums(AgrOcc),axes=TRUE,axisnames=FALSE,space=0,xlim=c(0.5,13.5))
 plot(specnumber(AgrOcc)/rowSums(AgrOcc),type="b",main="G/N",xlim=c(1,14))
-plot(diversity(AgrOcc,index="shannon"),type="b",main="Shannon",xlim=c(1,14))
+plot(rarefy(AgrOcc,min(rowSums(AgrOcc))),type="b",main="MLG richness",
+     xlim=c(1,14))
+#plot(diversity(AgrOcc,index="shannon"),type="b",main="Shannon",xlim=c(1,14))
 plot(diversity(AgrOcc,index="simpson"),type="b",main="Simpson",xlim=c(1,14))
 #plot(diversity(AgrOcc,index="invsimpson"),type="b",main="Invert Simpson")
-plot(rarefy(AgrOcc,min(rowSums(AgrOcc))),type="b",main="MLG richness",xlim=c(1,14))
-
+plot(diversity(AgrOcc)/log(specnumber(AgrOcc)),type="b", 
+     main="Pielou's evenness",xlim=c(1,14))
 par(def.par)
 
 
