@@ -8,6 +8,7 @@
 library(adegenet)
 library(gdata)
 library(RColorBrewer)
+library(vegan)
 
 #Setting the right working directory
 setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
@@ -24,7 +25,6 @@ head(datAgra)
 datAgra$sampling_date<-as.Date(datAgra$sampling_date,format="%Y/%m/%d")
 #a summary of the different variables
 summary(datAgra)
-colnames(datAgra)
 
 #let's remove the repeated MLGs in the dataset. We can easily do that by 
 #using the 'dup' column of the dataset. To be conservative we remove every 
@@ -42,8 +42,44 @@ coloor<-c("orange","green","blue","yellow","hotpink")
 
 #split the Agraphid samples in two set for each year: before August and after
 #August
-datAgra$sampling_date<as.Date("2001-08-01")
+datAgra$semester[datAgra$sampling_date>as.Date("2000-12-31") &
+                 datAgra$sampling_date<as.Date("2001-08-01")]<-"2001-1S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2001-08-01") &
+                 datAgra$sampling_date<as.Date("2002-01-01")]<-"2001-2S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2002-01-01") &
+                 datAgra$sampling_date<as.Date("2002-08-01")]<-"2002-1S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2002-08-01") &
+                 datAgra$sampling_date<as.Date("2003-01-01")]<-"2002-2S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2003-01-01") &
+                 datAgra$sampling_date<as.Date("2003-08-01")]<-"2003-1S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2003-08-01") &
+                 datAgra$sampling_date<as.Date("2004-01-01")]<-"2003-2S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2004-01-01") &
+                 datAgra$sampling_date<as.Date("2004-08-01")]<-"2004-1S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2004-08-01") &
+                 datAgra$sampling_date<as.Date("2005-01-01")]<-"2004-2S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2005-01-01") &
+                 datAgra$sampling_date<as.Date("2005-08-01")]<-"2005-1S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2005-08-01") &
+                 datAgra$sampling_date<as.Date("2006-01-01")]<-"2005-2S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2006-01-01") &
+                 datAgra$sampling_date<as.Date("2006-08-01")]<-"2006-1S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2006-08-01") &
+                 datAgra$sampling_date<as.Date("2007-01-01")]<-"2006-2S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2007-01-01") &
+                 datAgra$sampling_date<as.Date("2007-08-01")]<-"2007-1S"
+datAgra$semester[datAgra$sampling_date>=as.Date("2007-08-01") &
+                 datAgra$sampling_date<as.Date("2008-01-01")]<-"2007-2S"
 
+#keep only the samples belonging to the temporal sampling
+TempAgra<-datAgra[!is.na(datAgra$semester),]
+#To compute the diversity indices, we need a presence/absence of MLG table
+AgrOcc<-table(TempAgra$semester,TempAgra$MLG_ID)
+
+plot(specnumber(AgrOcc)/rowSums(AgrOcc),type="b",title="G/N")
+plot(diversity(AgrOcc,index="shannon"),type="b")
+plot(diversity(AgrOcc,index="simpson"),type="b")
+plot(diversity(AgrOcc,index="invsimpson"),type="b")
 
 
 ###############################################################################
