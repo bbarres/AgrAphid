@@ -4,15 +4,6 @@
 ###############################################################################
 ###############################################################################
 
-#loading the packages necessary for the analysis
-library(adegenet)
-library(gdata)
-library(RColorBrewer)
-library(vegan)
-
-#Setting the right working directory
-setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
-
 
 ###############################################################################
 #Function for Allelic Richness computation
@@ -54,14 +45,6 @@ AllRich<-function(data)
   rez<-list("Minimum Sampling Size"=echMin,"Allelic Richness Matrix"=ArLOC)
   return(rez)
 }
-
-BRAt<-BRAcc #name of the input file
-#converting data to a genind format
-BRADE<-df2genind(BRAt[,14:27],ncode=3,ind.names=as.character(BRAt$sample_ID), 
-                 pop=BRAt$pop_ID,NA.char=c("0"),ploidy=1)
-BRADE@other$xy<-BRAt[,4:5]
-AllRich(BRADE)[[2]]
-Ar<-apply(AllRich(BRADE)[[2]],1,mean)
 
 
 ###############################################################################
