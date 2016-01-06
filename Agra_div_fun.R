@@ -113,9 +113,6 @@ PrivAllRich<-function(data)
   return(rez)
 }
 
-PrivAllRich(BRADE)
-PrivAr<-apply(PrivAllRich(BRADE)[[2]],1,mean)
-
 
 ###############################################################################
 #Function for Heterozygosity computation
@@ -140,8 +137,6 @@ HeterNei<-function(data)
   attr(Hs,"names")<-row.names(datapop@tab)
   return(Hs)
 }
-
-HetNei<-HeterNei(BRADE)
 
 
 ###############################################################################
