@@ -1,6 +1,6 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.6.1
-RVersion: 3.2.1
+RVersion: 3.2.3
 Repos: BioCsoft=http://bioconductor.org/packages/3.1/bioc,
     BioCann=http://bioconductor.org/packages/3.1/data/annotation,
     BioCexp=http://bioconductor.org/packages/3.1/data/experiment,
@@ -57,6 +57,18 @@ Hash: e685da79e209d7fcd176e20322eefac3
 Requires: ade4, ape, dplyr, ggplot2, igraph, reshape2, seqinr, shiny,
     spdep
 
+Package: adehabitat
+Source: CRAN
+Version: 1.8.18
+Hash: 7ca42dc5df7bc18c92b1fd439f85310b
+Requires: ade4, shapefiles, sp, tkrplot
+
+Package: akima
+Source: CRAN
+Version: 0.5-12
+Hash: d8b04e8511608dda3039781a8782112f
+Requires: sp
+
 Package: ape
 Source: CRAN
 Version: 3.4
@@ -76,6 +88,17 @@ Package: colorspace
 Source: CRAN
 Version: 1.2-6
 Hash: 00bb12245cd975c450cc4a960884fa15
+
+Package: combinat
+Source: CRAN
+Version: 0.0-8
+Hash: 1ddebf0315ec8a5c255adc4da9143b81
+
+Package: crayon
+Source: CRAN
+Version: 1.3.1
+Hash: b61d34886cf0f4b4fc4e4f52ea249390
+Requires: memoise
 
 Package: deldir
 Source: CRAN
@@ -137,6 +160,12 @@ Source: CRAN
 Version: 3.5.0
 Hash: 471b2e2452dfb30fdc1dd6f1b567925a
 
+Package: hierfstat
+Source: CRAN
+Version: 0.04-22
+Hash: a11b1a0e216c4083ef370373d4b77c69
+Requires: ade4, adegenet, gtools
+
 Package: htmltools
 Source: CRAN
 Version: 0.3
@@ -185,6 +214,17 @@ Source: CRAN
 Version: 1.5
 Hash: bdc4d48c3135e8f3b399536ddf160df4
 
+Package: maps
+Source: CRAN
+Version: 3.0.2
+Hash: 84f1911e3cc93097d59535cb996e2c8a
+
+Package: memoise
+Source: CRAN
+Version: 0.2.1
+Hash: 812e6a1dd77a0ca4da41f3239de8e447
+Requires: digest
+
 Package: mgcv
 Source: CRAN
 Version: 1.8-10
@@ -206,6 +246,12 @@ Source: CRAN
 Version: 0.4.6-1
 Hash: 29eacc43b096c5b1a82c8d54a49b030b
 
+Package: pegas
+Source: CRAN
+Version: 0.8-2
+Hash: b341103b625f0e5fdbdf5a14313cad7b
+Requires: adegenet, ape
+
 Package: permute
 Source: CRAN
 Version: 0.8-4
@@ -222,6 +268,11 @@ Source: CRAN
 Version: 1.8.3
 Hash: 5cf4672c5940e265f2602d5d806d303d
 Requires: Rcpp
+
+Package: praise
+Source: CRAN
+Version: 1.0.0
+Hash: 77da8f1df873a4b91e5c4a68fe2fb1b6
 
 Package: proto
 Source: CRAN
@@ -257,6 +308,11 @@ Version: 3.1-3
 Hash: 3721ca51ca92e32d21c2fc3affedf0e9
 Requires: ade4
 
+Package: shapefiles
+Source: CRAN
+Version: 0.7
+Hash: 57446037bb54a510f1d51d6675eb60ef
+
 Package: shiny
 Source: CRAN
 Version: 0.12.2
@@ -274,6 +330,12 @@ Version: 0.5-92
 Hash: 127e9ede0a36b3cbb0d65f37fc41ab80
 Requires: LearnBayes, coda, deldir, sp
 
+Package: splancs
+Source: CRAN
+Version: 2.01-38
+Hash: 679610aa8e53872eb58ee92c77f2060f
+Requires: sp
+
 Package: stringi
 Source: CRAN
 Version: 1.0-1
@@ -284,6 +346,22 @@ Source: CRAN
 Version: 1.0.0
 Hash: 2676dd5f88890910962b733b0f9540e1
 Requires: magrittr, stringi
+
+Package: testthat
+Source: CRAN
+Version: 0.11.0
+Hash: e10882241e569f584fb1f8c19599a13f
+Requires: crayon, digest, praise
+
+Package: tkrplot
+Source: CRAN
+Version: 0.0-23
+Hash: 2b359a85edf13507b17e85e1a6a46b19
+
+Package: tripack
+Source: CRAN
+Version: 1.3-7
+Hash: 00dfc7071f0a62a9915ff601e589fca0
 
 Package: vegan
 Source: CRAN
