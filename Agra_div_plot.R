@@ -8,7 +8,24 @@
 
 
 ###############################################################################
-#Plot by semester
+#Distribution of the number of repetition of the different MLG
+###############################################################################
+
+#distribution for the complete dataset
+barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))])
+#only MLG that are repeated more than once
+summary(table(datAgra$MLG_ID)>1)
+barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:74])
+
+#distribution for the aerial trap samples only
+barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))])
+#only MLG that are repeated more than once
+summary(table(TempAgra$MLG_ID)>1)
+barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32])
+
+
+###############################################################################
+#Plot diversity indices by semester
 ###############################################################################
 
 def.par <- par(no.readonly = TRUE)
