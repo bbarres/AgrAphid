@@ -102,7 +102,7 @@ lines(Arcc,type="b",col="red")
 box()
 
 #plot of the evolution of private allelic richness
-plot(PrivAr,type="b",ylim=c(0.1,0.6),main="Private Allelic Richness",
+plot(PrivAr,type="b",ylim=c(0.05,0.6),main="Private Allelic Richness",
      axes=FALSE,xlab="",ylab="")
 axis(side=2,las=1)
 axis(side=1,labels=names(PrivAr),at=1:14,las=2)
