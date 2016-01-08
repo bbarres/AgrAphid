@@ -25,6 +25,57 @@ barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32])
 
 
 ###############################################################################
+#Distribution of the number of individuals in the different genetic clusters
+###############################################################################
+
+#plot the of the amount of the different genetic clusters with K=3
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K3)),
+        col=rainbow(5)[1:3],beside=TRUE)
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K3)),
+        col=rainbow(5)[1:3],beside=FALSE)
+barplot(t(table(TempAgracc$semester,TempAgracc$Clust_K3)),
+        col=rainbow(5)[1:3],beside=FALSE)
+
+op<-par(mfrow=c(3,1),mar=c(0,0,1,0),oma=c(2,2,0,0))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K3))[1,],col=rainbow(5)[1],
+        beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K3))))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K3))[2,],col=rainbow(5)[2],
+        beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K3))))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K3))[3,],col=rainbow(5)[3],
+        beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K3))))
+par(op)
+
+#plot the of the amount of the different genetic clusters with K=5
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K5)),
+        col=rainbow(5)[1:5],beside=TRUE)
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K5)),
+        col=rainbow(5)[1:5],beside=FALSE)
+barplot(t(table(TempAgracc$semester,TempAgracc$Clust_K5)),
+        col=rainbow(5)[1:5],beside=FALSE)
+
+op<-par(mfrow=c(5,1),mar=c(0,0,1,0),oma=c(2,2,0,0))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[1,],col=rainbow(5)[1],
+        beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[2,],col=rainbow(5)[2],
+        beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[3,],col=rainbow(5)[3],
+        beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[4,],col=rainbow(5)[4],
+        beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[5,],col=rainbow(5)[5],
+        beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
+par(op)
+
+
+###############################################################################
 #Plot diversity indices by semester
 ###############################################################################
 
