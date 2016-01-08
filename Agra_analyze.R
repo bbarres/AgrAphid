@@ -21,7 +21,7 @@ setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
 ###############################################################################
 
 #first, we load the genetic dataset
-datAgra<-read.table("AgrAph2.dat",header=T,sep="\t")
+datAgra<-read.table("AgrAph3.dat",header=T,sep="\t")
 head(datAgra)
 #turn the 'sampling_date column in the R 'date format'
 datAgra$sampling_date<-as.Date(datAgra$sampling_date,format="%Y/%m/%d")
