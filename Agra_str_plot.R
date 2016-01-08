@@ -241,7 +241,7 @@ K2_100runs<-split(K2_100runs,rep(1:100,each=309))
 K2_100runs[[1]]
 coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
-poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
 #now we can plot the 100 runs on the same figure
 op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
@@ -263,7 +263,7 @@ K3_100runs<-read.table("AgrAccconsK3.perm_datafile",header=FALSE,
 K3_100runs<-split(K3_100runs,rep(1:100,each=309))
 coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
-poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
 #now we can plot the 100 runs on the same figure
 op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
@@ -285,7 +285,7 @@ K4_100runs<-read.table("AgrAccconsK4.perm_datafile",header=FALSE,
 K4_100runs<-split(K4_100runs,rep(1:100,each=309))
 coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
-poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
 #now we can plot the 100 runs on the same figure
 op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
@@ -307,7 +307,7 @@ K5_100runs<-read.table("AgrAccconsK5.perm_datafile",header=FALSE,
 K5_100runs<-split(K5_100runs,rep(1:100,each=309))
 coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
-poptiquet<-c("Peach","Colza","Tobacco","Other Crops","Aerial Trap",
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
 #now we can plot the 100 runs on the same figure
 op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
@@ -332,7 +332,7 @@ strK4<-t(read.table("AgrAccconsK4.outfile",header=FALSE,sep="\t")[,c(-1)])
 strK5<-t(read.table("AgrAccconsK5.outfile",header=FALSE,sep="\t")[,c(-1)])
 
 coloor <- c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
-poptiquet<-c("Peach","Colza","Tobacco","Other\nCrops","Aerial Trap",
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other\nCrops","Aerial Trap",
              "Multiple hosts")
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(5,0,0,0))
 structplot(strK5[c(4,2,1,5,3),],coloor,effpop,poptiquet,spacepop=2,
