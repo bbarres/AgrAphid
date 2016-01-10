@@ -37,6 +37,10 @@ JDD<-drop.levels(JDD)
 #let's define a set of color for keeping some consistency in the plots
 coloor<-c("orange","green","blue","yellow","hotpink")
 
+#example of structure plot
+structplot(t(datAgracc[,42:46]),coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
+           distxax=0.15,angl=0,cexpop=1.5)
 
 ###############################################################################
 #DAPC on microsatellites only
