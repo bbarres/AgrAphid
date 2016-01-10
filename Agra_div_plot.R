@@ -16,12 +16,36 @@ barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))])
 #only MLG that are repeated more than once
 summary(table(datAgra$MLG_ID)>1)
 barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:74])
+#same figure but MLG are colored according to the cluster to which they belong
+#for K=3
+barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:74],
+        col=datAgracc[datAgracc$MLG_ID %in% 
+        names(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:74]),]
+        $Clust_K3)
+#same figure but MLG are colored according to the cluster to which they belong
+#for K=5
+barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:74],
+        col=datAgracc[datAgracc$MLG_ID %in% 
+        names(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:74]),]
+        $Clust_K5)
 
 #distribution for the aerial trap samples only
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))])
 #only MLG that are repeated more than once
 summary(table(TempAgra$MLG_ID)>1)
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32])
+#same figure but MLG are colored according to the cluster to which they belong
+#for K=3
+barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32],
+        col=TempAgracc[TempAgracc$MLG_ID %in% 
+        names(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32]),]
+        $Clust_K3)
+#same figure but MLG are colored according to the cluster to which they belong
+#for K=5
+barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32],
+        col=TempAgracc[TempAgracc$MLG_ID %in% 
+        names(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32]),]
+        $Clust_K5)
 
 
 ###############################################################################
