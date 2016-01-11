@@ -47,13 +47,13 @@ barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))])
 #same figure but MLG are colored according to the cluster to which they belong
 #for K=3
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))],
-        col=TempAgracc[TempAgracc$MLG_ID %in% 
+        col=datAgracc[datAgracc$MLG_ID %in% 
         names(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))]),
         "Clust_K3"])
 #same figure but MLG are colored according to the cluster to which they belong
 #for K=5
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))],
-        col=TempAgracc[TempAgracc$MLG_ID %in% 
+        col=datAgracc[datAgracc$MLG_ID %in% 
         names(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))]),
         "Clust_K5"])
 #only MLG that are repeated more than once
@@ -62,13 +62,13 @@ barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32])
 #same figure but MLG are colored according to the cluster to which they belong
 #for K=3
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32],
-        col=TempAgracc[TempAgracc$MLG_ID %in% 
+        col=datAgracc[datAgracc$MLG_ID %in% 
         names(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32]),
         "Clust_K3"])
 #same figure but MLG are colored according to the cluster to which they belong
 #for K=5
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32],
-        col=TempAgracc[TempAgracc$MLG_ID %in% 
+        col=datAgracc[datAgracc$MLG_ID %in% 
         names(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32]),
         "Clust_K5"])
 
