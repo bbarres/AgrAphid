@@ -214,6 +214,8 @@ text(x=Xsemest-0.4,y=rep(par("usr")[3],14)-(par("usr")[4]-par("usr")[3])/10,
      labels=names(HetNei),srt=45,xpd=NA,pos=1,cex=1)
 par(op)
 
+#export to pdf 10 x 6
+
 #plot the of the amount of the different genetic clusters with K=5
 #all aerial trapped individuals
 Xsemest<- barplot(t(table(TempAgra$semester,TempAgra$Clust_K3)),plot=FALSE,
@@ -235,7 +237,7 @@ barplot(t(table(TempAgracc$semester,TempAgracc$Clust_K5))[c(3,1,2,4,5),],
 text(x=Xsemest-0.4,y=rep(par("usr")[3],14)-(par("usr")[4]-par("usr")[3])/30,
      labels=names(HetNei),srt=45,xpd=NA,pos=1,cex=1)
 
-op<-par(mfrow=c(5,1),mar=c(0,0,1,0),oma=c(4,3,0,0))
+op<-par(mfrow=c(5,1),mar=c(0,0,1,0),oma=c(5,3,0,0))
 barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[3,],col=coloor[1],
         beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,las=1,
         ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
@@ -256,6 +258,8 @@ Xsemest<-barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[3,],space=0,
 text(x=Xsemest-0.4,y=rep(par("usr")[3],14)-(par("usr")[4]-par("usr")[3])/10,
      labels=names(HetNei),srt=45,xpd=NA,pos=1,cex=1)
 par(op)
+
+#export pdf 10 x 10 inches
 
 
 ###############################################################################
