@@ -318,7 +318,7 @@ op<-par(mfrow=c(4,1),mar=c(0,3,2,0),oma=c(5.3,1,1,1))
 barplot(nb_samples,axes=TRUE,axisnames=FALSE,space=0,xlim=c(0.5,13.5), 
         main="Number of samples")
 #plot of the evolution of allelic richness
-plot(Ar,type="b",ylim=c(2.5,5.5),main="Allelic Richness",
+plot(Ar,type="b",ylim=c(2.5,4),main="Allelic Richness",
      axes=FALSE,xlab="",ylab="")
 axis(side=2,las=1)
 axis(side=1,labels=FALSE,at=1:14,las=2)

@@ -10,7 +10,7 @@
 ###############################################################################
 
 #data: a dataset at the 'genind' format from the package 'adegenet'
-AllRich<-function(data)
+AllRich<-function(data,Minsamp=0)
 {
   #Conversion from 'genind' object to 'genpop' object
   datapop<-genind2genpop(data, process.other=TRUE, other.action=mean,
@@ -22,7 +22,7 @@ AllRich<-function(data)
                  ncol=(dim(datapop@tab)[2]))
   conf<-list(matpop, matloc)
   effN<-(tapply(datapop@tab, conf, sum))
-  echMin<-min(effN)
+  ifelse(Minsamp==0,echMin<-min(effN),echMin<-Minsamp)
   
   #Second, build of the matrix of total number of sampled allele 
   truc<-t(as.matrix(table(datapop@loc.fac)))
@@ -52,7 +52,7 @@ AllRich<-function(data)
 ###############################################################################
 
 #data: a dataset at the 'genind' format from the package 'adegenet'
-PrivAllRich<-function(data)
+PrivAllRich<-function(data,Minsamp=0)
 {
   #Conversion from 'genind' object to 'genpop' object
   datapop<-genind2genpop(data, process.other=TRUE,other.action=mean,quiet=TRUE)
@@ -65,7 +65,7 @@ PrivAllRich<-function(data)
   effN<-(tapply(datapop@tab, conf, sum))
   #   effN<- effN[order(as.numeric(rownames(effN))),]
   #   colnames(effN)<-locNames(datapop)
-  echMin<-min(effN)
+  ifelse(Minsamp==0,echMin<-min(effN),echMin<-Minsamp)
   
   #Second, build of the matrix of total number of sampled allele 
   truc<-t(as.matrix(table(datapop@loc.fac)))

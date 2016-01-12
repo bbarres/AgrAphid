@@ -46,11 +46,17 @@ COMPDIcc<-df2genind(compdiv[,10:23],ncode=6,pop=compdiv$semester,ploidy=2,
 
 #Allelic richness for the full temporal dataset
 Ar<-apply(AllRich(COMPDI)[[2]],1,mean)
+#we set the minimum number of samples to 5 (the minimum in the 
+#clone-corrected dataset)
+Ar<-apply(AllRich(COMPDI,5)[[2]],1,mean)
 #Allelic richness for the clone-corrected temporal dataset
 Arcc<-apply(AllRich(COMPDIcc)[[2]],1,mean)
 
 #Private Allelic richness for the full temporal dataset
 PrivAr<-apply(PrivAllRich(COMPDI)[[2]],1,mean)
+#we set the minimum number of samples to 5 (the minimum in the 
+#clone-corrected dataset)
+PrivAr<-apply(PrivAllRich(COMPDI,5)[[2]],1,mean)
 #Private Allelic richness for the clone-corrected temporal dataset
 PrivArcc<-apply(PrivAllRich(COMPDIcc)[[2]],1,mean)
 
