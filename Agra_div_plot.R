@@ -4,7 +4,8 @@
 ###############################################################################
 ###############################################################################
 
-#before using the following code, you have to run the Agra_analyze.R file
+#before using the following code, you have to run the Agra_load.R and the 
+#Agra_temp_div.R code
 #define a set of colors to be consistent across the plots
 coloor <- c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
 
@@ -265,7 +266,6 @@ par(op)
 ###############################################################################
 #Plot diversity indices by semester
 ###############################################################################
-
 
 op<-par(mfrow=c(5,1),mar=c(0,3,2,0),oma=c(5.3,1,1,1))
 #plot of the number of samples for each period of time
