@@ -143,7 +143,7 @@ par(op)
 
 
 ###############################################################################
-#Plotting the best K values
+#Plotting the best K values for the complete dataset
 ###############################################################################
 
 #for this study, K=3 and K=5 are the most interesting values
@@ -162,7 +162,7 @@ ordatAgracc<-ordatAgracc[order(as.numeric(as.character
                                ordatAgracc$year,ordatAgracc$sampling_date),]
 
 #plot for the complete clone-corrected dataset
-op<-par(mfrow=c(2,1),mar=c(1,3,0,1),oma=c(3,0,0,0))
+op<-par(mfrow=c(2,1),mar=c(1,3,0,0),oma=c(4,0,0,0))
 effpop<-table(ordatAgracc$host_corrected)[c(4,2,6,3,1,5)]
 #K=3
 structplot(t(ordatAgracc[,39:41]),coloor[c(1,2,3,4,5)],effpop,poptiquet,
@@ -174,8 +174,10 @@ structplot(t(ordatAgracc[,43:47]),coloor[c(1,3,2,4,5)],effpop,poptiquet,
            distxax=0.15,angl=0,cexpop=1.2)
 par(op)
 
+#export to pdf 20 x 5 inches
+
 #plot for the complete dataset
-op<-par(mfrow=c(2,1),mar=c(1,3,0,1),oma=c(3,0,0,0))
+op<-par(mfrow=c(2,1),mar=c(1,3,0,0),oma=c(4,0,0,0))
 #plot for K=5 with the complete dataset
 effpop<-table(ordatAgra$host)[c(4,2,5,3,1)]
 #K=3
@@ -187,6 +189,81 @@ structplot(t(ordatAgra[,43:47]),coloor[c(1,3,2,4,5)],effpop,poptiquet[-6],
            spacepop=8,leg_y="K=5",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
            distxax=0.15,angl=0,cexpop=1.2)
 par(op)
+
+#export to pdf 25 x 5 inches
+
+
+###############################################################################
+#Plotting the best K values for the temporal dataset
+###############################################################################
+
+tempordatAgra<-ordatAgra[ordatAgra$data_batch=="AgrAphid"
+                         & !is.na(ordatAgra$data_batch),]
+tempordatAgracc<-tempordatAgra[tempordatAgra$one_MLG_year==1,]
+
+#plot the temporal dataset by year
+poptiquet<-names(table(tempordatAgra$year))
+op<-par(mfrow=c(2,1),mar=c(1,3,0,0),oma=c(4,0,0,0))
+effpop<-table(tempordatAgra$year)
+#K=3
+structplot(t(tempordatAgra[,39:41]),coloor[c(1,2,3,4,5)],effpop,poptiquet,
+           spacepop=2,leg_y="K=3",cexy=1.2,mef=c(0,1,1,0,1),colbord=NA,
+           distxax=0.15,angl=0,cexpop=1.2)
+#K=5
+structplot(t(tempordatAgra[,43:47]),coloor[c(1,3,2,4,5)],effpop,poptiquet,
+           spacepop=2,leg_y="K=5",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
+           distxax=0.15,angl=45,cexpop=1.2)
+par(op)
+
+#export to pdf 20 x 5 inches
+
+#plot the temporal dataset by semester
+poptiquet<-names(table(tempordatAgra$semester))
+op<-par(mfrow=c(2,1),mar=c(1,3,0,0),oma=c(4,0,0,0))
+effpop<-table(tempordatAgra$semester)
+#K=3
+structplot(t(tempordatAgra[-c(1:2),39:41]),coloor[c(1,2,3,4,5)],effpop,
+           poptiquet,spacepop=2,leg_y="K=3",cexy=1.2,mef=c(0,1,1,0,1),
+           colbord=NA,distxax=0.15,angl=0,cexpop=1.2)
+#K=5
+structplot(t(tempordatAgra[-c(1:2),43:47]),coloor[c(1,3,2,4,5)],effpop,
+           poptiquet,spacepop=2,leg_y="K=5",cexy=1.2,mef=c(0,1,1,1,1),
+           colbord=NA,distxax=0.15,angl=45,cexpop=1.2)
+par(op)
+
+#export to pdf 20 x 5 inches
+
+#plot the clone-corrected temporal dataset by year
+poptiquet<-names(table(tempordatAgracc$year))
+op<-par(mfrow=c(2,1),mar=c(1,3,0,0),oma=c(4,0,0,0))
+effpop<-table(tempordatAgracc$year)
+#K=3
+structplot(t(tempordatAgracc[,39:41]),coloor[c(1,2,3,4,5)],effpop,poptiquet,
+           spacepop=2,leg_y="K=3",cexy=1.2,mef=c(0,1,1,0,1),colbord=NA,
+           distxax=0.15,angl=0,cexpop=1.2)
+#K=5
+structplot(t(tempordatAgracc[,43:47]),coloor[c(1,3,2,4,5)],effpop,poptiquet,
+           spacepop=2,leg_y="K=5",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
+           distxax=0.15,angl=45,cexpop=1.2)
+par(op)
+
+#export to pdf 20 x 5 inches
+
+#plot the clone-corrected temporal dataset by semester
+poptiquet<-names(table(tempordatAgracc$semester))
+op<-par(mfrow=c(2,1),mar=c(1,3,0,0),oma=c(4,0,0,0))
+effpop<-table(tempordatAgracc$semester)
+#K=3
+structplot(t(tempordatAgracc[-c(1),39:41]),coloor[c(1,2,3,4,5)],effpop,
+           poptiquet,spacepop=2,leg_y="K=3",cexy=1.2,mef=c(0,1,1,0,1),
+           colbord=NA,distxax=0.15,angl=0,cexpop=1.2)
+#K=5
+structplot(t(tempordatAgracc[-c(1),43:47]),coloor[c(1,3,2,4,5)],effpop,
+           poptiquet,spacepop=2,leg_y="K=5",cexy=1.2,mef=c(0,1,1,1,1),
+           colbord=NA,distxax=0.15,angl=45,cexpop=1.2)
+par(op)
+
+#export to pdf 20 x 5 inches
 
 
 ###############################################################################
