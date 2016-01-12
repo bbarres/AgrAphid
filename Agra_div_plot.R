@@ -466,7 +466,7 @@ lines(Ypielou_even,type="b")
 box()
 par(op)
 
-#export to pdf 8 x 10 inches
+#export to pdf 8 x 12.5 inches
 
 
 op<-par(mfrow=c(4,1),mar=c(0,3,2,0),oma=c(5.3,1,1,1))
