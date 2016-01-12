@@ -419,6 +419,98 @@ par(op)
 
 
 ###############################################################################
+#Plot diversity indices by semester
+###############################################################################
+
+op<-par(mfrow=c(5,1),mar=c(0,3,2,0),oma=c(5.3,1,1,1))
+#plot of the number of samples for each period of time
+barplot(Ynb_samples,axes=TRUE,axisnames=FALSE,space=0,xlim=c(0.25,6.75), 
+        main="Number of samples")
+#plot of the evolution of G/N
+plot(YGsurN,type="b",ylim=c(0.3,1),main="G/N",
+     axes=FALSE,xlab="",ylab="")
+axis(side=2,las=1)
+axis(side=1,at=1:14,las=2,labels=FALSE)
+barplot(c(rep(20,7)),axes=FALSE,axisnames=FALSE,space=c(0.5,1,1,1,1,1,1),
+        add=TRUE,xpd=FALSE,border=NA,offset=-1)
+lines(YGsurN,type="b")
+box()
+#plot of the evolution of MLG richness
+plot(YMLG_richness,type="b",ylim=c(16,40),main="MLG Richness",
+     axes=FALSE,xlab="",ylab="")
+axis(side=2,las=1)
+axis(side=1,labels=FALSE,at=1:14,las=2)
+barplot(c(rep(50,7)),axes=FALSE,axisnames=FALSE,space=c(0.5,1,1,1,1,1,1),
+        add=TRUE,xpd=FALSE,border=NA,offset=-1)
+lines(YMLG_richness,type="b")
+box()
+#plot of the evolution of Simpson index
+plot(Ysimpson_div,type="b",ylim=c(0.75,1),main="Simpson Index",
+     axes=FALSE,xlab="",ylab="")
+axis(side=2,las=1)
+axis(side=1,labels=FALSE,at=1:14,las=2)
+barplot(c(rep(20,7)),axes=FALSE,axisnames=FALSE,space=c(0.5,1,1,1,1,1,1),
+        add=TRUE,xpd=FALSE,border=NA,offset=-1)
+lines(Ysimpson_div,type="b")
+box()
+#plot of the evolution of Pielou's evenness
+plot(Ypielou_even,type="b",ylim=c(0.75,1),main="Pielou's Evenness",
+     axes=FALSE,xlab="",ylab="")
+axis(side=2,las=1)
+axis(side=1,labels=FALSE,at=1:14,las=2)
+text(x=(1:14),y=rep(par("usr")[3],14)-(par("usr")[4]-par("usr")[3])/10,
+     labels=names(Ypielou_even),srt=45,xpd=NA,pos=1,cex=1,adj=0)
+barplot(c(rep(20,7)),axes=FALSE,axisnames=FALSE,space=c(0.5,1,1,1,1,1,1),
+        add=TRUE,xpd=FALSE,border=NA,offset=-1)
+lines(Ypielou_even,type="b")
+box()
+par(op)
+
+#export to pdf 8 x 10 inches
+
+
+op<-par(mfrow=c(4,1),mar=c(0,3,2,0),oma=c(5.3,1,1,1))
+#plot of the number of samples for each period of time
+barplot(Ynb_samples,axes=TRUE,axisnames=FALSE,space=0,xlim=c(0.25,6.75), 
+        main="Number of samples")
+#plot of the evolution of allelic richness
+plot(YAr,type="b",ylim=c(4,8),main="Allelic Richness",
+     axes=FALSE,xlab="",ylab="")
+axis(side=2,las=1)
+axis(side=1,labels=FALSE,at=1:14,las=2)
+barplot(c(rep(20,7)),axes=FALSE,axisnames=FALSE,space=c(0.5,1,1,1,1,1,1),
+        add=TRUE,xpd=FALSE,border=NA,offset=-1)
+lines(YAr,type="b")
+lines(YArcc,type="b",col="red")
+box()
+#plot of the evolution of private allelic richness
+plot(YPrivAr,type="b",ylim=c(0.3,1),main="Private Allelic Richness",
+     axes=FALSE,xlab="",ylab="")
+axis(side=2,las=1)
+axis(side=1,labels=FALSE,at=1:14,las=2)
+barplot(c(rep(20,7)),axes=FALSE,axisnames=FALSE,space=c(0.5,1,1,1,1,1,1),
+        add=TRUE,xpd=FALSE,border=NA,offset=-1)
+lines(YPrivAr,type="b")
+lines(YPrivArcc,type="b",col="red")
+box()
+#plot of the evolution of heterozygosity
+plot(YHetNei,type="b",ylim=c(0.5,0.85),main="Heterozygosity",axes=FALSE,
+     xlab="",ylab="")
+axis(side=2,las=1)
+axis(side=1,labels=FALSE,at=1:14,las=2)
+text(x=(1:14),y=rep(par("usr")[3],14)-(par("usr")[4]-par("usr")[3])/10,
+     labels=names(YHetNei),srt=45,xpd=NA,pos=1,cex=1,adj=0)
+barplot(c(rep(20,7)),axes=FALSE,axisnames=FALSE,space=c(0.5,1,1,1,1,1,1),
+        add=TRUE,xpd=FALSE,border=NA,offset=-1)
+lines(YHetNei,type="b")
+lines(YHetNeicc,type="b",col="red")
+box()
+par(op)
+
+#export to pdf 8 x 10 inches
+
+
+###############################################################################
 #Trash
 ###############################################################################
 
