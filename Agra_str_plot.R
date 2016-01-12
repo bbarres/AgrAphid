@@ -161,16 +161,32 @@ ordatAgracc<-ordatAgracc[order(as.numeric(as.character
                                           (ordatAgracc$host_corrected)),
                                ordatAgracc$year,ordatAgracc$sampling_date),]
 
-#plot for K=5 for the clone-corrected dataset
+#plot for the complete clone-corrected dataset
+op<-par(mfrow=c(2,1),mar=c(1,3,0,1),oma=c(3,0,0,0))
 effpop<-table(ordatAgracc$host_corrected)[c(4,2,6,3,1,5)]
+#K=3
+structplot(t(ordatAgracc[,39:41]),coloor[c(1,2,3,4,5)],effpop,poptiquet,
+           spacepop=2,leg_y="K=3",cexy=1.2,mef=c(0,1,1,0,1),colbord=NA,
+           distxax=0.15,angl=0,cexpop=1.2)
+#K=5
 structplot(t(ordatAgracc[,43:47]),coloor[c(1,3,2,4,5)],effpop,poptiquet,
            spacepop=2,leg_y="K=5",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
            distxax=0.15,angl=0,cexpop=1.2)
+par(op)
+
+#plot for the complete dataset
+op<-par(mfrow=c(2,1),mar=c(1,3,0,1),oma=c(3,0,0,0))
 #plot for K=5 with the complete dataset
 effpop<-table(ordatAgra$host)[c(4,2,5,3,1)]
+#K=3
+structplot(t(ordatAgra[,39:41]),coloor[c(1,2,3,4,5)],effpop,poptiquet,
+           spacepop=8,leg_y="K=3",cexy=1.2,mef=c(0,1,1,0,1),colbord=NA,
+           distxax=0.15,angl=0,cexpop=1.2)
+#K=5
 structplot(t(ordatAgra[,43:47]),coloor[c(1,3,2,4,5)],effpop,poptiquet[-6],
            spacepop=8,leg_y="K=5",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
            distxax=0.15,angl=0,cexpop=1.2)
+par(op)
 
 
 ###############################################################################
