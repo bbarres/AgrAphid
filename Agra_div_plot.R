@@ -104,14 +104,15 @@ par(op)
 #Distribution of the number of repetition of the different MLG: complete data
 ###############################################################################
 
-barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))])
 #for assigning a color according to the genetic cluster, we 
 #build a table of MLG x Cluster belonging
 clustbelong<-datAgracc[,c("MLG_ID","Clust_K3","Clust_K5")]
 levels(clustbelong$Clust_K3)<-c("firebrick","chartreuse4","royalblue4")
-levels(clustbelong$Clust_K5)<-c("chartreuse4","darkorange","firebrick","khaki2",
-                                "royalblue4")
+levels(clustbelong$Clust_K5)<-c("chartreuse4","darkorange","firebrick",
+                                "khaki2","royalblue4")
 row.names(clustbelong)<-clustbelong$MLG_ID
+
+barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))])
 #same figure but MLG are colored according to the cluster to which they belong
 #for K=3
 barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))],
@@ -155,6 +156,7 @@ barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))],
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))],
         col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
                               [order(-table(TempAgra$MLG_ID))]),"Clust_K5"]))
+
 #only MLG that are repeated more than once
 summary(table(TempAgra$MLG_ID)>1)
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32],
@@ -171,6 +173,68 @@ barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32],
         col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
                               [order(-table(TempAgra$MLG_ID))])[1:32],
                         "Clust_K5"]),cex.names=0.8,las=2)
+
+#now we plot the distribution of the major MLG (ie at least repeated 10 times
+#across years
+majMLG<-as.numeric(summary(table(TempAgra$MLG_ID)
+                           [order(-table(TempAgra$MLG_ID))]>9)[3])
+maxMLG<-max(table(TempAgra$semester,TempAgra$MLG_ID))
+
+#K=3
+op<-par(mfrow=c(majMLG,1),mar=c(1,3,2,0),oma=c(5,0,0,0))
+for (i in 1:majMLG){
+  if (i<majMLG) {
+    barplot(table(TempAgra$semester,TempAgra$MLG_ID)
+            [,order(-table(TempAgra$MLG_ID))[i]],
+            col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
+                                         [order(-table(TempAgra$MLG_ID))])[i],
+                                         "Clust_K3"]),axisnames=FALSE,las=2,
+            ylim=c(0,maxMLG),space=0,
+            main=dimnames(table(TempAgra$semester,TempAgra$MLG_ID)
+                          [,order(-table(TempAgra$MLG_ID))])[[2]][i])
+  } else {
+    barplot(table(TempAgra$semester,TempAgra$MLG_ID)
+            [,order(-table(TempAgra$MLG_ID))[i]],
+            col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
+                                         [order(-table(TempAgra$MLG_ID))])[i],
+                                         "Clust_K3"]),cex.names=1,las=2,
+            ylim=c(0,maxMLG),space=0,
+            main=dimnames(table(TempAgra$semester,TempAgra$MLG_ID)
+                          [,order(-table(TempAgra$MLG_ID))])[[2]][i])
+  }
+  
+}
+par(op)
+
+#export pdf 6 x 12 inches
+
+#K=5
+op<-par(mfrow=c(majMLG,1),mar=c(1,3,2,0),oma=c(5,0,0,0))
+for (i in 1:majMLG){
+  if (i<majMLG) {
+    barplot(table(TempAgra$semester,TempAgra$MLG_ID)
+            [,order(-table(TempAgra$MLG_ID))[i]],
+            col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
+                                         [order(-table(TempAgra$MLG_ID))])[i],
+                                         "Clust_K5"]),axisnames=FALSE,las=2,
+            ylim=c(0,maxMLG),space=0,
+            main=dimnames(table(TempAgra$semester,TempAgra$MLG_ID)
+                          [,order(-table(TempAgra$MLG_ID))])[[2]][i])
+  } else {
+    barplot(table(TempAgra$semester,TempAgra$MLG_ID)
+            [,order(-table(TempAgra$MLG_ID))[i]],
+            col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
+                                         [order(-table(TempAgra$MLG_ID))])[i],
+                                         "Clust_K5"]),cex.names=1,las=2,
+            ylim=c(0,maxMLG),space=0,
+            main=dimnames(table(TempAgra$semester,TempAgra$MLG_ID)
+                          [,order(-table(TempAgra$MLG_ID))])[[2]][i])
+  }
+  
+}
+par(op)
+
+#export pdf 6 x 12 inches
 
 
 ###############################################################################
