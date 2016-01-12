@@ -52,11 +52,11 @@ Ypielou_even<-diversity(AgrOcc)/log(specnumber(AgrOcc))
 
 #converting data to a genind format for the full dataset
 compdiv<-TempAgra #name of the input file
-COMPDI<-df2genind(compdiv[,10:23],ncode=6,pop=compdiv$semester,ploidy=2,
+COMPDI<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$semester,ploidy=2,
                   NA.char=c("999999"),ind.names=as.character(compdiv$indiv_ID))
 #converting data to a genind format
 compdiv<-TempAgracc #name of the input file
-COMPDIcc<-df2genind(compdiv[,10:23],ncode=6,pop=compdiv$semester,ploidy=2,
+COMPDIcc<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$semester,ploidy=2,
                    ind.names=as.character(compdiv$indiv_ID),
                    NA.char=c("999999"))
 
@@ -88,11 +88,11 @@ HetNeicc<-HeterNei(COMPDIcc)
 
 #converting data to a genind format for the full dataset
 compdiv<-TempAgra #name of the input file
-COMPDI<-df2genind(compdiv[,10:23],ncode=6,pop=compdiv$year,ploidy=2,
+COMPDI<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$year,ploidy=2,
                   NA.char=c("999999"),ind.names=as.character(compdiv$indiv_ID))
 #converting data to a genind format
 compdiv<-TempAgracc #name of the input file
-COMPDIcc<-df2genind(compdiv[,10:23],ncode=6,pop=compdiv$year,ploidy=2,
+COMPDIcc<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$year,ploidy=2,
                     ind.names=as.character(compdiv$indiv_ID),
                     NA.char=c("999999"))
 
