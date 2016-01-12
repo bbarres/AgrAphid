@@ -84,9 +84,6 @@ TempAgracc<-TempAgra[TempAgra$one_MLG_year==1,]
 TempAgracc<-drop.levels(TempAgracc)
 dim(TempAgracc)[1] #number of samples in the dataset
 
-#let's define a set of color for keeping some consistency in the plots
-coloor<-c("orange","green","blue","yellow","hotpink")
-
 
 ###############################################################################
 #MLG Diversity indices

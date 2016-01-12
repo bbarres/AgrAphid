@@ -14,6 +14,166 @@ setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
 
 
 ###############################################################################
+#plot a list of 100 STRUCTURE output files for each K
+###############################################################################
+
+#Usually, you run STRUCTURE several times for the same K values. After that, 
+#you can reorganize the output file such as the labels of the different group 
+#in the different run match (using CLUMPP for example). Here we import the 
+#output file of CLUMPP and then we plot all the repetition in the same graph. 
+#We first need to edit a little the output file in excel prior to the 
+#importation: just keep the q matrix without any other information
+
+#for K=2
+K2_100runs<-read.table("AgrAccconsK2.perm_datafile",header=FALSE,
+                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
+#then we split the dataframe in as many repetition that has been made
+#by the number of individuals (here 309)
+K2_100runs<-split(K2_100runs,rep(1:100,each=309))
+K2_100runs[[1]]
+coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
+effpop<-c(69,29,11,16,168,16)
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
+             "Multiple hosts")
+#now we can plot the 100 runs on the same figure
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
+for (i in 1:100){
+  temp<-K2_100runs[[i]]
+  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+             leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
+             distxax=0.15,angl=0,cexpop=1.5)
+}
+title(main="K=2",cex.main=2.5,outer=TRUE)
+par(op)
+#export pdf 25 x 12
+
+#for K=3
+K3_100runs<-read.table("AgrAccconsK3.perm_datafile",header=FALSE,
+                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
+#then we split the dataframe in as many repetition that has been made
+#by the number of individuals (here 309)
+K3_100runs<-split(K3_100runs,rep(1:100,each=309))
+coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
+effpop<-c(69,29,11,16,168,16)
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
+             "Multiple hosts")
+#now we can plot the 100 runs on the same figure
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
+for (i in 1:100){
+  temp<-K3_100runs[[i]]
+  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+             leg_y="K=3",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
+             distxax=0.15,angl=0,cexpop=1.5)
+}
+title(main="K=3",cex.main=2.5,outer=TRUE)
+par(op)
+#export pdf 25 x 12
+
+#for K=4
+K4_100runs<-read.table("AgrAccconsK4.perm_datafile",header=FALSE,
+                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
+#then we split the dataframe in as many repetition that has been made
+#by the number of individuals (here 309)
+K4_100runs<-split(K4_100runs,rep(1:100,each=309))
+coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
+effpop<-c(69,29,11,16,168,16)
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
+             "Multiple hosts")
+#now we can plot the 100 runs on the same figure
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
+for (i in 1:100){
+  temp<-K4_100runs[[i]]
+  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+             leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
+             distxax=0.15,angl=0,cexpop=1.5)
+}
+title(main="K=4",cex.main=2.5,outer=TRUE)
+par(op)
+#export pdf 25 x 12
+
+#for K=5
+K5_100runs<-read.table("AgrAccconsK5.perm_datafile",header=FALSE,
+                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
+#then we split the dataframe in as many repetition that has been made
+#by the number of individuals (here 309)
+K5_100runs<-split(K5_100runs,rep(1:100,each=309))
+coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
+effpop<-c(69,29,11,16,168,16)
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
+             "Multiple hosts")
+#now we can plot the 100 runs on the same figure
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
+for (i in 1:100){
+  temp<-K5_100runs[[i]]
+  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+             leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
+             distxax=0.15,angl=0,cexpop=1.5)
+}
+title(main="K=5",cex.main=2.5,outer=TRUE)
+par(op)
+#export pdf 25 x 12
+
+
+###############################################################################
+#Identifying the best K for STRUCTURE run
+###############################################################################
+
+#Analyzes were performed using STRUCTURE2.3.4 software, with a model allowing 
+#admixture and correlation of allele frequencies. Each run consisted of a 
+#burn-in period of 10.000 iterations followed by 100.000 simulations. One 
+#hundred repetitions of each run were performed for K ranging from 1 to 10. 
+#Before importing the file, replace white space in the column header names 
+#with underscore, replace "?1" by "alpha", and remove double white spaces or 
+#it will provoc importation problem or failure
+
+#run the 'Agra_deltaKplot_fun.R' code before running this code
+
+resstr_cccons<-read.table(file="AgrAphout.str", header=T,sep=" ",
+                          blank.lines.skip=T)
+deltastr_cccons<-chooseK(resstr_cccons,10,100)
+
+op<-par(mfrow=c(1,2))
+plotdeltaK(deltastr_cccons,10,
+           "Conservative clone correction dataset (n=173)")
+plotlogdeltaK(deltastr_cccons,10,
+              "Conservative clone correction dataset (n=173)")
+par(op)
+#you can obtain the same figure as in the manuscript by exporting the plot to 
+#png format, with a width of 2400 X 1100 pixels
+
+
+###############################################################################
+#Plotting the best K values
+###############################################################################
+
+#for this study, K=3 and K=5 are the most interesting values
+coloor <- c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
+poptiquet<-c("Peach","Oilseed\nrape","Tobacco","Other\nCrops","Aerial Trap",
+             "Multiple hosts")
+#let's order the dataset as we want
+ordatAgra<-datAgra
+levels(ordatAgra$host_corrected)<-c(5,2,4,1,6,3)
+levels(ordatAgra$host)<-c(5,2,4,1,3)
+ordatAgra<-ordatAgra[order(as.numeric(as.character(ordatAgra$host)),
+                           ordatAgra$year,ordatAgra$sampling_date),]
+ordatAgracc<-ordatAgra[ordatAgra$one_MLG==1,]
+ordatAgracc<-ordatAgracc[order(as.numeric(as.character
+                                          (ordatAgracc$host_corrected)),
+                               ordatAgracc$year,ordatAgracc$sampling_date),]
+
+#plot for K=5 for the clone-corrected dataset
+effpop<-table(ordatAgracc$host_corrected)[c(4,2,6,3,1,5)]
+structplot(t(ordatAgracc[,43:47]),coloor[c(1,3,2,4,5)],effpop,poptiquet,
+           spacepop=2,leg_y="K=5",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
+           distxax=0.15,angl=0,cexpop=1.2)
+#plot for K=5 with the complete dataset
+effpop<-table(ordatAgra$host)[c(4,2,5,3,1)]
+structplot(t(ordatAgra[,43:47]),coloor[c(1,3,2,4,5)],effpop,poptiquet[-6],
+           spacepop=8,leg_y="K=5",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
+           distxax=0.15,angl=0,cexpop=1.2)
+
+
+###############################################################################
 #loading and preparing the dataset
 ###############################################################################
 
@@ -37,10 +197,6 @@ JDD<-drop.levels(JDD)
 #let's define a set of color for keeping some consistency in the plots
 coloor<-c("orange","green","blue","yellow","hotpink")
 
-#example of structure plot
-structplot(t(datAgracc[,42:46]),coloor,effpop,poptiquet,spacepop=2,
-           leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
-           distxax=0.15,angl=0,cexpop=1.5)
 
 ###############################################################################
 #DAPC on microsatellites only
@@ -226,106 +382,6 @@ par(op)
 
 
 ###############################################################################
-#plot a list of 100 STRUCTURE output files for each K
-###############################################################################
-
-#Usually, you run STRUCTURE several times for the same K values. After that, 
-#you can reorganize the output file such as the labels of the different group 
-#in the different run match (using CLUMPP for example). Here we import the 
-#output file of CLUMPP and then we plot all the repetition in the same graph. 
-#We first need to edit a little the output file in excel prior to the 
-#importation: just keep the q matrix without any other information
-
-#for K=2
-K2_100runs<-read.table("AgrAccconsK2.perm_datafile",header=FALSE,
-                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
-#then we split the dataframe in as many repetition that has been made
-#by the number of individuals (here 309)
-K2_100runs<-split(K2_100runs,rep(1:100,each=309))
-K2_100runs[[1]]
-coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
-effpop<-c(69,29,11,16,168,16)
-poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
-             "Multiple hosts")
-#now we can plot the 100 runs on the same figure
-op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
-for (i in 1:100){
-  temp<-K2_100runs[[i]]
-  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
-             distxax=0.15,angl=0,cexpop=1.5)
-}
-title(main="K=2",cex.main=2.5,outer=TRUE)
-par(op)
-#export pdf 25 x 12
-
-#for K=3
-K3_100runs<-read.table("AgrAccconsK3.perm_datafile",header=FALSE,
-                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
-#then we split the dataframe in as many repetition that has been made
-#by the number of individuals (here 309)
-K3_100runs<-split(K3_100runs,rep(1:100,each=309))
-coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
-effpop<-c(69,29,11,16,168,16)
-poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
-             "Multiple hosts")
-#now we can plot the 100 runs on the same figure
-op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
-for (i in 1:100){
-  temp<-K3_100runs[[i]]
-  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=3",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
-             distxax=0.15,angl=0,cexpop=1.5)
-}
-title(main="K=3",cex.main=2.5,outer=TRUE)
-par(op)
-#export pdf 25 x 12
-
-#for K=4
-K4_100runs<-read.table("AgrAccconsK4.perm_datafile",header=FALSE,
-                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
-#then we split the dataframe in as many repetition that has been made
-#by the number of individuals (here 309)
-K4_100runs<-split(K4_100runs,rep(1:100,each=309))
-coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
-effpop<-c(69,29,11,16,168,16)
-poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
-             "Multiple hosts")
-#now we can plot the 100 runs on the same figure
-op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
-for (i in 1:100){
-  temp<-K4_100runs[[i]]
-  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
-             distxax=0.15,angl=0,cexpop=1.5)
-}
-title(main="K=4",cex.main=2.5,outer=TRUE)
-par(op)
-#export pdf 25 x 12
-
-#for K=5
-K5_100runs<-read.table("AgrAccconsK5.perm_datafile",header=FALSE,
-                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
-#then we split the dataframe in as many repetition that has been made
-#by the number of individuals (here 309)
-K5_100runs<-split(K5_100runs,rep(1:100,each=309))
-coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
-effpop<-c(69,29,11,16,168,16)
-poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
-             "Multiple hosts")
-#now we can plot the 100 runs on the same figure
-op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
-for (i in 1:100){
-  temp<-K5_100runs[[i]]
-  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
-             distxax=0.15,angl=0,cexpop=1.5)
-}
-title(main="K=5",cex.main=2.5,outer=TRUE)
-par(op)
-#export pdf 25 x 12
-
-###############################################################################
 #plot of the clusterisation for different K value after CLUMPP averaging
 ###############################################################################
 
@@ -394,34 +450,6 @@ scatter(dapcJDDade,xax=1, yax=2,col=coloor)
 #a more beautifull scatter plot
 scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
         solid=0.3,pch=19,cex=3,scree.da=TRUE)
-
-
-###############################################################################
-#Identifying the best K for STRUCTURE run
-###############################################################################
-
-#Analyzes were performed using STRUCTURE2.3.4 software, with a model allowing 
-#admixture and correlation of allele frequencies. Each run consisted of a 
-#burn-in period of 10.000 iterations followed by 100.000 simulations. One 
-#hundred repetitions of each run were performed for K ranging from 1 to 10. 
-#Before importing the file, replace white space in the column header names 
-#with underscore, replace "?1" by "alpha", and remove double white spaces or 
-#it will provoc importation problem or failure
-
-#run the 'Agra_deltaKplot_fun.R' code before running this code
-
-resstr_cccons<-read.table(file="AgrAphout.str", header=T,sep=" ",
-                          blank.lines.skip=T)
-deltastr_cccons<-chooseK(resstr_cccons,10,100)
-
-op<-par(mfrow=c(1,2))
-plotdeltaK(deltastr_cccons,10,
-           "Conservative clone correction dataset (n=173)")
-plotlogdeltaK(deltastr_cccons,10,
-              "Conservative clone correction dataset (n=173)")
-par(op)
-#you can obtain the same figure as in the manuscript by exporting the plot to 
-#png format, with a width of 2400 X 1100 pixels
 
 
 ###############################################################################
