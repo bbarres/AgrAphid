@@ -44,7 +44,7 @@ barplot(t(table(datAgra$host,datAgra$Clust_K3))[1,c(4,2,5,3,1)],las=1,
 barplot(t(table(datAgra$host,datAgra$Clust_K3))[2,c(4,2,5,3,1)],las=1,
         col=coloor[3],main="Cluster Secondary",axisnames=FALSE)
 barplot(t(table(datAgra$host,datAgra$Clust_K3))[3,c(4,2,5,3,1)],las=1,
-        col=coloor[2],main="Cluster Wild",axisnames=FALSE)
+        col=coloor[2],main="Cluster Weird",axisnames=FALSE)
 Xsemest<-barplot(t(table(datAgra$host,datAgra$Clust_K5)),plot=FALSE,
                  beside=FALSE)
 text(x=Xsemest,y=rep(par("usr")[3],5)-(par("usr")[4]-par("usr")[3])/20,
@@ -72,7 +72,7 @@ barplot((table(datAgra$host,datAgra$Clust_K5))[1,c(3,1,2,4,5)],las=1,
 Xsemest<-barplot(table(datAgra$host,datAgra$Clust_K5),plot=FALSE,beside=FALSE)
 text(x=Xsemest,y=rep(par("usr")[3],5)-(par("usr")[4]-par("usr")[3])/20,
      labels=c("Cluster\nPeach","Cluster\nOilseed1","Cluster\nOilseed2",
-              "Cluster\nTobacco","Cluster\nEnigma"),
+              "Cluster\nTobacco","Cluster\nWild"),
      srt=0,xpd=NA,pos=1,cex=1.2)
 par(op)
 
@@ -419,7 +419,7 @@ par(op)
 
 
 ###############################################################################
-#Plot diversity indices by semester
+#Plot diversity indices by year
 ###############################################################################
 
 op<-par(mfrow=c(5,1),mar=c(0,3,2,0),oma=c(5.3,1,1,1))
