@@ -32,8 +32,8 @@ Requires: RColorBrewer, colorspace, digest, doParallel, foreach,
 
 Package: R6
 Source: CRAN
-Version: 2.1.1
-Hash: 20a88b2c9c84aecff2702789a4d102f5
+Version: 2.1.2
+Hash: c515e41c73294952cbb33ee1c1be5a2d
 
 Package: RColorBrewer
 Source: CRAN
@@ -52,10 +52,10 @@ Hash: 7d98ae2076920ed84aebcfd488d80dca
 
 Package: adegenet
 Source: CRAN
-Version: 2.0.0
-Hash: e685da79e209d7fcd176e20322eefac3
+Version: 2.0.1
+Hash: 10a5e2cad6f99784ff5a50e2a6b0e992
 Requires: ade4, ape, dplyr, ggplot2, igraph, reshape2, seqinr, shiny,
-    spdep
+    spdep, vegan
 
 Package: adehabitat
 Source: CRAN
@@ -216,19 +216,19 @@ Hash: bdc4d48c3135e8f3b399536ddf160df4
 
 Package: maps
 Source: CRAN
-Version: 3.0.2
-Hash: 84f1911e3cc93097d59535cb996e2c8a
+Version: 3.1.0
+Hash: aed073ec64642be40985329fe1b8c225
 
 Package: memoise
 Source: CRAN
-Version: 0.2.1
-Hash: 812e6a1dd77a0ca4da41f3239de8e447
+Version: 1.0.0
+Hash: 56e7087c3559eb7ba72a9afb349bf896
 Requires: digest
 
 Package: mgcv
 Source: CRAN
-Version: 1.8-10
-Hash: 94098f16cf358021e71f6c6c224ff974
+Version: 1.8-11
+Hash: 9428b74591d425e871c243193d338ce8
 
 Package: mime
 Source: CRAN
@@ -237,8 +237,8 @@ Hash: b08c52dae92a0a11e64a4deea032ec33
 
 Package: munsell
 Source: CRAN
-Version: 0.4.2
-Hash: 72d343a6664778029f49a7ad36de1cab
+Version: 0.4.3
+Hash: f96d896947fcaf9b6d0074002e9f4f9d
 Requires: colorspace
 
 Package: packrat
@@ -254,8 +254,8 @@ Requires: adegenet, ape
 
 Package: permute
 Source: CRAN
-Version: 0.8-4
-Hash: b11e9a75cb57346759663833f1423551
+Version: 0.9-0
+Hash: 9755b9b756b0041f3107e86bd00e9cb2
 
 Package: pkgmaker
 Source: CRAN
@@ -321,8 +321,8 @@ Requires: R6, digest, htmltools, httpuv, jsonlite, mime, xtable
 
 Package: sp
 Source: CRAN
-Version: 1.2-1
-Hash: ecc445b1785d42c5cb3f4d687a121bea
+Version: 1.2-2
+Hash: c6844cf8ecf6db253601c7f6eceb9cc5
 
 Package: spdep
 Source: CRAN
@@ -371,5 +371,5 @@ Requires: mgcv, permute
 
 Package: xtable
 Source: CRAN
-Version: 1.8-0
-Hash: 3816a222bb6837b3344d230b54b4c3cc
+Version: 1.8-2
+Hash: 7293235cfcc14cdff1ce7fd1a0212031
