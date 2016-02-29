@@ -13,6 +13,11 @@ Source: CRAN
 Version: 1.60.0-1
 Hash: 889445e87a2acd4cc58440957f3b0d1a
 
+Package: Cairo
+Source: CRAN
+Version: 1.5-9
+Hash: 6acb4ad0cff51c9f8148e344db173f70
+
 Package: DBI
 Source: CRAN
 Version: 0.3.1
@@ -79,6 +84,17 @@ Source: CRAN
 Version: 0.1
 Hash: 0afb92b59b02593c70ff8046700ba9d3
 
+Package: bitops
+Source: CRAN
+Version: 1.0-6
+Hash: 67d0775189fd0041d95abca618c5c07e
+
+Package: caTools
+Source: CRAN
+Version: 1.17.1
+Hash: 97cb6f6293cd18d17df77a6383cc6763
+Requires: bitops
+
 Package: coda
 Source: CRAN
 Version: 0.18-1
@@ -127,11 +143,22 @@ Version: 0.4.3
 Hash: d7005d9f57021e610fa38635d7a0b8e0
 Requires: BH, DBI, R6, Rcpp, assertthat, lazyeval, magrittr
 
+Package: evaluate
+Source: CRAN
+Version: 0.8
+Hash: aac00bd789bac10970b50e3b7e0cab04
+Requires: stringr
+
 Package: foreach
 Source: CRAN
 Version: 1.4.3
 Hash: cd53ef4cf29dc59ce3f8c5c1af735fd1
 Requires: iterators
+
+Package: formatR
+Source: CRAN
+Version: 1.2.1
+Hash: 54c730c712edd6087972ecf99bf87c55
 
 Package: gdata
 Source: CRAN
@@ -152,8 +179,8 @@ Hash: d4b7f73c0fdf11d18d1e1ae1643ac4ec
 
 Package: gtable
 Source: CRAN
-Version: 0.1.2
-Hash: 38a0f066373a60824cd3ade2362af363
+Version: 0.2.0
+Hash: cd78381a9d3fea966ac39bd0daaf5554
 
 Package: gtools
 Source: CRAN
@@ -165,6 +192,11 @@ Source: CRAN
 Version: 0.04-22
 Hash: a11b1a0e216c4083ef370373d4b77c69
 Requires: ade4, adegenet, gtools
+
+Package: highr
+Source: CRAN
+Version: 0.5.1
+Hash: 114ef5abcf58bebbf6ac083b9cacbbd8
 
 Package: htmltools
 Source: CRAN
@@ -199,6 +231,12 @@ Source: CRAN
 Version: 0.9.19
 Hash: 4a983f753b6e88ae0f5a6ac152d8cc32
 
+Package: knitr
+Source: CRAN
+Version: 1.12.3
+Hash: d537760d13021cf23fa2446381d9e0b2
+Requires: digest, evaluate, formatR, highr, markdown, stringr, yaml
+
 Package: labeling
 Source: CRAN
 Version: 0.3
@@ -218,6 +256,12 @@ Package: maps
 Source: CRAN
 Version: 3.1.0
 Hash: aed073ec64642be40985329fe1b8c225
+
+Package: markdown
+Source: CRAN
+Version: 0.7.7
+Hash: fea2343a1119d61b0cc5c0a950d103a3
+Requires: mime
 
 Package: memoise
 Source: CRAN
@@ -290,6 +334,12 @@ Version: 1.4.1
 Hash: 55963009094746c3aef64bfbf9eb4731
 Requires: Rcpp, plyr, stringr
 
+Package: rmarkdown
+Source: CRAN
+Version: 0.9.5
+Hash: c47e8fb40e81162783fe1335a13a0ca3
+Requires: caTools, htmltools, knitr, yaml
+
 Package: rngtools
 Source: CRAN
 Version: 1.2.4
@@ -298,8 +348,8 @@ Requires: digest, pkgmaker, stringr
 
 Package: scales
 Source: CRAN
-Version: 0.3.0
-Hash: 9c140be1bda3cf690f8714cfc810aa45
+Version: 0.4.0
+Hash: b74e3f81bab2d88325d8798d5e03e0cc
 Requires: RColorBrewer, Rcpp, dichromat, labeling, munsell, plyr
 
 Package: seqinr
@@ -315,8 +365,8 @@ Hash: 57446037bb54a510f1d51d6675eb60ef
 
 Package: shiny
 Source: CRAN
-Version: 0.13.0
-Hash: b4e074e7ffd1281dc9eaa83f91ee6e86
+Version: 0.13.1
+Hash: a4c82c31676563094608d7b5b6495088
 Requires: R6, digest, htmltools, httpuv, jsonlite, mime, xtable
 
 Package: sp
@@ -365,11 +415,16 @@ Hash: 00dfc7071f0a62a9915ff601e589fca0
 
 Package: vegan
 Source: CRAN
-Version: 2.3-3
-Hash: f6ce4c8a868fba7f67a01deb7d8f5ecb
+Version: 2.3-4
+Hash: c7ff104d3b334ef10e332891ee222979
 Requires: mgcv, permute
 
 Package: xtable
 Source: CRAN
 Version: 1.8-2
 Hash: 7293235cfcc14cdff1ce7fd1a0212031
+
+Package: yaml
+Source: CRAN
+Version: 2.1.13
+Hash: 4854ccabebc225e8a7309fb4a74980de
