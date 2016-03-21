@@ -1,5 +1,5 @@
 PackratFormat: 1.4
-PackratVersion: 0.4.6.1
+PackratVersion: 0.4.7
 RVersion: 3.2.3
 Repos: BioCsoft=http://bioconductor.org/packages/3.1/bioc,
     BioCann=http://bioconductor.org/packages/3.1/data/annotation,
@@ -52,8 +52,8 @@ Hash: 11ace6a9a186c17a42e0fa2c49af1223
 
 Package: ade4
 Source: CRAN
-Version: 1.7-3
-Hash: 7d98ae2076920ed84aebcfd488d80dca
+Version: 1.7-4
+Hash: 6b3bdd3ab0541c8700847cf8714a0b0d
 
 Package: adegenet
 Source: CRAN
@@ -118,8 +118,8 @@ Requires: memoise
 
 Package: deldir
 Source: CRAN
-Version: 0.1-9
-Hash: 280a38ea554243ed760792fd532a7218
+Version: 0.1-12
+Hash: a767305d4f3b128798b7a0f7c9889c3c
 
 Package: dichromat
 Source: CRAN
@@ -145,8 +145,8 @@ Requires: BH, DBI, R6, Rcpp, assertthat, lazyeval, magrittr
 
 Package: evaluate
 Source: CRAN
-Version: 0.8
-Hash: aac00bd789bac10970b50e3b7e0cab04
+Version: 0.8.3
+Hash: af30a08e081f5ba083cc8f0545391151
 Requires: stringr
 
 Package: foreach
@@ -157,8 +157,8 @@ Requires: iterators
 
 Package: formatR
 Source: CRAN
-Version: 1.2.1
-Hash: 54c730c712edd6087972ecf99bf87c55
+Version: 1.3
+Hash: 3fa669d00fb7d3307976a5d6df325f15
 
 Package: gdata
 Source: CRAN
@@ -168,8 +168,8 @@ Requires: gtools
 
 Package: ggplot2
 Source: CRAN
-Version: 2.0.0
-Hash: 5befb1e7a9c7d0692d6c35fa02a29dbf
+Version: 2.1.0
+Hash: 50e297b0191179c39c7dcae0eff72b51
 Requires: digest, gtable, plyr, reshape2, scales
 
 Package: gridBase
@@ -271,8 +271,8 @@ Requires: digest
 
 Package: mgcv
 Source: CRAN
-Version: 1.8-11
-Hash: 9428b74591d425e871c243193d338ce8
+Version: 1.8-12
+Hash: bfb86a57b573f144a1cef9f39d9742ee
 
 Package: mime
 Source: CRAN
@@ -287,8 +287,8 @@ Requires: colorspace
 
 Package: packrat
 Source: CRAN
-Version: 0.4.6-1
-Hash: 29eacc43b096c5b1a82c8d54a49b030b
+Version: 0.4.7
+Hash: a4114476a371801bc2c567d8da71a29c
 
 Package: pegas
 Source: CRAN
