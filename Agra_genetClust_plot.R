@@ -19,14 +19,15 @@ barplot(table(datAgra[datAgra$data_batch=="AgrAphid" &
                         !is.na(datAgra$data_batch),"Clust_K3"],
               months(datAgra[datAgra$data_batch=="AgrAphid" & 
                                !is.na(datAgra$data_batch),"sampling_date"])
-              )[,c(5,4,8,1,9,7,6,2,12,11,10,3)],col=coloor[1:3],beside=TRUE)
+              )[,c(5,4,8,1,9,7,6,2,12,11,10,3)],
+        col=coloor[c(1,3,2)],beside=TRUE)
 
 barplot(table(datAgra[datAgra$data_batch=="AgrAphid" & 
                         !is.na(datAgra$data_batch),"Clust_K5"],
               months(datAgra[datAgra$data_batch=="AgrAphid" & 
                                !is.na(datAgra$data_batch),"sampling_date"])
               )[c(3,1,2,4,5),c(5,4,8,1,9,7,6,2,12,11,10,3)],
-        col=coloor[c(1,2,5,4,3)],beside=TRUE)
+        col=coloor[c(1,3,5,4,2)],beside=TRUE)
 par(op)
 
 
