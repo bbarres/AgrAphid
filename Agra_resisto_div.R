@@ -17,7 +17,7 @@ setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
 
 
 ###############################################################################
-#preparing the dataset
+#preparing the datasets
 ###############################################################################
 
 RezAgra<-TempAgra
@@ -32,24 +32,43 @@ levels(RezAgra$MACE)[levels(RezAgra$MACE)=="TCATCA"] <- "0"
 
 RezAgra<-cbind(RezAgra,
                "resisto"=paste(RezAgra$KDR,RezAgra$sKDR,RezAgra$MACE,sep=""))
+RezAgra<-RezAgra[!RezAgra$resisto %in% c("1NA0","NANA0","NANANA"),]
+RezAgra<-drop.levels(RezAgra)
 
 t(table(RezAgra$resisto,RezAgra$semester))
 plot(t(table(RezAgra$resisto,RezAgra$semester))[,1],type="b")
 plot(t(table(RezAgra$resisto,RezAgra$semester))[,4],type="b")
 
 
+#the clone-corrected dataset
+RezAgracc<-TempAgracc
+levels(RezAgracc$KDR)[levels(RezAgracc$KDR)!="GAGGAG"] <- "1"
+levels(RezAgracc$KDR)[levels(RezAgracc$KDR)=="GAGGAG"] <- "0"
+
+levels(RezAgracc$sKDR)[levels(RezAgracc$sKDR)!="CATCAT"] <- "1"
+levels(RezAgracc$sKDR)[levels(RezAgracc$sKDR)=="CATCAT"] <- "0"
+
+levels(RezAgracc$MACE)[levels(RezAgracc$MACE)!="TCATCA"] <- "1"
+levels(RezAgracc$MACE)[levels(RezAgracc$MACE)=="TCATCA"] <- "0"
+
+RezAgracc<-cbind(RezAgracc,
+               "resisto"=paste(RezAgracc$KDR,RezAgracc$sKDR,RezAgracc$MACE,
+                               sep=""))
+RezAgracc<-RezAgracc[!RezAgracc$resisto %in% c("1NA0","NANA0","NANANA"),]
+RezAgracc<-drop.levels(RezAgracc)
+
+
 ###############################################################################
 #MLG Diversity indices by resistotypes
 ###############################################################################
 
-#For K=3 genetic clusters
-AgrOcc<-table(TempAgra$Clust_K3,TempAgra$MLG_ID)
-K3nb_samples<-rowSums(AgrOcc)
-K3nb_MLG<-specnumber(AgrOcc)
-K3GsurN<-specnumber(AgrOcc)/rowSums(AgrOcc)
-K3MLG_richness<-rarefy(AgrOcc,min(rowSums(AgrOcc)))
-K3simpson_div<-diversity(AgrOcc,index="simpson")
-K3pielou_even<-diversity(AgrOcc)/log(specnumber(AgrOcc))
+AgrOcc<-table(RezAgra$resisto,RezAgra$MLG_ID)
+Reznb_samples<-rowSums(AgrOcc)
+Reznb_MLG<-specnumber(AgrOcc)
+RezGsurN<-specnumber(AgrOcc)/rowSums(AgrOcc)
+RezMLG_richness<-rarefy(AgrOcc,min(rowSums(AgrOcc)))
+Rezsimpson_div<-diversity(AgrOcc,index="simpson")
+Rezpielou_even<-diversity(AgrOcc)/log(specnumber(AgrOcc))
 
 
 ###############################################################################
@@ -57,35 +76,35 @@ K3pielou_even<-diversity(AgrOcc)/log(specnumber(AgrOcc))
 ###############################################################################
 
 #converting data to a genind format for the full dataset
-compdiv<-TempAgra[!is.na(TempAgra$Clust_K3),] #name of the input file
-COMPDI<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$Clust_K3,ploidy=2,
+compdiv<-RezAgra[!is.na(RezAgra$resisto),] #name of the input file
+COMPDI<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$resisto,ploidy=2,
                   NA.char=c("999999"),ind.names=as.character(compdiv$indiv_ID))
 #converting data to a genind format
-compdiv<-TempAgracc[!is.na(TempAgracc$Clust_K3),] #name of the input file
-COMPDIcc<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$Clust_K3,ploidy=2,
+compdiv<-RezAgracc[!is.na(RezAgracc$resisto),] #name of the input file
+COMPDIcc<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$resisto,ploidy=2,
                     ind.names=as.character(compdiv$indiv_ID),
                     NA.char=c("999999"))
 
 #Allelic richness for the full temporal dataset
-K3_Ar<-apply(AllRich(COMPDI)[[2]],1,mean)
-#we set the minimum number of samples to 34 (the minimum in the 
+Rez_Ar<-apply(AllRich(COMPDI)[[2]],1,mean)
+#we set the minimum number of samples to 1 (the minimum in the 
 #clone-corrected dataset)
-K3_Ar<-apply(AllRich(COMPDI,34)[[2]],1,mean)
+Rez_Ar<-apply(AllRich(COMPDI,1)[[2]],1,mean)
 #Allelic richness for the clone-corrected temporal dataset
-K3_Arcc<-apply(AllRich(COMPDIcc)[[2]],1,mean)
+Rez_Arcc<-apply(AllRich(COMPDIcc)[[2]],1,mean)
 
 #Private Allelic richness for the full temporal dataset
-K3_PrivAr<-apply(PrivAllRich(COMPDI)[[2]],1,mean)
-#we set the minimum number of samples to 34 (the minimum in the 
+Rez_PrivAr<-apply(PrivAllRich(COMPDI)[[2]],1,mean)
+#we set the minimum number of samples to 1 (the minimum in the 
 #clone-corrected dataset)
-K3_PrivAr<-apply(PrivAllRich(COMPDI,34)[[2]],1,mean)
+Rez_PrivAr<-apply(PrivAllRich(COMPDI,1)[[2]],1,mean)
 #Private Allelic richness for the clone-corrected temporal dataset
-K3_PrivArcc<-apply(PrivAllRich(COMPDIcc)[[2]],1,mean)
+Rez_PrivArcc<-apply(PrivAllRich(COMPDIcc)[[2]],1,mean)
 
 #Nei heterozygosity for the full temporal dataset
-K3_HetNei<-HeterNei(COMPDI)
+Rez_HetNei<-HeterNei(COMPDI)
 #Nei heterozygosity for the clone-corrected temporal dataset
-K3_HetNeicc<-HeterNei(COMPDIcc)
+Rez_HetNeicc<-HeterNei(COMPDIcc)
 
 
 ###############################################################################

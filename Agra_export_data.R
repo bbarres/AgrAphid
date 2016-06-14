@@ -88,5 +88,25 @@ write.table(dataClustK5,file="dataClustK5.txt",sep="\t",
 
 
 ###############################################################################
+#data by resistotype
+###############################################################################
+
+dataResisto<-cbind("pop_ID"=names(Reznb_samples),
+                   Reznb_samples,Reznb_MLG,RezGsurN,RezMLG_richness,
+                   Rezsimpson_div,Rezpielou_even,Rez_Ar,Rez_Arcc,Rez_PrivAr,
+                   Rez_PrivArcc,Rez_HetNei,Rez_HetNeicc,
+                   table(RezAgra$resisto,RezAgra$year),
+                   table(RezAgra$resisto,RezAgra$MLG_ID)
+                   [,order(-table(RezAgra$MLG_ID))[1:majMLG]],
+                   "nb_unik"=rowSums(table(RezAgra$resisto,
+                                           RezAgra$MLG_ID)
+                         [,colSums(table(RezAgra$resisto,RezAgra$MLG_ID))<2]))
+
+#export the data table
+write.table(dataClustK5,file="dataClustK5.txt",sep="\t",
+            row.names=FALSE,quote=FALSE)
+
+
+###############################################################################
 #END
 ###############################################################################
