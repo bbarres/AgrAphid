@@ -307,7 +307,7 @@ JDDmicro@other$sKDR<-JDD[,"sKDR"]
 JDDmicro@other$MACE<-JDD[,"MACE"]
 JDDmicro@other$R81T<-JDD[,"R81T"]
 
-#now we analyse the adegenet format dataset with dapc
+#now we format the dataset to analyse it with dapc from the adegenet package
 JDDade<-JDDmicro
 #determination of the number of clusters
 clustJDDade<-find.clusters(JDDade,max.n.clust=30)
@@ -483,6 +483,7 @@ strK4<-t(read.table("AgrAccconsK4.outfile",header=FALSE,sep="\t")[,c(-1)])
 strK5<-t(read.table("AgrAccconsK5.outfile",header=FALSE,sep="\t")[,c(-1)])
 
 coloor <- c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
+effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other\nCrops","Aerial Trap",
              "Multiple hosts")
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(5,0,0,0))
