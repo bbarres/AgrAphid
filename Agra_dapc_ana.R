@@ -181,3 +181,94 @@ structplot(t(dapcJDDade2$posterior),rainbow(5),effpop,poptiquet,
            distxax=0.08)
 par(op)
 #export to pdf 15 X 4 inches
+
+
+###############################################################################
+#DAPC on microsatellites and resistance genotypes
+###############################################################################
+
+#converting data to a genind format including the resistance genotypes
+JDDall<-df2genind(JDD[,c("MP_27","MP_39","MP_44","MP_5","MP_7","MP_23",
+                         "MP_45","MP_28","MP_9","MP_13","MP_2","MP_38",
+                         "MP_4","MP_46","KDR","sKDR","MACE","R81T")],
+                  ncode=6,ind.names=JDD$sample_ID, 
+                  pop=JDD$year,ploidy=2)
+#include the coordinates of the samples
+JDDall@other$xy<-JDD[,c("longitude","latitude")]
+
+#now we analyse the adegenet format dataset with dapc
+JDDade<-JDDall
+#determination of the number of clusters
+clustJDDade<- find.clusters(JDDade,max.n.clust=35)
+#with 40 PCs, we lost nearly no information
+clustJDDade<- find.clusters(JDDade,n.pca=30,max.n.clust=35) #chose 5 clusters
+#which individuals in which clusters per population
+table(pop(JDDade),clustJDDade$grp)
+#DAPC by itself, first we try to optimized the number of principal component 
+#(PCs) to retain to perform the analysis
+dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=5,n.pca=30)
+temp<-optim.a.score(dapcJDDade)
+dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=5,n.pca=15)
+temp<-optim.a.score(dapcJDDade)
+dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=3,n.pca=10)
+#STRUCTURE-like graphic
+compoplot(dapcJDDade,lab=pop(JDDade),legend=FALSE,
+          cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
+#or with the function we designed
+poptiquet<-c("2000","2001","2002","2003","2004","2005","2006","2007")
+structplot(t(dapcJDDade$posterior),coloor,summary(JDDade)$pop.eff,
+           poptiquet,spacepop=2,leg_y="Assignement",cexy=1.2,mef=c(0,1,1,1,0),
+           colbord="grey70",angl=0,distxax=0.001)
+title(main="DAPC clusterisation",cex.main=1.5,outer=FALSE)
+#scatter plot
+scatter(dapcJDDade,xax=1, yax=2,col=coloor)
+#a more beautifull scatter plot
+scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
+        solid=0.3,pch=19,cex=3,scree.da=TRUE)
+
+
+###############################################################################
+#trash
+###############################################################################
+
+#scatter plot with the different K groups and then plotting the population
+scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
+        solid=0.3,pch=19,cex=3,scree.da=FALSE)
+#oilseed_rape
+points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==1,1],
+       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==1,2],
+       col="black",cex=2,bg="black",pch=21)
+#peach
+points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==3,1],
+       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==3,2],
+       col="black",cex=2,bg="black",pch=21)
+#tobacco
+points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==4,1],
+       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==4,2],
+       col="black",cex=2,bg="black",pch=21)
+#other_crop
+points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==2,1],
+       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==2,2],
+       col="black",cex=2,bg="black",pch=21)
+
+
+scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
+        solid=0.0,pch=19,cex=3,scree.da=FALSE)
+points(dapcJDDade$ind.coord[,1],dapcJDDade$ind.coord[,2],
+       col=coloor[dapcJDDade$assign],cex=2,
+       pch=(as.numeric(as.factor(JDDade@other$host))+20))
+
+scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
+        solid=0.0,pch=19,cex=3,scree.da=FALSE)
+points(dapcJDDade$ind.coord[,1],dapcJDDade$ind.coord[,2],
+       col=coloor[dapcJDDade$assign],pch=21,
+       bg=coloor[(as.numeric(as.factor(JDDade@other$host)))])
+
+
+plot(JDDade@other$xy,cex=3,col=dapcJDDade$assign,
+     pch=as.numeric(as.factor(JDDade@other$host)))
+
+
+###############################################################################
+#END
+###############################################################################
