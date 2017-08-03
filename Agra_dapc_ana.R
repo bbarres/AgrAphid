@@ -12,11 +12,11 @@ setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
 
 
 ###############################################################################
-#Only Temporal data: loading and preparing the dataset
+#DAPC analysis: loading and preparing the dataset
 ###############################################################################
 
 #first, we load the genetic dataset
-MyzAgra<-read.table("AgrAph.dat",header=T,sep="\t")
+MyzAgra<-read.table("AgrAph3.dat",header=T,sep="\t")
 #here is the structure of the datafile, for explanation of each columns, see 
 #ReadMe.txt file in DRYAD repository
 head(MyzAgra)
@@ -24,16 +24,16 @@ head(MyzAgra)
 summary(MyzAgra)
 colnames(MyzAgra)
 #total number of individuals
-sum(table(MyzAgra$patch_ID)) #457 individuals
+dim(MyzAgra)[1] #1320 individuals
 
 #let's remove the repeated MLGs in the dataset. We can easily do that by 
 #using the 'dup' column of the dataset. To be conservative we remove every 
 #repeated MLGs as well as non affected MLGs
-MyzAgraccons<-MyzAgra[MyzAgra$dup=="o",]
+MyzAgraccons<-MyzAgra[MyzAgra$one_MLG==1,]
 JDD<-MyzAgraccons #name of the input file
 JDD<-drop.levels(JDD)
 #let's define a set of color for keeping some consistency in the plots
-coloor<-c("orange","green","blue","yellow","hotpink")
+coloor<-c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
 
 
 ###############################################################################
@@ -45,7 +45,7 @@ JDDmicro<-df2genind(JDD[,c("MP_27","MP_39","MP_44","MP_5","MP_7","MP_23",
                            "MP_45","MP_28","MP_9","MP_13","MP_2","MP_38",
                            "MP_4","MP_46")],
                     ncode=6,ind.names=JDD$sample_ID, 
-                    pop=JDD$year,ploidy=2)
+                    pop=JDD$host_corrected,ploidy=2)
 #include the coordinates of the samples
 JDDmicro@other$xy<-JDD[,c("longitude","latitude")]
 #we can also include the resistance genotypes as supplementary information
@@ -68,10 +68,9 @@ dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=5,n.pca=30)
 temp<-optim.a.score(dapcJDDade)
 dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=4,n.pca=15)
 temp<-optim.a.score(dapcJDDade)
-#the optimal number of PCs fell between 5 and 9 (depending on the run), so we 
-#chose the smallest number of PCs (5) in order to avoid overfitting of the 
+#we chose the to keep 9 PCs in order to avoid overfitting of the 
 #model. Then we do the actual DAPC anlysis
-dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=3,n.pca=5)
+dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=4,n.pca=9)
 #STRUCTURE-like graphic
 compoplot(dapcJDDade,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
@@ -155,9 +154,9 @@ write.table(dapcJDDade5$posterior,file="AgrAphDAPCK5.txt",sep="\t",
 #'Agra_strplot_fun.R'
 
 #first you need to gather the number of individuals in each populations
-effpop<-as.numeric(table(JDDade$pop))
+effpop<-as.numeric(table(JDDade$pop))[c(4,2,6,3,1,5)]
 #the names of the different populations might be useful too
-poptiquet<-levels(JDDade$pop)
+poptiquet<-levels(JDDade$pop)[c(4,2,6,3,1,5)]
 #be careful to use the same dataset that has been used for the DAPC 
 #computation
 structplot(t(dapcJDDade5$posterior),rainbow(5),effpop,poptiquet)
