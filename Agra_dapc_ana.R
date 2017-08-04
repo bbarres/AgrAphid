@@ -6,6 +6,7 @@
 
 #loading the packages necessary for the analysis
 library(adegenet)
+library(gdata)
 
 #Setting the right working directory
 setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
@@ -25,11 +26,19 @@ summary(MyzAgra)
 colnames(MyzAgra)
 #total number of individuals
 dim(MyzAgra)[1] #1320 individuals
+#we reorganize the levels of the host_corrected column, because the 
+#alphabetical order doesn't fit our needs
+MyzAgra$host_corrected<-factor(MyzAgra$host_corrected,
+                               levels=c("peach","oilseed_rape","tobacco",
+                                        "other_crops","Aerial_trap",
+                                        "several_hosts"))
 
 #let's remove the repeated MLGs in the dataset. We can easily do that by 
 #using the 'dup' column of the dataset. To be conservative we remove every 
 #repeated MLGs as well as non affected MLGs
 MyzAgraccons<-MyzAgra[MyzAgra$one_MLG==1,]
+#we reorder the individuals according to the host_corrected factor
+MyzAgraccons<-MyzAgraccons[order(MyzAgraccons$host_corrected),]
 JDD<-MyzAgraccons #name of the input file
 JDD<-drop.levels(JDD)
 #let's define a set of color for keeping some consistency in the plots
@@ -169,13 +178,13 @@ structplot(t(dapcJDDade2$posterior),coloor,effpop,poptiquet,
 
 #Now, we can easily plot several structure-like plot in the same figure
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(3,0,0,0))
-structplot(t(dapcJDDade5$posterior)[c(4,1,2,5,3),],rainbow(5),effpop,poptiquet,
+structplot(t(dapcJDDade5$posterior)[c(4,3,5,1,2),],coloor,effpop,poptiquet,
            leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
-structplot(t(dapcJDDade4$posterior)[c(1,4,3,2),],rainbow(5),effpop,poptiquet,
+structplot(t(dapcJDDade4$posterior)[c(1,4,2,3),],coloor,effpop,poptiquet,
            leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
-structplot(t(dapcJDDade3$posterior)[c(1,3,2),],rainbow(5),effpop,poptiquet,
+structplot(t(dapcJDDade3$posterior)[c(3,1,2),],coloor,effpop,poptiquet,
            leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
-structplot(t(dapcJDDade2$posterior),rainbow(5),effpop,poptiquet,
+structplot(t(dapcJDDade2$posterior)[c(2,1),],coloor,effpop,poptiquet,
            leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord="grey70",
            distxax=0.08)
 par(op)
