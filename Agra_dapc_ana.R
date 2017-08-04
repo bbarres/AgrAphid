@@ -179,13 +179,13 @@ structplot(t(dapcJDDade2$posterior),coloor,effpop,poptiquet,
 #Now, we can easily plot several structure-like plot in the same figure
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(3,0,0,0))
 structplot(t(dapcJDDade5$posterior)[c(4,3,5,1,2),],coloor,effpop,poptiquet,
-           leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+           leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA,spacepop=2)
 structplot(t(dapcJDDade4$posterior)[c(1,4,2,3),],coloor,effpop,poptiquet,
-           leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+           leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70",spacepop=2)
 structplot(t(dapcJDDade3$posterior)[c(3,1,2),],coloor,effpop,poptiquet,
-           leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70")
+           leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70",spacepop=2)
 structplot(t(dapcJDDade2$posterior)[c(2,1),],coloor,effpop,poptiquet,
-           leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord="grey70",
+           leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord="grey70",spacepop=2,
            distxax=0.08)
 par(op)
 #export to pdf 15 X 4 inches
