@@ -26,7 +26,7 @@ setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
 
 #for K=2
 K2_100runs<-read.table("AgrAccconsK2.perm_datafile",header=FALSE,
-                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
+                       blank.lines.skip=TRUE,sep="\t")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K2_100runs<-split(K2_100runs,rep(1:100,each=309))
