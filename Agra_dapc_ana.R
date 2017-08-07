@@ -77,9 +77,9 @@ dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=5,n.pca=30)
 temp<-optim.a.score(dapcJDDade)
 dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=4,n.pca=15)
 temp<-optim.a.score(dapcJDDade)
-#we chose the to keep 9 PCs in order to avoid overfitting of the 
+#we chose the to keep 8 PCs in order to avoid overfitting of the 
 #model. Then we do the actual DAPC anlysis
-dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=4,n.pca=9)
+dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=4,n.pca=8)
 #STRUCTURE-like graphic
 compoplot(dapcJDDade,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
@@ -90,19 +90,19 @@ scatter(dapcJDDade,xax=2, yax=3,col=coloor)
 
 #Run the 'find.clusters' and DAPC analysis for K=2 to 5
 clustJDDade2<-find.clusters(JDDade,n.pca=50,n.clust=2)
-dapcJDDade2<-dapc(JDDade,clustJDDade2$grp,n.da=1,n.pca=2)
+dapcJDDade2<-dapc(JDDade,clustJDDade2$grp,n.da=4,n.pca=8)
 compoplot(dapcJDDade2,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
 clustJDDade3<-find.clusters(JDDade,n.pca=50,n.clust=3)
-dapcJDDade3<-dapc(JDDade,clustJDDade3$grp,n.da=2,n.pca=3)
+dapcJDDade3<-dapc(JDDade,clustJDDade3$grp,n.da=4,n.pca=8)
 compoplot(dapcJDDade3,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
 clustJDDade4<-find.clusters(JDDade,n.pca=50,n.clust=4)
-dapcJDDade4<-dapc(JDDade,clustJDDade4$grp,n.da=3,n.pca=4)
+dapcJDDade4<-dapc(JDDade,clustJDDade4$grp,n.da=4,n.pca=8)
 compoplot(dapcJDDade4,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
 clustJDDade5<-find.clusters(JDDade,n.pca=50,n.clust=5)
-dapcJDDade5<-dapc(JDDade,clustJDDade5$grp,n.da=3,n.pca=5)
+dapcJDDade5<-dapc(JDDade,clustJDDade5$grp,n.da=4,n.pca=8)
 compoplot(dapcJDDade5,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
 
@@ -178,10 +178,10 @@ structplot(t(dapcJDDade2$posterior),coloor,effpop,poptiquet,
 
 #Now, we can easily plot several structure-like plot in the same figure
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(3,0,0,0))
-structplot(t(dapcJDDade5$posterior)[c(4,3,5,1,2),],coloor,effpop,poptiquet,
+structplot(t(dapcJDDade5$posterior)[c(1,5,2,3,4),],coloor,effpop,poptiquet,
            leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA,spacepop=2)
-structplot(t(dapcJDDade4$posterior)[c(1,4,2,3),],coloor,effpop,poptiquet,
-           leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70",spacepop=2)
+structplot(t(dapcJDDade4$posterior)[c(1,3,2,4),],coloor,effpop,poptiquet,
+           leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA,spacepop=2)
 structplot(t(dapcJDDade3$posterior)[c(3,1,2),],coloor,effpop,poptiquet,
            leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord="grey70",spacepop=2)
 structplot(t(dapcJDDade2$posterior)[c(2,1),],coloor,effpop,poptiquet,
