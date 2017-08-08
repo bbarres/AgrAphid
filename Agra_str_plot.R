@@ -49,7 +49,7 @@ par(op)
 
 #for K=3
 K3_100runs<-read.table("AgrAccconsK3.perm_datafile",header=FALSE,
-                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
+                       blank.lines.skip=TRUE,sep="\t")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K3_100runs<-split(K3_100runs,rep(1:100,each=309))
@@ -71,7 +71,7 @@ par(op)
 
 #for K=4
 K4_100runs<-read.table("AgrAccconsK4.perm_datafile",header=FALSE,
-                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
+                       blank.lines.skip=TRUE,sep="\t")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K4_100runs<-split(K4_100runs,rep(1:100,each=309))
@@ -93,7 +93,7 @@ par(op)
 
 #for K=5
 K5_100runs<-read.table("AgrAccconsK5.perm_datafile",header=FALSE,
-                       blank.lines.skip=TRUE,sep="\t")[,c(-1)]
+                       blank.lines.skip=TRUE,sep="\t")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K5_100runs<-split(K5_100runs,rep(1:100,each=309))
@@ -323,9 +323,9 @@ effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other\nCrops","Aerial Trap",
              "Multiple hosts")
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(5,0,0,0))
-structplot(strK5[c(4,2,1,5,3),],coloor,effpop,poptiquet,spacepop=2,
+structplot(strK5[c(5,2,1,4,3),],coloor,effpop,poptiquet,spacepop=2,
            leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
-structplot(strK4[c(2,1,4,3),],coloor,effpop,poptiquet,spacepop=2,
+structplot(strK4[c(2,4,3,1),],coloor,effpop,poptiquet,spacepop=2,
            leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
 structplot(strK3[c(1,3,2),],coloor,effpop,poptiquet,spacepop=2,
            leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
