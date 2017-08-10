@@ -113,6 +113,29 @@ title(main="K=5",cex.main=2.5,outer=TRUE)
 par(op)
 #export pdf 25 x 12
 
+#for K=6
+K6_100runs<-read.table("AgrAccconsK6.perm_datafile",header=FALSE,
+                       blank.lines.skip=TRUE,sep="\t")
+#then we split the dataframe in as many repetition that has been made
+#by the number of individuals (here 309)
+K6_100runs<-split(K6_100runs,rep(1:100,each=309))
+coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange",
+            "grey20")
+effpop<-c(69,29,11,16,168,16)
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
+             "Multiple hosts")
+#now we can plot the 100 runs on the same figure
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
+for (i in 1:100){
+  temp<-K6_100runs[[i]]
+  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+             leg_y="K=6",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
+             distxax=0.15,angl=0,cexpop=1.5)
+}
+title(main="K=6",cex.main=2.5,outer=TRUE)
+par(op)
+#export pdf 25 x 12
+
 
 ###############################################################################
 #Identifying the best K for STRUCTURE run
@@ -317,12 +340,16 @@ strK2<-t(read.table("AgrAccconsK2.outfile",header=FALSE,sep="\t")[,c(-1)])
 strK3<-t(read.table("AgrAccconsK3.outfile",header=FALSE,sep="\t")[,c(-1)])
 strK4<-t(read.table("AgrAccconsK4.outfile",header=FALSE,sep="\t")[,c(-1)])
 strK5<-t(read.table("AgrAccconsK5.outfile",header=FALSE,sep="\t")[,c(-1)])
+strK6<-t(read.table("AgrAccconsK6.outfile",header=FALSE,sep="\t")[,c(-1)])
 
-coloor <- c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
+coloor <- c("firebrick","royalblue4","chartreuse4","khaki2","darkorange",
+            "grey20")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other\nCrops","Aerial Trap",
              "Multiple hosts")
-op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(5,0,0,0))
+op<-par(mfrow=c(5,1),mar=c(0,4,0,0),oma=c(5,0,0,0))
+structplot(strK6[c(2,3,1,6,5,4),],coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=6",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
 structplot(strK5[c(5,2,1,4,3),],coloor,effpop,poptiquet,spacepop=2,
            leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
 structplot(strK4[c(2,4,3,1),],coloor,effpop,poptiquet,spacepop=2,
