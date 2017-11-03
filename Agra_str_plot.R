@@ -143,20 +143,19 @@ par(op)
 
 #Analyzes were performed using STRUCTURE2.3.4 software, with a model allowing 
 #admixture and correlation of allele frequencies. Each run consisted of a 
-#burn-in period of 10.000 iterations followed by 100.000 simulations. One 
-#hundred repetitions of each run were performed for K ranging from 1 to 10. 
+#burn-in period of 100.000 iterations followed by 1.000.000 simulations. One 
+#hundred repetitions of each run were performed for K ranging from 1 to 15. 
 #Before importing the file, replace white space in the column header names 
 #with underscore, replace "?1" by "alpha", and remove double white spaces or 
 #it will provoc importation problem or failure
 
 #run the 'Agra_deltaKplot_fun.R' code before running this code
 
-resstr_cccons<-read.table(file="AgrAphout.str", header=T,sep=" ",
+resstr_cccons<-read.table(file="AgrAphout2.str", header=T,sep=" ",
                           blank.lines.skip=T)
-resstr_cccons<-resstr_cccons[,-dim(resstr_cccons)[2]]
-deltastr_cccons<-chooseK(resstr_cccons,12,100)
+deltastr_cccons<-chooseK(resstr_cccons,15,100)
 
-plotdeltaK(deltastr_cccons,10,
+plotdeltaK(deltastr_cccons,15,
            "Conservative clone correction dataset (n=309)")
 
 #you can obtain the same figure as in the manuscript by exporting the plot to 
