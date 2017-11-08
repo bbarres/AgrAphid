@@ -31,7 +31,7 @@ K2_100runs<-read.table("AgrAccconsK2.perm_datafile",header=FALSE,
 #by the number of individuals (here 309)
 K2_100runs<-split(K2_100runs,rep(1:100,each=309))
 K2_100runs[[1]]
-coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
+coloor <- c("royalblue4","firebrick","chartreuse4","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
@@ -53,7 +53,7 @@ K3_100runs<-read.table("AgrAccconsK3.perm_datafile",header=FALSE,
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K3_100runs<-split(K3_100runs,rep(1:100,each=309))
-coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
+coloor <- c("royalblue4","chartreuse4","firebrick","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
@@ -75,7 +75,7 @@ K4_100runs<-read.table("AgrAccconsK4.perm_datafile",header=FALSE,
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K4_100runs<-split(K4_100runs,rep(1:100,each=309))
-coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
+coloor <- c("khaki2","royalblue4","chartreuse4","firebrick","darkorange")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
@@ -97,7 +97,7 @@ K5_100runs<-read.table("AgrAccconsK5.perm_datafile",header=FALSE,
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K5_100runs<-split(K5_100runs,rep(1:100,each=309))
-coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange")
+coloor <- c("chartreuse4","firebrick","khaki2","darkorange","royalblue4")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
