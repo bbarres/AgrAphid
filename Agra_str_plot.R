@@ -119,8 +119,8 @@ K6_100runs<-read.table("AgrAccconsK6.perm_datafile",header=FALSE,
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
 K6_100runs<-split(K6_100runs,rep(1:100,each=309))
-coloor <- c("firebrick","forestgreen","dodgerblue3","khaki2","darkorange",
-            "grey20")
+coloor <- c("chartreuse4","royalblue4","firebrick","grey20","khaki2",
+            "darkorange")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
