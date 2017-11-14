@@ -84,7 +84,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K4_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
+             leg_y="K=4",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
 title(main="K=4",cex.main=2.5,outer=TRUE)
@@ -106,7 +106,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K5_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
+             leg_y="K=5",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
 title(main="K=5",cex.main=2.5,outer=TRUE)
@@ -129,7 +129,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K6_100runs[[i]]
   structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
-             leg_y="K=6",cexy=1.2,mef=c(0,1,0,0,0),colbord=NA,
+             leg_y="K=6",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
 title(main="K=6",cex.main=2.5,outer=TRUE)
