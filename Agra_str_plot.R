@@ -138,6 +138,58 @@ par(op)
 
 
 ###############################################################################
+#plot the different repetitions of structure runs grouped by solutions
+###############################################################################
+
+#for K=6, major clustering solutions
+K6_maj<-read.table("ClumppIndFileK6maj",header=FALSE,
+                       blank.lines.skip=TRUE,sep=" ")
+#then we split the dataframe in as many repetition that has been made
+#by the number of individuals (here 309)
+K6_maj<-split(K6_maj[,6:11],rep(1:55,each=309))
+coloor <- c("chartreuse4","royalblue4","firebrick","grey20","khaki2",
+            "darkorange")
+effpop<-c(69,29,11,16,168,16)
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
+             "Multiple hosts")
+K6majord<-read.table("K6majclustord.txt",header=FALSE,sep=" ")
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
+for (i in 1:55){
+  temp<-K6_maj[[i]]
+  temp<-temp[,as.numeric(K6majord[i,])]
+  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+             leg_y="K=6",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
+             distxax=0.15,angl=0,cexpop=1.5)
+}
+title(main="K=6",cex.main=2.5,outer=TRUE)
+par(op)
+
+#for K=6, all runs
+K6_<-read.table("ClumppIndFileK6",header=FALSE,
+                   blank.lines.skip=TRUE,sep=" ")
+#then we split the dataframe in as many repetition that has been made
+#by the number of individuals (here 309)
+K6_<-split(K6_[,6:11],rep(1:100,each=309))
+coloor <- c("chartreuse4","royalblue4","firebrick","grey20","khaki2",
+            "darkorange")
+effpop<-c(69,29,11,16,168,16)
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
+             "Multiple hosts")
+K6ord<-read.table("K6clustord.txt",header=FALSE,sep=" ")
+op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
+for (i in 1:100){
+  temp<-K6_[[i]]
+  temp<-temp[,as.numeric(K6ord[i,])]
+  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+             leg_y="K=6",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
+             distxax=0.15,angl=0,cexpop=1.5)
+}
+title(main="K=6",cex.main=2.5,outer=TRUE)
+par(op)
+
+
+
+###############################################################################
 #Identifying the best K for STRUCTURE run
 ###############################################################################
 
