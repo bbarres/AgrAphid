@@ -2,5 +2,7 @@
 .Rhistory
 .RData
 
+data
+output
 packrat/lib*/
 packrat/src/
