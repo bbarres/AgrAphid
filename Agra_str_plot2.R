@@ -453,11 +453,11 @@ par(op)
 ###############################################################################
 
 #the plot for the different K values
-strK2<-t(read.table("AgrAccconsK2.outfile",header=FALSE,sep="\t")[,c(-1)])
-strK3<-t(read.table("AgrAccconsK3.outfile",header=FALSE,sep="\t")[,c(-1)])
-strK4<-t(read.table("AgrAccconsK4.outfile",header=FALSE,sep="\t")[,c(-1)])
-strK5<-t(read.table("AgrAccconsK5.outfile",header=FALSE,sep="\t")[,c(-1)])
-strK6<-t(read.table("AgrAccconsK6.outfile",header=FALSE,sep="\t")[,c(-1)])
+strK2<-t(read.table("data/AgrAccconsK2.outfile",header=FALSE,sep="\t")[,c(-1)])
+strK3<-t(read.table("data/AgrAccconsK3.outfile",header=FALSE,sep="\t")[,c(-1)])
+strK4<-t(read.table("data/AgrAccconsK4.outfile",header=FALSE,sep="\t")[,c(-1)])
+strK5<-t(read.table("data/AgrAccconsK5.outfile",header=FALSE,sep="\t")[,c(-1)])
+strK6<-t(read.table("data/AgrAccconsK6.outfile",header=FALSE,sep="\t")[,c(-1)])
 
 coloor <- c("firebrick","royalblue4","chartreuse4","khaki2","darkorange",
             "grey20")
