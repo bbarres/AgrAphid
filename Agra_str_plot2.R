@@ -208,7 +208,7 @@ par(op)
 ##############################################################################/
 
 #for K=6, major clustering solutions
-K6_maj<-read.table("ClumppIndFileK6maj",header=FALSE,
+K6_maj<-read.table("data/ClumppIndFileK6maj",header=FALSE,
                    blank.lines.skip=TRUE,sep=" ")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
@@ -218,7 +218,7 @@ coloor <- c("chartreuse4","royalblue4","firebrick","grey20","khaki2",
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
-K6majord<-read.table("K6majclustord.txt",header=FALSE,sep=" ")
+K6majord<-read.table("data/K6majclustord.txt",header=FALSE,sep=" ")
 op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:55){
   temp<-K6_maj[[i]]
@@ -231,7 +231,7 @@ title(main="K=6",cex.main=2.5,outer=TRUE)
 par(op)
 
 #for K=6, all runs
-K6_<-read.table("ClumppIndFileK6",header=FALSE,
+K6_<-read.table("data/ClumppIndFileK6",header=FALSE,
                 blank.lines.skip=TRUE,sep=" ")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
@@ -241,7 +241,7 @@ coloor <- c("chartreuse4","royalblue4","firebrick","grey20","khaki2",
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
-K6ord<-read.table("K6clustord.txt",header=FALSE,sep=" ")
+K6ord<-read.table("data/K6clustord.txt",header=FALSE,sep=" ")
 op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   temp<-K6_[[i]]
@@ -269,7 +269,7 @@ par(op)
 
 #run the 'Agra_deltaKplot_fun.R' code before running this code
 
-resstr_cccons<-read.table(file="AgrAphout2.str", header=T,sep=" ",
+resstr_cccons<-read.table(file="AgrAphout2.str",header=T,sep=" ",
                           blank.lines.skip=T)
 deltastr_cccons<-chooseK(resstr_cccons,15,100)
 
@@ -414,7 +414,7 @@ par(op)
 #you can import a q-matrix output file from STRUCTURE software 
 #and use the function in the same manner. Be careful howerer to respect the 
 #order of the individuals and the order of their respective populations
-strK2<-t(read.table("outK2.str",header=FALSE,sep="\t")[,c(-1)])
+strK2<-t(read.table("data/outK2.str",header=FALSE,sep="\t")[,c(-1)])
 strK3<-t(read.table("outK3.str",header=FALSE,sep="\t")[,c(-1)])
 strK4<-t(read.table("outK4.str",header=FALSE,sep="\t")[,c(-1)])
 strK5<-t(read.table("outK5.str",header=FALSE,sep="\t")[,c(-1)])
