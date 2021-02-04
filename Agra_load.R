@@ -13,10 +13,11 @@ library(gdata)
 ##############################################################################/
 
 #first, we load the genetic dataset
-datAgra<-read.table("data/AgrAph3.dat",header=T,sep="\t")
+datAgra<-read.table("data/AgrAph3.dat",header=T,sep="\t",
+                    stringsAsFactors=TRUE)
 head(datAgra)
 #turn the 'sampling_date column in the R 'date format'
-datAgra$sampling_date<-as.Date(datAgra$sampling_date,format="%Y/%m/%d")
+datAgra$sampling_date<-as.Date(datAgra$sampling_date,format="%d-%m-%y")
 #split the Agraphid samples in two set for each year: before August and after
 #August
 datAgra$semester[datAgra$sampling_date>as.Date("2000-12-31") &
