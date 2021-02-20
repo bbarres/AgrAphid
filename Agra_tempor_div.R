@@ -1,24 +1,15 @@
-###############################################################################
-###############################################################################
+##############################################################################/
+##############################################################################/
 #Temporal diversity indices computation
-###############################################################################
-###############################################################################
+##############################################################################/
+##############################################################################/
 
-#loading the packages necessary for the analysis
-library(adegenet)
-library(gdata)
-library(RColorBrewer)
-library(vegan)
-library(combinat)
-library(pegas)
-
-#Setting the right working directory
-setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
+source("Agra_load.R")
 
 
-###############################################################################
-#MLG Diversity indices by semester
-###############################################################################
+##############################################################################/
+#MLG Diversity indices by semester####
+##############################################################################/
 
 #To compute the diversity indices by semester, we need a presence/absence of 
 #MLG table for each semester
@@ -31,9 +22,9 @@ simpson_div<-diversity(AgrOcc,index="simpson")
 pielou_even<-diversity(AgrOcc)/log(specnumber(AgrOcc))
 
 
-###############################################################################
-#MLG Diversity indices by year
-###############################################################################
+##############################################################################/
+#MLG Diversity indices by year####
+##############################################################################/
 
 #To compute the diversity indices by semester, we need a presence/absence of 
 #MLG table for each semester
@@ -46,9 +37,9 @@ Ysimpson_div<-diversity(AgrOcc,index="simpson")
 Ypielou_even<-diversity(AgrOcc)/log(specnumber(AgrOcc))
 
 
-###############################################################################
-#Genetic Diversity indices by semester
-###############################################################################
+##############################################################################/
+#Genetic Diversity indices by semester####
+##############################################################################/
 
 #converting data to a genind format for the full dataset
 compdiv<-TempAgra #name of the input file
@@ -82,9 +73,9 @@ HetNei<-HeterNei(COMPDI)
 HetNeicc<-HeterNei(COMPDIcc)
 
 
-###############################################################################
-#Genetic Diversity indices by year
-###############################################################################
+##############################################################################/
+#Genetic Diversity indices by year####
+##############################################################################/
 
 #converting data to a genind format for the full dataset
 compdiv<-TempAgra #name of the input file
@@ -118,6 +109,6 @@ YHetNei<-HeterNei(COMPDI)
 YHetNeicc<-HeterNei(COMPDIcc)
 
 
-###############################################################################
+##############################################################################/
 #END
-###############################################################################
+##############################################################################/

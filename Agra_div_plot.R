@@ -1,18 +1,18 @@
-###############################################################################
-###############################################################################
+##############################################################################/
+##############################################################################/
 #Script for the plot of the variation of the diversity indices
-###############################################################################
-###############################################################################
+##############################################################################/
+##############################################################################/
 
 #before using the following code, you have to run the Agra_load.R and the 
 #Agra_temp_div.R code
 #define a set of colors to be consistent across the plots
-coloor <- c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
+coloor<-c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
 
 
-###############################################################################
-#Distribution of the different genetic cluster by sampled host
-###############################################################################
+##############################################################################/
+#Distribution of the different genetic cluster by sampled host####
+##############################################################################/
 
 #for K=3 genetic clusters
 table(datAgra$host,datAgra$Clust_K3)
@@ -100,9 +100,9 @@ par(op)
 #export to pdf 6 x 18 inches
 
 
-###############################################################################
-#Distribution of the number of repetition of the different MLG: complete data
-###############################################################################
+##############################################################################/
+#Distribution of the number of the different MLG: complete data####
+##############################################################################/
 
 #for assigning a color according to the genetic cluster, we 
 #build a table of MLG x Cluster belonging
@@ -141,9 +141,9 @@ barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:74],
                         "Clust_K5"][1:74]),cex.names=0.8,las=2)
 
 
-###############################################################################
-#Distribution of the number of repetition of the different MLG: aerial samples
-###############################################################################
+##############################################################################/
+#Distribution of the number of the different MLG: aerial samples####
+##############################################################################/
 
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))])
 #same figure but MLG are colored according to the cluster to which they belong
@@ -237,9 +237,9 @@ par(op)
 #export pdf 6 x 12 inches
 
 
-###############################################################################
-#Distribution of the number of individuals in the different genetic clusters
-###############################################################################
+##############################################################################/
+#Distribution of number of individuals in the different genetic clusters####
+##############################################################################/
 
 #plot the of the amount of the different genetic clusters with K=3
 #all aerial trapped individuals
@@ -327,9 +327,9 @@ par(op)
 #export pdf 10 x 10 inches
 
 
-###############################################################################
-#Plot diversity indices by semester
-###############################################################################
+##############################################################################/
+#Plot diversity indices by semester####
+##############################################################################/
 
 op<-par(mfrow=c(5,1),mar=c(0,3,2,0),oma=c(5.3,1,1,1))
 #plot of the number of samples for each period of time
@@ -418,9 +418,9 @@ par(op)
 #export to pdf 8 x 10 inches
 
 
-###############################################################################
-#Plot diversity indices by year
-###############################################################################
+##############################################################################/
+#Plot diversity indices by year####
+##############################################################################/
 
 op<-par(mfrow=c(5,1),mar=c(0,3,2,0),oma=c(5.3,1,1,1))
 #plot of the number of samples for each period of time
@@ -510,9 +510,9 @@ par(op)
 #export to pdf 8 x 10 inches
 
 
-###############################################################################
-#Trash
-###############################################################################
+##############################################################################/
+#Trash####
+##############################################################################/
 
 def.par <- par(no.readonly = TRUE)
 layout(matrix(c(1,2,3,4,5),5,1,byrow=TRUE),
@@ -530,6 +530,6 @@ plot(diversity(AgrOcc)/log(specnumber(AgrOcc)),type="b",
 par(def.par)
 
 
-###############################################################################
+##############################################################################/
 #END
-###############################################################################
+##############################################################################/

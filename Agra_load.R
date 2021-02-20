@@ -5,12 +5,12 @@
 ##############################################################################/
 
 #loading the packages necessary for the analysis
-library(gdata)
 library(adegenet)
+library(combinat)
+library(gdata)
+library(pegas)
 library(RColorBrewer)
 library(vegan)
-library(combinat)
-library(pegas)
 
 #loading the functions
 source("Agra_strplot_fun.R")
