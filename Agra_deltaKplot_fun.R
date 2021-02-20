@@ -1,19 +1,19 @@
-###############################################################################
-###############################################################################
+##############################################################################/
+##############################################################################/
 #Delta-K method plotting functions
-###############################################################################
-###############################################################################
+##############################################################################/
+##############################################################################/
 
 
-###############################################################################
-#Computing Delta-k
-###############################################################################
+##############################################################################/
+#Computing Delta-k####
+##############################################################################/
 
 chooseK<-function(str_out,nb_K,nb_rep) {
   #'str_out': the summary of simulations file exported from STRUCTURE, 
-  #before importing the file to R, replace the white space in the column header
-  #by underscores, you might also have to replace "?1" by "alpha" and remove 
-  #double white space
+  #before importing the file to R, replace the white space in the column 
+  #header by underscores, you might also have to replace "?1" by "alpha" 
+  #and remove double white space
   #'nb_K': number of different K values considered
   #'nb_rep':number of repetition for each K
   datatable<-data.frame("K"=c(rep(1:nb_K,each=nb_rep)),"Ln(Pd)"=str_out[,4])
@@ -59,9 +59,9 @@ chooseK<-function(str_out,nb_K,nb_rep) {
 }
 
 
-###############################################################################
-#function to plot variation of Delta K and Ln(P(X|K)) as a function of K
-###############################################################################
+##############################################################################/
+#function to plot variation of Delta K and Ln(P(X|K)) as a function of K####
+##############################################################################/
 
 plotdeltaK<-function(datadeltaK,nb_K,titre){
   #'datadeltak': the output file of 'chooseK' function
@@ -71,8 +71,8 @@ plotdeltaK<-function(datadeltaK,nb_K,titre){
   plot(datadeltaK[1:(nb_K-2),8],type="b",pch=24,cex=2.5,lwd=4,lty=1,
        col="transparent",bg="white",bty="n",ann=F)
   par(new=TRUE)
-  plot(datadeltaK[1:(nb_K-2),8],type="b",pch=24,bty="n",xaxt="n",yaxt="n",
-       ann=F,cex=2.5,lwd=4,lty=1)
+  plot(datadeltaK[1:(nb_K-2),8],type="b",pch=24,bty="n",xaxt="n",
+       yaxt="n",ann=F,cex=2.5,lwd=4,lty=1)
   axis(side=1,at=seq(1,13,1),lwd=3,font.axis=2)
   axis(side=2,lwd=3,font.axis=2)
   title(ylab="Delta K",font.lab=2,cex.lab=1.5)
@@ -93,11 +93,11 @@ plotlogdeltaK<-function(datadeltaK,nb_K,titre){
   #'nb_K': the number of different K considered
   #'titre': the title of the plot you want to be displayed
   op<-par(pty="s")
-  plot(log(datadeltaK[1:(nb_K-2),8]+1),type="b",pch=24,cex=2.5,lwd=4,lty=1,
-       col="transparent",bg="white",bty="n",ann=F)
+  plot(log(datadeltaK[1:(nb_K-2),8]+1),type="b",pch=24,cex=2.5,lwd=4,
+       lty=1,col="transparent",bg="white",bty="n",ann=F)
   par(new=TRUE)
-  plot(log(datadeltaK[1:(nb_K-2),8]+1),type="b",pch=24,bty="n",xaxt="n",yaxt="n",
-       ann=F,cex=2.5,lwd=4,lty=1)
+  plot(log(datadeltaK[1:(nb_K-2),8]+1),type="b",pch=24,bty="n",xaxt="n",
+       yaxt="n",ann=F,cex=2.5,lwd=4,lty=1)
   axis(side=1,at=seq(1,13,1),lwd=3,font.axis=2)
   axis(side=2,lwd=3,font.axis=2)
   title(ylab="Ln(Delta K+1)",font.lab=2,cex.lab=1.5)
@@ -111,6 +111,6 @@ plotlogdeltaK<-function(datadeltaK,nb_K,titre){
 }
 
 
-###############################################################################
+##############################################################################/
 #END
-###############################################################################
+##############################################################################/
