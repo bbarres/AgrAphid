@@ -1,17 +1,10 @@
 ##############################################################################/
 ##############################################################################/
-#AgrAphid article's R code
+#Plotting the results of STRUCTURE runs
 ##############################################################################/
 ##############################################################################/
 
-#loading the packages necessary for the analysis
-library(adegenet)
-library(gdata)
-library(RColorBrewer)
-
-#loading the functions
-source("Agra_strplot_fun.R")
-source("Agra_deltaKplot_fun.R")
+source("Agra_load.R")
 
 
 ##############################################################################/
@@ -254,6 +247,43 @@ title(main="K=6",cex.main=2.5,outer=TRUE)
 par(op)
 
 
+##############################################################################/
+#plot of the clusterisation for different K value after CLUMPP averaging####
+##############################################################################/
+
+#the plot for the different K values
+strK2<-t(read.table("data/AgrAccconsK2.outfile",header=FALSE,sep="\t")[,c(-1)])
+strK3<-t(read.table("data/AgrAccconsK3.outfile",header=FALSE,sep="\t")[,c(-1)])
+strK4<-t(read.table("data/AgrAccconsK4.outfile",header=FALSE,sep="\t")[,c(-1)])
+strK5<-t(read.table("data/AgrAccconsK5.outfile",header=FALSE,sep="\t")[,c(-1)])
+strK6<-t(read.table("data/AgrAccconsK6.outfile",header=FALSE,sep="\t")[,c(-1)])
+
+coloor <- c("firebrick","royalblue4","chartreuse4","khaki2","darkorange",
+            "grey20")
+effpop<-c(69,29,11,16,168,16)
+poptiquet<-c("Peach","Oilseed rape","Tobacco","Other\nCrops","Aerial Trap",
+             "Multiple hosts")
+op<-par(mfrow=c(5,1),mar=c(0,4,0,0),oma=c(5,0,0,0))
+structplot(strK6[c(2,3,1,6,5,4),],coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=6",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
+structplot(strK5[c(5,2,1,4,3),],coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
+structplot(strK4[c(2,4,3,1),],coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
+structplot(strK3[c(1,3,2),],coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
+structplot(strK2,coloor,effpop,poptiquet,spacepop=2,
+           leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
+           distxax=0.05,cexpop=1.5,angl=0)
+par(op)
+#export to pdf 21 X 7 inches
+
+
+##############################################################################/
+#END
+##############################################################################/
+
+
 
 ##############################################################################/
 #Identifying the best K for STRUCTURE run####
@@ -415,9 +445,9 @@ par(op)
 #and use the function in the same manner. Be careful howerer to respect the 
 #order of the individuals and the order of their respective populations
 strK2<-t(read.table("data/outK2.str",header=FALSE,sep="\t")[,c(-1)])
-strK3<-t(read.table("outK3.str",header=FALSE,sep="\t")[,c(-1)])
-strK4<-t(read.table("outK4.str",header=FALSE,sep="\t")[,c(-1)])
-strK5<-t(read.table("outK5.str",header=FALSE,sep="\t")[,c(-1)])
+strK3<-t(read.table("data/outK3.str",header=FALSE,sep="\t")[,c(-1)])
+strK4<-t(read.table("data/outK4.str",header=FALSE,sep="\t")[,c(-1)])
+strK5<-t(read.table("data/outK5.str",header=FALSE,sep="\t")[,c(-1)])
 
 #plot with different K values
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(3,0,0,0))
@@ -447,39 +477,3 @@ structplot(strK2,coloor,effpop,poptiquet,spacepop=2,
 par(op)
 #export to pdf 25 x 5 inches
 
-
-##############################################################################/
-#plot of the clusterisation for different K value after CLUMPP averaging####
-##############################################################################/
-
-#the plot for the different K values
-strK2<-t(read.table("data/AgrAccconsK2.outfile",header=FALSE,sep="\t")[,c(-1)])
-strK3<-t(read.table("data/AgrAccconsK3.outfile",header=FALSE,sep="\t")[,c(-1)])
-strK4<-t(read.table("data/AgrAccconsK4.outfile",header=FALSE,sep="\t")[,c(-1)])
-strK5<-t(read.table("data/AgrAccconsK5.outfile",header=FALSE,sep="\t")[,c(-1)])
-strK6<-t(read.table("data/AgrAccconsK6.outfile",header=FALSE,sep="\t")[,c(-1)])
-
-coloor <- c("firebrick","royalblue4","chartreuse4","khaki2","darkorange",
-            "grey20")
-effpop<-c(69,29,11,16,168,16)
-poptiquet<-c("Peach","Oilseed rape","Tobacco","Other\nCrops","Aerial Trap",
-             "Multiple hosts")
-op<-par(mfrow=c(5,1),mar=c(0,4,0,0),oma=c(5,0,0,0))
-structplot(strK6[c(2,3,1,6,5,4),],coloor,effpop,poptiquet,spacepop=2,
-           leg_y="K=6",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
-structplot(strK5[c(5,2,1,4,3),],coloor,effpop,poptiquet,spacepop=2,
-           leg_y="K=5",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
-structplot(strK4[c(2,4,3,1),],coloor,effpop,poptiquet,spacepop=2,
-           leg_y="K=4",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
-structplot(strK3[c(1,3,2),],coloor,effpop,poptiquet,spacepop=2,
-           leg_y="K=3",cexy=1.2,mef=c(0,1,0,0,1),colbord=NA)
-structplot(strK2,coloor,effpop,poptiquet,spacepop=2,
-           leg_y="K=2",cexy=1.2,mef=c(0,1,1,1,1),colbord=NA,
-           distxax=0.05,cexpop=1.5,angl=0)
-par(op)
-#export to pdf 21 X 7 inches
-
-
-##############################################################################/
-#END
-##############################################################################/

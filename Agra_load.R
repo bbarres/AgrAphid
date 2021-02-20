@@ -6,6 +6,16 @@
 
 #loading the packages necessary for the analysis
 library(gdata)
+library(adegenet)
+library(RColorBrewer)
+library(vegan)
+library(combinat)
+library(pegas)
+
+#loading the functions
+source("Agra_strplot_fun.R")
+source("Agra_deltaKplot_fun.R")
+source("Agra_div_fun.R")
 
 
 ##############################################################################/
@@ -76,6 +86,17 @@ dim(TempAgra)[1] #number of samples in the dataset
 TempAgracc<-TempAgra[TempAgra$one_MLG_year==1,]
 TempAgracc<-drop.levels(TempAgracc)
 dim(TempAgracc)[1] #number of samples in the dataset
+
+
+##############################################################################/
+#Writing info session for reproducibility####
+##############################################################################/
+
+sink("session_info.txt")
+print(sessioninfo::session_info())
+sink()
+#inspired by an R gist of François Briatte: 
+#https://gist.github.com/briatte/14e47fb0cfb8801f25c889edea3fcd9b
 
 
 ##############################################################################/

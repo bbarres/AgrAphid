@@ -1,24 +1,15 @@
-###############################################################################
-###############################################################################
+##############################################################################/
+##############################################################################/
 #Diversity indices computation for genetic clusters
-###############################################################################
-###############################################################################
+##############################################################################/
+##############################################################################/
 
-#loading the packages necessary for the analysis
-library(adegenet)
-library(gdata)
-library(RColorBrewer)
-library(vegan)
-library(combinat)
-library(pegas)
-
-#Setting the right working directory
-setwd("~/work/Rfichiers/Githuber/AgrAphid_data")
+source("Agra_load.R")
 
 
-###############################################################################
-#MLG Diversity indices by genetic clusters
-###############################################################################
+##############################################################################/
+#MLG Diversity indices by genetic clusters####
+##############################################################################/
 
 #For K=3 genetic clusters
 AgrOcc<-table(TempAgra$Clust_K3,TempAgra$MLG_ID)
@@ -28,7 +19,6 @@ K3GsurN<-specnumber(AgrOcc)/rowSums(AgrOcc)
 K3MLG_richness<-rarefy(AgrOcc,min(rowSums(AgrOcc)))
 K3simpson_div<-diversity(AgrOcc,index="simpson")
 K3pielou_even<-diversity(AgrOcc)/log(specnumber(AgrOcc))
-
 
 #For K=5 genetic clusters
 AgrOcc<-table(TempAgra$Clust_K5,TempAgra$MLG_ID)
@@ -40,14 +30,15 @@ K5simpson_div<-diversity(AgrOcc,index="simpson")
 K5pielou_even<-diversity(AgrOcc)/log(specnumber(AgrOcc))
 
 
-###############################################################################
-#Genetic Diversity indices by Cluster k=3
-###############################################################################
+##############################################################################/
+#Genetic Diversity indices by Cluster k=3####
+##############################################################################/
 
 #converting data to a genind format for the full dataset
 compdiv<-TempAgra[!is.na(TempAgra$Clust_K3),] #name of the input file
-COMPDI<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$Clust_K3,ploidy=2,
-                  NA.char=c("999999"),ind.names=as.character(compdiv$indiv_ID))
+COMPDI<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$Clust_K3,
+                  ploidy=2,NA.char=c("999999"),
+                  ind.names=as.character(compdiv$indiv_ID))
 #converting data to a genind format
 compdiv<-TempAgracc[!is.na(TempAgracc$Clust_K3),] #name of the input file
 COMPDIcc<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$Clust_K3,ploidy=2,
@@ -76,9 +67,9 @@ K3_HetNei<-HeterNei(COMPDI)
 K3_HetNeicc<-HeterNei(COMPDIcc)
 
 
-###############################################################################
-#Genetic Diversity indices by Cluster k=5
-###############################################################################
+##############################################################################/
+#Genetic Diversity indices by Cluster k=5####
+##############################################################################/
 
 #converting data to a genind format for the full dataset
 compdiv<-TempAgra[!is.na(TempAgra$Clust_K5),] #name of the input file
@@ -112,6 +103,6 @@ K5_HetNei<-HeterNei(COMPDI)
 K5_HetNeicc<-HeterNei(COMPDIcc)
 
 
-###############################################################################
+##############################################################################/
 #END
-###############################################################################
+##############################################################################/
