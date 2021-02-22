@@ -9,6 +9,7 @@ library(adegenet)
 library(combinat)
 library(gdata)
 library(pegas)
+library(poppr)
 library(RColorBrewer)
 library(vegan)
 

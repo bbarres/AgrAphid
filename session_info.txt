@@ -8,7 +8,7 @@
  collate  French_France.1252          
  ctype    French_France.1252          
  tz       Europe/Paris                
- date     2021-02-21                  
+ date     2021-02-22                  
 
 - Packages -------------------------------------------------------------------------
  package      * version date       lib source        
@@ -35,6 +35,7 @@
  expm           0.999-5 2020-07-20 [1] CRAN (R 4.0.3)
  fansi          0.4.1   2020-01-08 [1] CRAN (R 4.0.2)
  fastmap        1.0.1   2019-10-08 [1] CRAN (R 4.0.3)
+ fastmatch      1.1-0   2017-01-28 [1] CRAN (R 4.0.3)
  gdata        * 2.18.0  2017-06-06 [1] CRAN (R 4.0.2)
  generics       0.0.2   2018-11-29 [1] CRAN (R 4.0.2)
  ggplot2        3.3.2   2020-06-19 [1] CRAN (R 4.0.2)
@@ -59,11 +60,15 @@
  nlme           3.1-149 2020-08-23 [2] CRAN (R 4.0.3)
  pegas        * 0.14    2020-09-16 [1] CRAN (R 4.0.3)
  permute      * 0.9-5   2019-03-12 [1] CRAN (R 4.0.2)
+ phangorn       2.5.5   2019-06-19 [1] CRAN (R 4.0.3)
  pillar         1.4.6   2020-07-10 [1] CRAN (R 4.0.2)
  pkgconfig      2.0.3   2019-09-22 [1] CRAN (R 4.0.2)
  plyr           1.8.6   2020-03-03 [1] CRAN (R 4.0.2)
+ polysat        1.7-4   2019-03-06 [1] CRAN (R 4.0.3)
+ poppr        * 2.8.6   2020-06-02 [1] CRAN (R 4.0.3)
  promises       1.1.1   2020-06-09 [1] CRAN (R 4.0.3)
  purrr          0.3.4   2020-04-17 [1] CRAN (R 4.0.2)
+ quadprog       1.5-8   2019-11-20 [1] CRAN (R 4.0.3)
  R6             2.4.1   2019-11-12 [1] CRAN (R 4.0.2)
  raster         3.3-13  2020-07-17 [1] CRAN (R 4.0.3)
  RColorBrewer * 1.1-2   2014-12-07 [1] CRAN (R 4.0.0)
