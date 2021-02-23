@@ -26,9 +26,8 @@ datAgra$host_corrected<-factor(datAgra$host_corrected,
                                         "other_crops","Aerial_trap",
                                         "several_hosts"))
 
-#let's remove the repeated MLGs in the dataset. We can easily do that by 
-#using the 'dup' column of the dataset. To be conservative we remove every 
-#repeated MLGs as well as non affected MLGs
+#we reorganize the levels of the host_corrected column, because the 
+#alphabetical order doesn't fit our needs for the clone-corrected dataset
 datAgracc$host_corrected<-factor(datAgracc$host_corrected,
                                  levels=c("peach","oilseed_rape","tobacco",
                                           "other_crops","Aerial_trap",
