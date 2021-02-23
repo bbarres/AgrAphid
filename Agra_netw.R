@@ -18,28 +18,221 @@ datAgra$host_corrected<-factor(datAgra$host_corrected,
                                         "other_crops","Aerial_trap",
                                         "several_hosts"))
 
-#converting data to a genind format, first we use only the microsatellite data
-temp_ClustK3<-datAgra[datAgra$host=="Aerial_trap",]
-temp_ClustK3$Clust_K3<-as.character(temp_ClustK3$Clust_K3)
-temp_ClustK3$Clust_K3[is.na(temp_ClustK3$Clust_K3)]<-"undef"
-temp_ClustK3<-drop.levels(temp_ClustK3)
-temp_ClustK3<-df2genind(temp_ClustK3[,c("MP_27","MP_39","MP_44","MP_5",
+#pick a set of color
+coloor<-c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
+
+
+
+##############################################################################/
+#All repeated samples####
+##############################################################################/
+
+#grouped by host
+All_repet<-datAgra[datAgra$repeated==1,]
+All_repet$Clust_K3<-as.character(All_repet$Clust_K3)
+All_repet$Clust_K3[is.na(All_repet$Clust_K3)]<-"undef"
+All_repet<-drop.levels(All_repet)
+#converting to genind object
+dataNetwo<-df2genind(All_repet[,c("MP_27","MP_39","MP_44","MP_5",
                                         "MP_7","MP_23","MP_45","MP_28",
                                         "MP_9","MP_13","MP_2","MP_38",
                                         "MP_4","MP_46")],
-                        ncode=6,
-                        ind.names=temp_ClustK3$MLG_ID, 
-                        pop=temp_ClustK3$Clust_K3,
-                        ploidy=2,NA.char="999999")
-summary(temp_ClustK3)
+                     ncode=3,
+                     ind.names=All_repet$indiv_ID, 
+                     pop=All_repet$host,
+                     ploidy=2,NA.char="999")
 
-bruvo.msn(temp_ClustK3, replen = rep(1, 14),vertex.label="inds", 
-          vertex.label.cex=0.7, vertex.label.dist=0.4,cex=0.5)
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         bruvo.dist(dataNetwo,replen=rep(1,14)),
+                         include.ties=TRUE),
+               nodescale=2,
+               palette=rainbow(6),
+               scale.leg=FALSE,
+               mlg=TRUE)
 
 
+##############################################################################/
+#Aerial samples####
+##############################################################################/
+
+#grouped by Cluster K=3
+AerTrap_ClustK3<-datAgra[datAgra$host=="Aerial_trap",]
+AerTrap_ClustK3$Clust_K3<-as.character(AerTrap_ClustK3$Clust_K3)
+AerTrap_ClustK3$Clust_K3[is.na(AerTrap_ClustK3$Clust_K3)]<-"undef"
+AerTrap_ClustK3<-drop.levels(AerTrap_ClustK3)
+#converting to genind object
+dataNetwo<-df2genind(AerTrap_ClustK3[,c("MP_27","MP_39","MP_44","MP_5",
+                                        "MP_7","MP_23","MP_45","MP_28",
+                                        "MP_9","MP_13","MP_2","MP_38",
+                                        "MP_4","MP_46")],
+                        ncode=3,
+                        ind.names=AerTrap_ClustK3$indiv_ID, 
+                        pop=AerTrap_ClustK3$Clust_K3,
+                        ploidy=2,NA.char="999")
+
+set.seed(333)
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,provesti.dist(dataNetwo),
+                         include.ties=TRUE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         bruvo.dist(dataNetwo,replen=rep(1,14)),
+                         include.ties=TRUE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         dist.asd(genind2loci(dataNetwo)),
+                         include.ties=TRUE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         diss.dist(dataNetwo),
+                         include.ties=TRUE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
 
 
+#grouped by Cluster K=5
+AerTrap_ClustK5<-datAgra[datAgra$host=="Aerial_trap",]
+AerTrap_ClustK5$Clust_K5<-as.character(AerTrap_ClustK5$Clust_K5)
+AerTrap_ClustK5$Clust_K5[is.na(AerTrap_ClustK5$Clust_K5)]<-"undef"
+AerTrap_ClustK5<-drop.levels(AerTrap_ClustK5)
+#converting to genind object
+dataNetwo<-df2genind(AerTrap_ClustK5[,c("MP_27","MP_39","MP_44","MP_5",
+                                        "MP_7","MP_23","MP_45","MP_28",
+                                        "MP_9","MP_13","MP_2","MP_38",
+                                        "MP_4","MP_46")],
+                        ncode=3,
+                        ind.names=AerTrap_ClustK5$indiv_ID, 
+                        pop=AerTrap_ClustK5$Clust_K5,
+                        ploidy=2,NA.char="999")
 
+
+set.seed(333)
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,provesti.dist(dataNetwo),
+                         include.ties=TRUE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         bruvo.dist(dataNetwo,replen=rep(1,14)),
+                         include.ties=TRUE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         dist.asd(genind2loci(dataNetwo)),
+                         include.ties=TRUE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         diss.dist(dataNetwo),
+                         include.ties=TRUE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+
+##############################################################################/
+#Oilseed rape samples####
+##############################################################################/
+
+#grouped by Cluster K=3
+oil_ClustK3<-datAgra[datAgra$host=="oilseed_rape",]
+oil_ClustK3$Clust_K3<-as.character(oil_ClustK3$Clust_K3)
+oil_ClustK3$Clust_K3[is.na(oil_ClustK3$Clust_K3)]<-"undef"
+oil_ClustK3<-drop.levels(oil_ClustK3)
+dataNetwo<-df2genind(oil_ClustK3[,c("MP_27","MP_39","MP_44","MP_5",
+                                        "MP_7","MP_23","MP_45","MP_28",
+                                        "MP_9","MP_13","MP_2","MP_38",
+                                        "MP_4","MP_46")],
+                        ncode=3,
+                        ind.names=oil_ClustK3$indiv_ID, 
+                        pop=oil_ClustK3$Clust_K3,
+                        ploidy=2,NA.char="999")
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         bruvo.dist(dataNetwo,replen=rep(1,14)),
+                         include.ties=FALSE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+#grouped by KDR genotype
+oil_KDR<-datAgra[datAgra$host=="oilseed_rape",]
+oil_KDR$KDR<-as.character(oil_KDR$KDR)
+oil_KDR$KDR[is.na(oil_KDR$KDR)]<-"miss"
+oil_KDR<-drop.levels(oil_KDR)
+dataNetwo<-df2genind(oil_KDR[,c("MP_27","MP_39","MP_44","MP_5",
+                                    "MP_7","MP_23","MP_45","MP_28",
+                                    "MP_9","MP_13","MP_2","MP_38",
+                                    "MP_4","MP_46")],
+                     ncode=3,
+                     ind.names=oil_KDR$indiv_ID, 
+                     pop=oil_KDR$KDR,
+                     ploidy=2,NA.char="999")
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         bruvo.dist(dataNetwo,replen=rep(1,14)),
+                         include.ties=FALSE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+#grouped by sKDR genotype
+oil_sKDR<-datAgra[datAgra$host=="oilseed_rape",]
+oil_sKDR$sKDR<-as.character(oil_sKDR$sKDR)
+oil_sKDR$sKDR[is.na(oil_sKDR$sKDR)]<-"miss"
+oil_sKDR<-drop.levels(oil_sKDR)
+dataNetwo<-df2genind(oil_sKDR[,c("MP_27","MP_39","MP_44","MP_5",
+                                "MP_7","MP_23","MP_45","MP_28",
+                                "MP_9","MP_13","MP_2","MP_38",
+                                "MP_4","MP_46")],
+                     ncode=3,
+                     ind.names=oil_sKDR$indiv_ID, 
+                     pop=oil_sKDR$sKDR,
+                     ploidy=2,NA.char="999")
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         bruvo.dist(dataNetwo,replen=rep(1,14)),
+                         include.ties=FALSE),
+               nodescale=2,
+               palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
 
 
 ##############################################################################/
