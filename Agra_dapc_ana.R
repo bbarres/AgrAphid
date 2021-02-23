@@ -48,7 +48,7 @@ coloor<-c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
 JDDmicro<-df2genind(JDD[,c("MP_27","MP_39","MP_44","MP_5","MP_7","MP_23",
                            "MP_45","MP_28","MP_9","MP_13","MP_2","MP_38",
                            "MP_4","MP_46")],
-                    ncode=6,ind.names=JDD$sample_ID, 
+                    ncode=3,ind.names=JDD$sample_ID, 
                     pop=JDD$host_corrected,ploidy=2,NA.char="999999")
 #include the coordinates of the samples
 JDDmicro@other$xy<-JDD[,c("longitude","latitude")]
