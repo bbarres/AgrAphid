@@ -42,14 +42,27 @@ dataNetwo<-df2genind(All_repet[,c("MP_27","MP_39","MP_44","MP_5",
                      pop=All_repet$host,
                      ploidy=2,NA.char="999")
 
+set.seed(333)
 plot_poppr_msn(dataNetwo,
                poppr.msn(dataNetwo,
                          bruvo.dist(dataNetwo,replen=rep(1,14)),
                          include.ties=TRUE),
-               nodescale=2,
-               palette=rainbow(6),
+               nodescale=4,
+               palette=brewer.pal(5,"Set2"),
                scale.leg=FALSE,
                mlg=TRUE)
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         diss.dist(dataNetwo),
+                         include.ties=FALSE),
+               nodescale=4,
+               palette=brewer.pal(5,"Set2"),
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+plot(spantree(diss.dist(dataNetwo)))
+
 
 
 ##############################################################################/
@@ -157,6 +170,42 @@ plot_poppr_msn(dataNetwo,
                          include.ties=TRUE),
                nodescale=2,
                palette=coloor[c(3,2,1,4)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+
+#only repeated clones grouped by year
+#grouped by Cluster K=5
+AerTrap_rep<-datAgra[datAgra$host=="Aerial_trap" & datAgra$repeated==1,]
+AerTrap_ClustK5$Clust_K5<-as.character(AerTrap_ClustK5$Clust_K5)
+AerTrap_ClustK5$Clust_K5[is.na(AerTrap_ClustK5$Clust_K5)]<-"undef"
+AerTrap_rep<-drop.levels(AerTrap_rep)
+#converting to genind object
+dataNetwo<-df2genind(AerTrap_rep[,c("MP_27","MP_39","MP_44","MP_5",
+                                        "MP_7","MP_23","MP_45","MP_28",
+                                        "MP_9","MP_13","MP_2","MP_38",
+                                        "MP_4","MP_46")],
+                     ncode=3,
+                     ind.names=AerTrap_rep$indiv_ID, 
+                     pop=AerTrap_rep$year,
+                     ploidy=2,NA.char="999")
+
+set.seed(333)
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         bruvo.dist(dataNetwo,replen=rep(1,14)),
+                         include.ties=TRUE),
+               nodescale=2,
+               palette=brewer.pal(8,"Dark2"),
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         diss.dist(dataNetwo),
+                         include.ties=FALSE),
+               nodescale=4,
+               palette=brewer.pal(8,"Dark2"),
                scale.leg=FALSE,
                mlg=TRUE)
 
