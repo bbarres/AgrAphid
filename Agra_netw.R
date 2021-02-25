@@ -64,7 +64,6 @@ plot_poppr_msn(dataNetwo,
 plot(spantree(diss.dist(dataNetwo)))
 
 
-
 ##############################################################################/
 #Aerial samples####
 ##############################################################################/
@@ -142,7 +141,7 @@ plot_poppr_msn(dataNetwo,
                poppr.msn(dataNetwo,provesti.dist(dataNetwo),
                          include.ties=TRUE),
                nodescale=2,
-               palette=coloor[c(3,2,1,4)],
+               palette=coloor[c(3,2,1,4,6,5)],
                scale.leg=FALSE,
                mlg=TRUE)
 
@@ -151,7 +150,7 @@ plot_poppr_msn(dataNetwo,
                          bruvo.dist(dataNetwo,replen=rep(1,14)),
                          include.ties=TRUE),
                nodescale=2,
-               palette=coloor[c(3,2,1,4)],
+               palette=coloor[c(3,2,1,4,6,5)],
                scale.leg=FALSE,
                mlg=TRUE)
 
@@ -160,7 +159,7 @@ plot_poppr_msn(dataNetwo,
                          dist.asd(genind2loci(dataNetwo)),
                          include.ties=TRUE),
                nodescale=2,
-               palette=coloor[c(3,2,1,4)],
+               palette=coloor[c(3,2,1,4,6,5)],
                scale.leg=FALSE,
                mlg=TRUE)
 
@@ -169,7 +168,7 @@ plot_poppr_msn(dataNetwo,
                          diss.dist(dataNetwo),
                          include.ties=TRUE),
                nodescale=2,
-               palette=coloor[c(3,2,1,4)],
+               palette=coloor[c(3,2,1,4,6,5)],
                scale.leg=FALSE,
                mlg=TRUE)
 
