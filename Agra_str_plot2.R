@@ -52,7 +52,7 @@ for (i in 1:100){
 }
 title(main="K=2",cex.main=2.5,outer=TRUE)
 par(op)
-#export pdf 25 x 12
+#export pdf 21 x 29.7
 
 #for K=3, import the 100 run datafile (100 q matrix)
 K3_100runs<-read.table("data/AgrAccconsK3.ind_datafile",header=FALSE,
@@ -72,7 +72,7 @@ for (i in 1:100){
 K3_reporder<-read.table("data/AgrAccconsK3.ind_linorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")+1
 
-coloor <- c("chartreuse4","firebrick","khaki2","darkorange","royalblue4")
+coloor <- c("chartreuse4","firebrick","royalblue4","khaki2","darkorange")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
@@ -87,7 +87,7 @@ for (i in 1:100){
 }
 title(main="K=3",cex.main=2.5,outer=TRUE)
 par(op)
-#export pdf 25 x 12
+#export pdf 21 x 29.7
 
 #for K=4, import the 100 run datafile (100 q matrix)
 K4_100runs<-read.table("data/AgrAccconsK4.ind_datafile",header=FALSE,
@@ -107,7 +107,7 @@ for (i in 1:100){
 K4_reporder<-read.table("data/AgrAccconsK4.ind_linorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")+1
 
-coloor <- c("chartreuse4","firebrick","khaki2","darkorange","royalblue4")
+coloor <- c("royalblue4","khaki2","firebrick","chartreuse4","darkorange")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
@@ -122,7 +122,7 @@ for (i in 1:100){
 }
 title(main="K=4",cex.main=2.5,outer=TRUE)
 par(op)
-#export pdf 25 x 12
+#export pdf 21 x 29.7
 
 #for K=5, import the 100 run datafile (100 q matrix)
 K5_100runs<-read.table("data/AgrAccconsK5.ind_datafile",header=FALSE,
@@ -142,7 +142,7 @@ for (i in 1:100){
 K5_reporder<-read.table("data/AgrAccconsK5.ind_linorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")+1
 
-coloor <- c("chartreuse4","firebrick","khaki2","darkorange","royalblue4")
+coloor <- c("darkorange","khaki2","royalblue4","firebrick","chartreuse4")
 effpop<-c(69,29,11,16,168,16)
 poptiquet<-c("Peach","Oilseed rape","Tobacco","Other Crops","Aerial Trap",
              "Multiple hosts")
@@ -157,7 +157,7 @@ for (i in 1:100){
 }
 title(main="K=5",cex.main=2.5,outer=TRUE)
 par(op)
-#export pdf 25 x 12
+#export pdf 21 x 29.7
 
 #for K=6, import the 100 run datafile (100 q matrix)
 K6_100runs<-read.table("data/AgrAccconsK6.ind_datafile",header=FALSE,

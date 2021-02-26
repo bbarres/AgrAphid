@@ -64,6 +64,28 @@ plot_poppr_msn(dataNetwo,
 plot(spantree(diss.dist(dataNetwo)))
 
 
+#group by K=3 STUCTURE genetic clusters
+#converting to genind object
+dataNetwo<-df2genind(All_repet[,c("MP_27","MP_39","MP_44","MP_5",
+                                  "MP_7","MP_23","MP_45","MP_28",
+                                  "MP_9","MP_13","MP_2","MP_38",
+                                  "MP_4","MP_46")],
+                     ncode=3,
+                     ind.names=All_repet$indiv_ID, 
+                     pop=All_repet$Clust_K3,
+                     ploidy=2,NA.char="999")
+
+set.seed(333)
+plot_poppr_msn(dataNetwo,
+               poppr.msn(dataNetwo,
+                         bruvo.dist(dataNetwo,replen=rep(1,14)),
+                         include.ties=TRUE),
+               nodescale=4,
+               palette=coloor[c(1,3,4,2)],
+               scale.leg=FALSE,
+               mlg=TRUE)
+
+
 ##############################################################################/
 #Aerial samples####
 ##############################################################################/
@@ -194,7 +216,7 @@ plot_poppr_msn(dataNetwo,
                poppr.msn(dataNetwo,
                          bruvo.dist(dataNetwo,replen=rep(1,14)),
                          include.ties=TRUE),
-               nodescale=2,
+               nodescale=10,
                palette=brewer.pal(8,"Dark2"),
                scale.leg=FALSE,
                mlg=TRUE)
