@@ -382,7 +382,7 @@ op<-par(mfrow=c(4,1),mar=c(0,3,2,0),oma=c(5.3,1,1,1))
 barplot(nb_samples,axes=TRUE,axisnames=FALSE,space=0,xlim=c(0.5,13.5), 
         main="Number of samples")
 #plot of the evolution of allelic richness
-plot(Ar,type="b",ylim=c(2.5,4),main="Allelic Richness",
+plot(Ar,type="b",ylim=c(1.5,5.9),main="Allelic Richness",
      axes=FALSE,xlab="",ylab="")
 axis(side=2,las=1)
 axis(side=1,labels=FALSE,at=1:14,las=2)
@@ -392,7 +392,7 @@ lines(Ar,type="b")
 lines(Arcc,type="b",col="red")
 box()
 #plot of the evolution of private allelic richness
-plot(PrivAr,type="b",ylim=c(0.05,0.6),main="Private Allelic Richness",
+plot(PrivAr,type="b",ylim=c(0.05,0.7),main="Private Allelic Richness",
      axes=FALSE,xlab="",ylab="")
 axis(side=2,las=1)
 axis(side=1,labels=FALSE,at=1:14,las=2)
