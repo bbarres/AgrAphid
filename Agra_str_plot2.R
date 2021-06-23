@@ -1,6 +1,6 @@
 ##############################################################################/
 ##############################################################################/
-#Plotting the results of STRUCTURE runs
+#Plotting the results of STRUCTURE 100 runs
 ##############################################################################/
 ##############################################################################/
 
@@ -46,7 +46,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   j<-as.numeric(K2_reporder[i])
   temp<-K2_100runs[[j]]
-  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+  structplot(t(temp),coloor[c(2,1)],effpop,poptiquet,spacepop=2,
              leg_y="K=2",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
@@ -81,7 +81,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   j<-as.numeric(K3_reporder[i])
   temp<-K3_100runs[[j]]
-  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+  structplot(t(temp),coloor[c(2,1,3)],effpop,poptiquet,spacepop=2,
              leg_y="K=3",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
@@ -116,7 +116,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   j<-as.numeric(K4_reporder[i])
   temp<-K4_100runs[[j]]
-  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+  structplot(t(temp),coloor[c(1,2,4,3)],effpop,poptiquet,spacepop=2,
              leg_y="K=4",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
@@ -151,7 +151,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   j<-as.numeric(K5_reporder[i])
   temp<-K5_100runs[[j]]
-  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+  structplot(t(temp),coloor[c(1,2,3,5,4)],effpop,poptiquet,spacepop=2,
              leg_y="K=5",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
@@ -187,7 +187,7 @@ op<-par(mfrow=c(100,1),mar=c(0,0,0,0),oma=c(1,0,3,0))
 for (i in 1:100){
   j<-as.numeric(K6_reporder[i])
   temp<-K6_100runs[[j]]
-  structplot(t(temp),coloor,effpop,poptiquet,spacepop=2,
+  structplot(t(temp),coloor[c(5,2,3,1,4,6)],effpop,poptiquet,spacepop=2,
              leg_y="K=6",cexy=1.2,mef=c(0,0,0,0,0),colbord=NA,
              distxax=0.15,angl=0,cexpop=1.5)
 }
