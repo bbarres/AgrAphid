@@ -57,7 +57,7 @@ structplot(t(temp),coloor[c(2,1)],effpop,poptiquet,spacepop=2,
            distxax=1,angl=20,cexpop=2.5)
 title(main="K=2",cex.main=2.5,outer=TRUE)
 par(op)
-#export pdf 15 x 30
+#export pdf 15 x 22
 
 #for K=3, import the 100 run datafile (100 q matrix)
 K3_100runs<-read.table("data/AgrAccconsK3.ind_datafile",header=FALSE,
@@ -97,7 +97,7 @@ structplot(t(temp),coloor[c(2,1,3)],effpop,poptiquet,spacepop=2,
            distxax=1,angl=20,cexpop=2.5)
 title(main="K=3",cex.main=2.5,outer=TRUE)
 par(op)
-#export pdf 15 x 30
+#export pdf 15 x 22
 
 #for K=4, import the 100 run datafile (100 q matrix)
 K4_100runs<-read.table("data/AgrAccconsK4.ind_datafile",header=FALSE,
@@ -137,7 +137,7 @@ structplot(t(temp),coloor[c(1,2,4,3)],effpop,poptiquet,spacepop=2,
            distxax=1,angl=20,cexpop=2.5)
 title(main="K=4",cex.main=2.5,outer=TRUE)
 par(op)
-#export pdf 15 x 30
+#export pdf 15 x 22
 
 #for K=5, import the 100 run datafile (100 q matrix)
 K5_100runs<-read.table("data/AgrAccconsK5.ind_datafile",header=FALSE,
@@ -177,7 +177,7 @@ structplot(t(temp),coloor[c(1,2,3,5,4)],effpop,poptiquet,spacepop=2,
            distxax=1,angl=20,cexpop=2.5)
 title(main="K=5",cex.main=2.5,outer=TRUE)
 par(op)
-#export pdf 15 x 30
+#export pdf 15 x 22
 
 #for K=6, import the 100 run datafile (100 q matrix)
 K6_100runs<-read.table("data/AgrAccconsK6.ind_datafile",header=FALSE,
@@ -218,7 +218,7 @@ structplot(t(temp),coloor[c(5,2,3,1,4,6)],effpop,poptiquet,spacepop=2,
            distxax=1,angl=20,cexpop=2.5)
 title(main="K=6",cex.main=2.5,outer=TRUE)
 par(op)
-#export pdf 15 x 30
+#export pdf 15 x 22
 
 
 ##############################################################################/
