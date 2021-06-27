@@ -7,7 +7,6 @@
 source("Agra_load.R")
 
 
-
 ##############################################################################/
 #Identifying the best K for STRUCTURE run####
 ##############################################################################/
@@ -22,19 +21,16 @@ source("Agra_load.R")
 
 #run the 'Agra_deltaKplot_fun.R' code before running this code
 
-resstr_cccons<-read.table(file="AgrAphout2.str",header=T,sep=" ",
+resstr_cccons<-read.table(file="data/AgrAphout2.str",header=T,sep=" ",
                           blank.lines.skip=T)
 deltastr_cccons<-chooseK(resstr_cccons,15,100)
 
+op<-par(mar=c(5.1,5.1,4.1,6.1))
 plotdeltaK(deltastr_cccons,15,
-           "Conservative clone correction dataset (n=309)")
+           "Clone corrected dataset (n=309)")
+par(op)
 
-#you can obtain the same figure as in the manuscript by exporting the plot to 
-#png format, with a width of 2400 X 1100 pixels
-
-
-
-
+#export to .pdf 8 x 7 inches
 
 
 ##############################################################################/

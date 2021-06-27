@@ -67,22 +67,20 @@ plotdeltaK<-function(datadeltaK,nb_K,titre){
   #'datadeltak': the output file of 'chooseK' function
   #'nb_K': the number of different K considered
   #'titre': the title of the plot you want to be displayed
-  op<-par(pty="s")
   plot(datadeltaK[1:(nb_K-2),8],type="b",pch=24,cex=2.5,lwd=4,lty=1,
-       col="transparent",bg="white",bty="n",ann=F)
+       col="transparent",bg="white",bty="n",ann=FALSE,axes=FALSE)
   par(new=TRUE)
   plot(datadeltaK[1:(nb_K-2),8],type="b",pch=24,bty="n",xaxt="n",
        yaxt="n",ann=F,cex=2.5,lwd=4,lty=1)
   axis(side=1,at=seq(1,13,1),lwd=3,font.axis=2)
-  axis(side=2,lwd=3,font.axis=2)
+  axis(side=2,lwd=3,font.axis=2,las=1)
   title(ylab="Delta K",font.lab=2,cex.lab=1.5)
   par(new=TRUE)
   plot(datadeltaK[1:(nb_K-2),2],type="b",pch=22,cex=2.5,lwd=4,lty=2,
        col="grey50",bg="white",bty="n",xaxt="n",yaxt="n",ann=F)
-  axis(side=4,lwd=3,font.axis=2,col="grey50")
-  mtext("Ln(P(X|K))", side=4, line=4,font=2,cex=1,col="grey50")
+  axis(side=4,lwd=3,font.axis=2,col="grey50",las=1)
+  mtext("Ln(P(X|K))",side=4,line=4,font=2,cex=1.5,col="grey50")
   title(main=titre,xlab="K",font.lab=2,cex.lab=1.5,cex.main=2)
-  par(op)
 }
 
 #the same function using log(deltaK), just in order to see smaller variation 

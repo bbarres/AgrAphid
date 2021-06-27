@@ -24,11 +24,11 @@ source("Agra_div_fun.R")
 ##############################################################################/
 
 #first, we load the genetic dataset
-datAgra<-read.table("data/AgrAph3.dat",header=T,sep="\t",
+datAgra<-read.table("data/AgrAph4.dat",header=T,sep="\t",
                     stringsAsFactors=TRUE)
 head(datAgra)
 #turn the 'sampling_date column in the R 'date format'
-datAgra$sampling_date<-as.Date(datAgra$sampling_date,format="%d-%m-%y")
+datAgra$sampling_date<-as.Date(datAgra$sampling_date,format="%Y/%m/%d")
 #split the Agraphid samples in two set for each year: before August and after
 #August
 datAgra$semester[datAgra$sampling_date>as.Date("2000-12-31") &
@@ -67,11 +67,17 @@ head(datAgra)
 dim(datAgra)[1] #number of samples in the dataset
 
 #We also work with a "clone-corrected" dataset: we keep only a single 
-#copy of each MLG. This will be especially usefull to compare DAPC and 
-#STRUCTURE analyses
+#copy of each MLG. This will be especially useful to compare DAPC and 
+#STRUCTURE analyses or to perform network analyses
 datAgracc<-datAgra[datAgra$one_MLG==1,]
 datAgracc<-drop.levels(datAgracc)
 dim(datAgracc)[1] #number of samples in the dataset
+
+#in order to plot structure like plot by host, we need a clone-corrected
+#dataset, but only at the host level (assuming aerial trap is a "host")
+datAgraccHost<-datAgra[datAgra$one_MLG_host==1,]
+datAgraccHost<-drop.levels(datAgraccHost)
+dim(datAgraccHost)[1]
 
 #we will investigate the variation of MLG diversity indices in the aerial 
 #trap only. We therefore built a dataset which contain only these 
