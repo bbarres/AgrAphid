@@ -7,10 +7,12 @@
 #loading the packages necessary for the analysis
 library(adegenet)
 library(combinat)
+library(data.table)
 library(gdata)
 library(pegas)
 library(poppr)
 library(RColorBrewer)
+library(tidyr)
 library(vegan)
 
 #loading the functions
