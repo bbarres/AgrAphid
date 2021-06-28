@@ -20,8 +20,8 @@ temp$KDRg<-as.character(temp$KDRg)
 temp$KDRg[is.na(temp$KDRg)]<-"K-miss"
 #reformatting sKDR genotypes
 temp$sKDRg<-temp$sKDR
-levels(temp$sKDRg)<-c("sK-RR","sK-RR","sK-RR","sK-RS","sK-RS",
-                      "sK-SS","sK-RS","sK-RS","sK-RS")
+levels(temp$sKDRg)<-c("sK-RR","sK-RS","sK-RS","sK-SS","sK-RS",
+                      "sK-RS","sK-RR")
 temp$sKDRg<-as.character(temp$sKDRg)
 temp$sKDRg[is.na(temp$sKDRg)]<-"sK-miss"
 #reformatting MACE genotypes
@@ -40,29 +40,29 @@ temp$R81Tg[is.na(temp$R81Tg)]<-"Neo-miss"
 #Aerial samples####
 ##############################################################################/
 
-#grouped by Cluster K=5
-AerTrap_ClustK5<-temp
-AerTrap_ClustK5$Clust_K5<-as.character(AerTrap_ClustK5$Clust_K5)
-AerTrap_ClustK5$Clust_K5[is.na(AerTrap_ClustK5$Clust_K5)]<-"undef"
-AerTrap_ClustK5<-drop.levels(AerTrap_ClustK5)
+#grouped by Cluster K=4
+AerTrap_ClustK4<-temp
+AerTrap_ClustK4$Clust_K4<-as.character(AerTrap_ClustK4$Clust_K4)
+AerTrap_ClustK4$Clust_K4[is.na(AerTrap_ClustK4$Clust_K4)]<-"undef"
+AerTrap_ClustK4<-drop.levels(AerTrap_ClustK4)
 
 op<-par(mar=c(0,0,3,0))
 
 #converting to genind object
-dataNetwo<-df2genind(AerTrap_ClustK5[,c("MP_27","MP_39","MP_44","MP_5",
+dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
                                         "MP_7","MP_23","MP_45","MP_28",
                                         "MP_9","MP_13","MP_2","MP_38",
                                         "MP_4","MP_46")],
                         ncode=3,
-                        ind.names=AerTrap_ClustK5$indiv_ID, 
-                        pop=AerTrap_ClustK5$Clust_K5,
+                        ind.names=AerTrap_ClustK4$indiv_ID, 
+                        pop=AerTrap_ClustK4$Clust_K4,
                         ploidy=2,NA.char="999")
 #pick a set of color
-coloor<-c("royalblue4","firebrick","darkorange","khaki2",
-          "chartreuse4","grey80")
+coloor<-c("royalblue4","firebrick","khaki2",
+          "chartreuse4","grey80")[c(1,2,3,5,4)]
 #plotting the network
 set.seed(5)
-plot_poppr_msn(dataNetwo,main="Genetic Cluster",
+plot_poppr_msn(dataNetwo,main="Genetic Clusters K=4",
                poppr.msn(dataNetwo,showplot=TRUE,
                          diss.dist(dataNetwo),
                          include.ties=TRUE),
@@ -75,13 +75,13 @@ plot_poppr_msn(dataNetwo,main="Genetic Cluster",
 
 
 #grouped by KDR
-dataNetwo<-df2genind(AerTrap_ClustK5[,c("MP_27","MP_39","MP_44","MP_5",
+dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
                                         "MP_7","MP_23","MP_45","MP_28",
                                         "MP_9","MP_13","MP_2","MP_38",
                                         "MP_4","MP_46")],
                      ncode=3,
-                     ind.names=AerTrap_ClustK5$indiv_ID, 
-                     pop=as.character(AerTrap_ClustK5$KDRg),
+                     ind.names=AerTrap_ClustK4$indiv_ID, 
+                     pop=as.character(AerTrap_ClustK4$KDRg),
                      ploidy=2,NA.char="999")
 #pick a set of color
 coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
@@ -101,17 +101,17 @@ plot_poppr_msn(dataNetwo,main="KDR",
 
 
 #grouped by sKDR
-dataNetwo<-df2genind(AerTrap_ClustK5[,c("MP_27","MP_39","MP_44","MP_5",
+dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
                                         "MP_7","MP_23","MP_45","MP_28",
                                         "MP_9","MP_13","MP_2","MP_38",
                                         "MP_4","MP_46")],
                      ncode=3,
-                     ind.names=AerTrap_ClustK5$indiv_ID, 
-                     pop=as.character(AerTrap_ClustK5$sKDRg),
+                     ind.names=AerTrap_ClustK4$indiv_ID, 
+                     pop=as.character(AerTrap_ClustK4$sKDRg),
                      ploidy=2,NA.char="999")
 #pick a set of color
 coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
-          brewer.pal(9,"Greens")[5],"grey80")[c(2,4,3,1)]
+          brewer.pal(9,"Greens")[5],"grey80")[c(3,4,2,1)]
 #plotting the network
 set.seed(5)
 plot_poppr_msn(dataNetwo,main="sKDR",
@@ -127,13 +127,13 @@ plot_poppr_msn(dataNetwo,main="sKDR",
 
 
 #grouped by MACE
-dataNetwo<-df2genind(AerTrap_ClustK5[,c("MP_27","MP_39","MP_44","MP_5",
+dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
                                         "MP_7","MP_23","MP_45","MP_28",
                                         "MP_9","MP_13","MP_2","MP_38",
                                         "MP_4","MP_46")],
                      ncode=3,
-                     ind.names=AerTrap_ClustK5$indiv_ID, 
-                     pop=as.character(AerTrap_ClustK5$MACEg),
+                     ind.names=AerTrap_ClustK4$indiv_ID, 
+                     pop=as.character(AerTrap_ClustK4$MACEg),
                      ploidy=2,NA.char="999")
 #pick a set of color
 coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
