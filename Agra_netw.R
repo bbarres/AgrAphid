@@ -46,7 +46,7 @@ AerTrap_ClustK4$Clust_K4<-as.character(AerTrap_ClustK4$Clust_K4)
 AerTrap_ClustK4$Clust_K4[is.na(AerTrap_ClustK4$Clust_K4)]<-"undef"
 AerTrap_ClustK4<-drop.levels(AerTrap_ClustK4)
 
-op<-par(mfrow=c(2,2),mar=c(0,0,3,0))
+op<-par(mfrow=c(2,2),mar=c(0,0,0,0),oma=c(0,0,0,0))
 
 #converting to genind object
 dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
@@ -66,16 +66,17 @@ truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 include.ties=TRUE)
 #1,8,9,13,20,23,24
 set.seed(24)
-plot_poppr_msn(dataNetwo,main="Genetic Clusters K=4",
-               truc,
-               nodescale=3,pop.leg=FALSE,size.leg=FALSE,
+plot_poppr_msn(dataNetwo,
+               truc,cex.main=3,
+               nodescale=8,pop.leg=FALSE,size.leg=FALSE,
                palette=coloor,
                scale.leg=FALSE,wscale=FALSE,
                mlg=FALSE,
                inds="",nodelab=200)
-#export to .pdf 13 x 13 inches
+par(mfg=c(1,1))
+mtext("Genetic Cluster (K=4)",side=3,cex=1.8,line=-2.5)
 
-
+par(mfg=c(1,2))
 #grouped by KDR
 dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
                                         "MP_7","MP_23","MP_45","MP_28",
@@ -89,19 +90,21 @@ dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
 coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
           brewer.pal(9,"Greens")[5],"grey80")[c(2,3,4,1)]
 #plotting the network
-set.seed(5)
-plot_poppr_msn(dataNetwo,main="KDR",
-               poppr.msn(dataNetwo,showplot=TRUE,
-                         diss.dist(dataNetwo),
-                         include.ties=TRUE),
-               nodescale=10,pop.leg=FALSE,size.leg=FALSE,
+truc<-poppr.msn(dataNetwo,showplot=FALSE,
+                diss.dist(dataNetwo),
+                include.ties=TRUE)
+set.seed(24)
+plot_poppr_msn(dataNetwo,
+               truc,
+               nodescale=8,pop.leg=FALSE,size.leg=FALSE,
                palette=coloor,
                scale.leg=FALSE,wscale=FALSE,
                mlg=FALSE,
                inds="",nodelab=200)
-#export to .pdf 6 x 6 inches
+par(mfg=c(1,2))
+mtext("KDR",side=3,cex=1.8,line=-2.5)
 
-
+par(mfg=c(2,1))
 #grouped by sKDR
 dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
                                         "MP_7","MP_23","MP_45","MP_28",
@@ -115,19 +118,22 @@ dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
 coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
           brewer.pal(9,"Greens")[5],"grey80")[c(3,4,2,1)]
 #plotting the network
-set.seed(5)
-plot_poppr_msn(dataNetwo,main="sKDR",
-               poppr.msn(dataNetwo,showplot=TRUE,
-                         diss.dist(dataNetwo),
-                         include.ties=TRUE),
-               nodescale=10,pop.leg=FALSE,size.leg=FALSE,
+truc<-poppr.msn(dataNetwo,showplot=FALSE,
+                diss.dist(dataNetwo),
+                include.ties=TRUE)
+set.seed(24)
+plot_poppr_msn(dataNetwo,
+               truc,
+               nodescale=8,pop.leg=FALSE,size.leg=FALSE,
                palette=coloor,
                scale.leg=FALSE,wscale=FALSE,
                mlg=FALSE,
                inds="",nodelab=200)
-#export to .pdf 6 x 6 inches
+par(mfg=c(2,1))
+mtext("sKDR",side=3,cex=1.8,line=-2.5)
 
 
+par(mfg=c(2,2))
 #grouped by MACE
 dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
                                         "MP_7","MP_23","MP_45","MP_28",
@@ -141,19 +147,23 @@ dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
 coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
           brewer.pal(9,"Greens")[5],"grey80")[c(3,4,2)]
 #plotting the network
-set.seed(5)
-plot_poppr_msn(dataNetwo,main="MACE",
-               poppr.msn(dataNetwo,showplot=TRUE,
-                         diss.dist(dataNetwo),
-                         include.ties=TRUE),
-               nodescale=10,pop.leg=FALSE,size.leg=FALSE,
+truc<-poppr.msn(dataNetwo,showplot=FALSE,
+                diss.dist(dataNetwo),
+                include.ties=TRUE)
+set.seed(24)
+plot_poppr_msn(dataNetwo,
+               truc,
+               nodescale=8,pop.leg=FALSE,size.leg=FALSE,
                palette=coloor,
                scale.leg=FALSE,wscale=FALSE,
                mlg=FALSE,
                inds="",nodelab=200)
-#export to .pdf 6 x 6 inches
+par(mfg=c(2,2))
+mtext("MACE",side=3,cex=1.8,line=-2.5)
 
 par(op)
+
+#export to .pdf 13 x 13 inches
 
 
 ##############################################################################/
