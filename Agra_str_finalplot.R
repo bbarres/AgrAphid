@@ -160,9 +160,78 @@ rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal)[12:19],
 
 par(op)
 
-#export to .pdf 12 x 6 inches
+#export to .pdf 12 x 5 inches
 
 
 ##############################################################################/
 #END
 ##############################################################################/
+
+
+
+#the plot for the different K values
+layout(matrix(c(1,1,1,1,
+                2,2,2,2,
+                3,4,5,6),12,1,byrow=TRUE))
+op<-par(mar=c(0.1,1.1,0.1,0),oma=c(4.1,3,3.5,0))
+
+coloor<-c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
+structplot(strK3,coloor,effpop,poptiquet,spacepop=4,
+           leg_y="K=3",cexy=1,mef=c(0,1,1,0,1),colbord=NA)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal),
+     rep(0,length(temp2$cumu)),
+     c(temp2$cumu+temp2$decal),
+     rep(1,length(temp2$cumu)),
+     lwd=2)
+#adding sampling years for aerial trap "population"
+axis(3,at=c(c(0,temp2$cumu[1:18])+temp2$decal+
+                    (temp2$cumu-c(0,temp2$cumu[1:18]))/2),
+     labels=FALSE,pos=1,lwd.ticks=2,lwd=0)
+text(c(c(0,temp2$cumu[1:18])+temp2$decal+ c(0,0,0,0,0,0,-1,1,2,0,0,0,0,0,0,0,0,0,0)+
+               (temp2$cumu-c(0,temp2$cumu[1:18]))/2)-2,
+     rep(par("usr")[4]+0.07,19),
+     labels=temp2$Var1,
+     srt=90,xpd=NA,pos=4,cex=1.1)
+
+structplot(strK4,coloor[c(1,3,2,4,5)],effpop,poptiquet,spacepop=4,
+           leg_y="K=4",cexy=1,mef=c(0,1,1,0,1),colbord=NA)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal),
+     rep(0,length(temp2$cumu)),
+     c(temp2$cumu+temp2$decal),
+     rep(1,length(temp2$cumu)),
+     lwd=2)
+
+coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],brewer.pal(9,"Greens")[5],"grey80")
+structplot(strKDR,coloor,effpop,poptiquet,spacepop=4,
+           leg_y="KDR",cexy=1,mef=c(0,1,1,0,1),colbord=NA)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal),
+     rep(0,length(temp2$cumu)),
+     c(temp2$cumu+temp2$decal),
+     rep(1,length(temp2$cumu)),
+     lwd=2)
+structplot(strsKDR,coloor,effpop,poptiquet,spacepop=4,
+           leg_y="sKDR",cexy=1,mef=c(0,1,1,0,1),colbord=NA)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal),
+     rep(0,length(temp2$cumu)),
+     c(temp2$cumu+temp2$decal),
+     rep(1,length(temp2$cumu)),
+     lwd=2)
+structplot(strMACE,coloor[c(2,3,4)],effpop,poptiquet,spacepop=4,
+           leg_y="MACE",cexy=1,mef=c(0,1,1,0,1),colbord=NA)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal),
+     rep(0,length(temp2$cumu)),
+     c(temp2$cumu+temp2$decal),
+     rep(1,length(temp2$cumu)),
+     lwd=2)
+structplot(strNEO,coloor,effpop,poptiquet,spacepop=4,
+           leg_y="R81T",cexy=1,mef=c(0,1,1,1,1),colbord=NA,
+           cexpop=1.5,distxax=0.3)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal),
+     rep(0,length(temp2$cumu)),
+     c(temp2$cumu+temp2$decal),
+     rep(1,length(temp2$cumu)),
+     lwd=2)
+
+par(op)
+
+#export to .pdf 12 x 5 inches
