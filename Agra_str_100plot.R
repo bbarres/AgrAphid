@@ -218,6 +218,7 @@ structplot(t(temp),coloor[c(5,2,3,1,4,6)],effpop,poptiquet,spacepop=2,
            distxax=1,angl=20,cexpop=2.5)
 title(main="K=6",cex.main=2.5,outer=TRUE)
 par(op)
+
 #export pdf 15 x 22
 
 
