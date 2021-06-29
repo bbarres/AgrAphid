@@ -46,7 +46,7 @@ AerTrap_ClustK4$Clust_K4<-as.character(AerTrap_ClustK4$Clust_K4)
 AerTrap_ClustK4$Clust_K4[is.na(AerTrap_ClustK4$Clust_K4)]<-"undef"
 AerTrap_ClustK4<-drop.levels(AerTrap_ClustK4)
 
-op<-par(mar=c(0,0,3,0))
+op<-par(mfrow=c(2,2),mar=c(0,0,3,0))
 
 #converting to genind object
 dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
@@ -61,17 +61,19 @@ dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
 coloor<-c("royalblue4","firebrick","khaki2",
           "chartreuse4","grey80")[c(1,2,3,5,4)]
 #plotting the network
-set.seed(5)
+truc<-poppr.msn(dataNetwo,showplot=FALSE,
+                diss.dist(dataNetwo),
+                include.ties=TRUE)
+#1,8,9,13,20,23,24
+set.seed(24)
 plot_poppr_msn(dataNetwo,main="Genetic Clusters K=4",
-               poppr.msn(dataNetwo,showplot=TRUE,
-                         diss.dist(dataNetwo),
-                         include.ties=TRUE),
-               nodescale=10,pop.leg=FALSE,size.leg=FALSE,
+               truc,
+               nodescale=3,pop.leg=FALSE,size.leg=FALSE,
                palette=coloor,
                scale.leg=FALSE,wscale=FALSE,
                mlg=FALSE,
                inds="",nodelab=200)
-#export to .pdf 6 x 6 inches
+#export to .pdf 13 x 13 inches
 
 
 #grouped by KDR
