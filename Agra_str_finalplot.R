@@ -71,11 +71,13 @@ temp<-temp[,-c(56:70)]
 
 #reordering the levels of the host
 temp$host<-factor(temp$host,levels(temp$host)[c(4,2,5,3,1)])
+#because missing data will screw up the ordering we complete one missing
+#data for year
+temp$year[235]<-2014
 setorder(temp,host,year,sampling_date,K4_Q1,-K4_Q4,-K4_Q2)
 names(table(temp$host))
 
 #creating the offset for the box per year
-temp$year[122]<-2014
 temp2<-as.data.frame(table(temp$year,temp$host))
 temp2<-temp2[temp2$Freq!=0,]
 temp2$cumu<-cumsum(temp2$Freq)
@@ -87,39 +89,74 @@ poptiquet<-c("Peach","Oilseed rape","Tobacco","Other\nCrops","Aerial Trap")
 effpop<-as.numeric(table(temp$host))
 strK3<-t(temp[,c("K3_Q1","K3_Q2","K3_Q3")])
 strK4<-t(temp[,c("K4_Q1","K4_Q2","K4_Q3","K4_Q4")])
-strK5<-t(temp[,c("K5_Q1","K5_Q2","K5_Q3","K5_Q4","K5_Q5")])
+#strK5<-t(temp[,c("K5_Q1","K5_Q2","K5_Q3","K5_Q4","K5_Q5")])
 strKDR<-t(temp[,c("K-RR","K-RS","K-SS","K-miss")])
 strsKDR<-t(temp[,c("sK-RR","sK-RS","sK-SS","sK-miss")])
 strMACE<-t(temp[,c("M-RS","M-SS","M-miss")])
 strNEO<-t(temp[,c("Neo-RR","Neo-RS","Neo-SS","Neo-miss")])
 
 #the plot for the different K values
-layout(matrix(c(1,1,1,
-                2,2,2,
-                3,4,5,6),10,1,byrow=TRUE))
-op<-par(mar=c(0.1,1.1,0.1,0),oma=c(5.1,3,1,0))
+layout(matrix(c(1,1,1,1,
+                2,2,2,2,
+                3,4,5,6),12,1,byrow=TRUE))
+op<-par(mar=c(0.1,1.1,0.1,0),oma=c(4.1,3,3.5,0))
 
 coloor<-c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
 structplot(strK3,coloor,effpop,poptiquet,spacepop=4,
            leg_y="K=3",cexy=1,mef=c(0,1,1,0,1),colbord=NA)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal)[12:19],
+     rep(0,length(temp2$cumu))[12:19],
+     c(temp2$cumu+temp2$decal)[12:19],
+     rep(1,length(temp2$cumu))[12:19],
+     lwd=2)
+#adding sampling years for aerial trap "population"
+axis(3,at=c(c(0,temp2$cumu[1:18])+temp2$decal+
+              (temp2$cumu-c(0,temp2$cumu[1:18]))/2)[12:19],
+     labels=FALSE,pos=1,lwd.ticks=2,lwd=0)
+text(c(c(0,temp2$cumu[1:18])+temp2$decal+
+               (temp2$cumu-c(0,temp2$cumu[1:18]))/2)[12:19]-5,
+     rep(par("usr")[4]+0.1,19)[12:19],
+     labels=temp2$Var1[12:19],
+     srt=45,xpd=NA,pos=4,cex=1.4)
+
 structplot(strK4,coloor[c(1,3,2,4,5)],effpop,poptiquet,spacepop=4,
            leg_y="K=4",cexy=1,mef=c(0,1,1,0,1),colbord=NA)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal)[12:19],
+     rep(0,length(temp2$cumu))[12:19],
+     c(temp2$cumu+temp2$decal)[12:19],
+     rep(1,length(temp2$cumu))[12:19],
+     lwd=2)
 
 coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],brewer.pal(9,"Greens")[5],"grey80")
 structplot(strKDR,coloor,effpop,poptiquet,spacepop=4,
            leg_y="KDR",cexy=1,mef=c(0,1,1,0,1),colbord=NA)
-rect(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal,
-     rep(0,length(temp2$cumu)),
-     temp2$cumu+temp2$decal,
-     rep(1,length(temp2$cumu)),
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal)[12:19],
+     rep(0,length(temp2$cumu))[12:19],
+     c(temp2$cumu+temp2$decal)[12:19],
+     rep(1,length(temp2$cumu))[12:19],
      lwd=2)
 structplot(strsKDR,coloor,effpop,poptiquet,spacepop=4,
            leg_y="sKDR",cexy=1,mef=c(0,1,1,0,1),colbord=NA)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal)[12:19],
+     rep(0,length(temp2$cumu))[12:19],
+     c(temp2$cumu+temp2$decal)[12:19],
+     rep(1,length(temp2$cumu))[12:19],
+     lwd=2)
 structplot(strMACE,coloor[c(2,3,4)],effpop,poptiquet,spacepop=4,
            leg_y="MACE",cexy=1,mef=c(0,1,1,0,1),colbord=NA)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal)[12:19],
+     rep(0,length(temp2$cumu))[12:19],
+     c(temp2$cumu+temp2$decal)[12:19],
+     rep(1,length(temp2$cumu))[12:19],
+     lwd=2)
 structplot(strNEO,coloor,effpop,poptiquet,spacepop=4,
            leg_y="R81T",cexy=1,mef=c(0,1,1,1,1),colbord=NA,
            cexpop=1.5,distxax=0.3)
+rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal)[12:19],
+     rep(0,length(temp2$cumu))[12:19],
+     c(temp2$cumu+temp2$decal)[12:19],
+     rep(1,length(temp2$cumu))[12:19],
+     lwd=2)
 
 par(op)
 
