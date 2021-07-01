@@ -50,9 +50,11 @@ datArb<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
                      ind.names=AerTrap_ClustK4$indiv_ID, 
                      pop=AerTrap_ClustK4$Clust_K4,
                      ploidy=2,NA.char="999")
+datArb.mean<-missingno(datArb,type="mean")
+
 #pick a set of color
 coloor<-c("royalblue4","firebrick","khaki2",
-          "chartreuse4","grey80")[c(1,2,3,5,4)]
+          "chartreuse4","grey80")[c(1,2,4,5,3)]
 
 
 ##############################################################################/
@@ -60,11 +62,26 @@ coloor<-c("royalblue4","firebrick","khaki2",
 ##############################################################################/
 
 #
-datArb<-as.loci(datArb)
-datArb[is.na(datArb)]<-"0/0"
-distDASArb<-dist.bruvo(datArb)
+datArb.mean<-as.loci(datArb.mean)
+distDASArb<-dist.asd(datArb)
 treenj<-bionj(distDASArb)
 treebionj
+
+#with a dissimilarity distance
+distDASArb<-diss.dist(datArb)
+treenj<-bionj(distDASArb)
+op<-par(mfrow=c(2,3))
+plot(treenj,type="radial",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+plot(treenj,type="cladogram",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+plot(treenj,type="fan",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+plot(treenj,type="unrooted",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+plot(treenj,type="phylogram",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+par(op)
 
 #export pdf 15 x 22
 apply(datArb,1,function(x) is.na(x)<-"0/0")
