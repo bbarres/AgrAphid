@@ -129,31 +129,25 @@ tiplabels(trebionj$tip.label, cex = 0.1,frame="none",bg=colo)
 title("Neighbour-Joining tree of oaks of the natural stands")
 
 #impression pdf d'un arbre non-enraciné
-pdf(file=paste("tree",".pdf"),height=90,width=90)
 plot(trebionj,type="unr",show.tip=FALSE)
 tiplabels(pch = 20, col = colo, cex = 4)
 tiplabels(paste(labOrd$V1,labOrd$V3,labOrd$V4), 
           cex = 0.25,frame="none",bg=colo)
 title("Neighbour-Joining tree of oaks of the natural stands")
-dev.off()
 
 #impression pdf d'un arbre en rond
-pdf(file=paste("tree2",".pdf"),height=90,width=90)
 plot(trebionj,type="radial",show.tip=FALSE)
 tiplabels(pch = 20, col = colo, cex = 4)
 tiplabels(paste(labOrd$V1,labOrd$V3,labOrd$V4), 
           cex = 0.5,frame="none",bg=colo)
 title("Neighbour-Joining tree of oaks of the natural stands")
-dev.off()
 
 #impression pdf d'un arbre en arbre
-pdf(file=paste("tree3",".pdf"),height=200,width=50)
 plot(trebionj,show.tip=FALSE)
 tiplabels(pch = 20, col = colo, cex = 4)
 tiplabels(paste(labOrd$V1,labOrd$V3,labOrd$V4), 
           cex = 0.5,frame="none",bg=colo)
 title("Neighbour-Joining tree of oaks of the natural stands")
-dev.off()
 
 
 
@@ -176,27 +170,21 @@ colo<-as.numeric(lab$population)
 palette(rainbow(length(levels(as.factor(colo)))))
 
 #impression pdf d'un arbre non-enraciné
-pdf(file=paste("tree",".pdf"),height=70,width=70)
 plot(trebionj,type="unr",show.tip=FALSE)
 tiplabels(pch = 20, col = colo, cex = 4)
 tiplabels(paste(lab$nom_Ind,lab$population,lab$father), cex = 0.25,frame="none",bg=colo)
 title("Neighbour-Joining tree of oaks of the natural stands")
-dev.off()
 
 #impression pdf d'un arbre en rond
-pdf(file=paste("tree2",".pdf"),height=90,width=90)
 plot(trebionj,type="radial",show.tip=FALSE)
 tiplabels(pch = 20, col = colo, cex = 4)
 tiplabels(paste(lab$population,lab$father), cex = 0.5,frame="none",bg=colo)
 title("Neighbour-Joining tree of oaks of the natural stands")
-dev.off()
 
 #impression pdf d'un arbre en arbre
-pdf(file=paste("tree3",".pdf"),height=200,width=50)
 plot(trebionj,show.tip=FALSE)
 tiplabels(pch = 20, col = colo, cex = 4)
 tiplabels(paste(trebionj$tip.label,lab$population,lab$father), cex = 0.5,frame="none",bg=colo)
 title("Neighbour-Joining tree of oaks of the natural stands")
-dev.off()
 
 
