@@ -12,7 +12,7 @@ source("Agra_load.R")
 ##############################################################################/
 
 #preparing the dataset
-temp<-as.data.table(TempAgracc)
+temp<-as.data.table(Aerial_CC)
 #reformatting KDR genotypes
 temp$KDRg<-temp$KDR
 levels(temp$KDRg)<-c("K-RR","K-RS","K-SS")
@@ -52,24 +52,48 @@ datArb<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
                      ploidy=2,NA.char="999")
 datArb.mean<-missingno(datArb,type="mean")
 
-#pick a set of color
-coloor<-c("royalblue4","firebrick","khaki2",
-          "chartreuse4","grey80")[c(1,2,4,5,3)]
-
 
 ##############################################################################/
 #Aerial samples####
 ##############################################################################/
 
-#
-datArb.mean<-as.loci(datArb.mean)
-distDASArb<-dist.asd(datArb)
-treenj<-bionj(distDASArb)
-treebionj
+#Shared allele distance computed using population1.2.32
+mat<-read.table("data/AgraDAS_mat.txt",header=FALSE,
+                check.names=TRUE,row.names=1)
+mat<-as.dist(mat)
+treeDAS<-nj(mat)
+labord<-as.data.frame(attr(mat,"Labels"))
+colnames(labord)="labels"
+labord<-merge(labord,AerTrap_ClustK4,by.x="labels",by.y="indiv_ID",sort=FALSE)
+#pick a set of color
+coloor<-c("khaki2","royalblue4","firebrick",
+          "grey80","chartreuse4")
+op<-par(mfrow=c(2,3))
+plot(treeDAS,type="radial",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+plot(treeDAS,type="cladogram",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+plot(treeDAS,type="fan",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+plot(treeDAS,type="unrooted",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+plot(treeDAS,type="phylogram",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+par(op)
+
+#final DAS plot
+op<-par(mar=c(0.1,0.1,0.1,0.1))
+plot(treeDAS,type="unrooted",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+par(op)
+#export to .pdf 9 x 9 inches
 
 #with a dissimilarity distance
 distDASArb<-diss.dist(datArb)
 treenj<-bionj(distDASArb)
+#pick a set of color
+coloor<-c("khaki2","royalblue4","firebrick",
+          "grey80","chartreuse4")
 op<-par(mfrow=c(2,3))
 plot(treenj,type="radial",show.tip=FALSE)
 tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
