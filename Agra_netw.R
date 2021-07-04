@@ -12,7 +12,7 @@ source("Agra_load.R")
 ##############################################################################/
 
 #preparing the dataset
-temp<-as.data.table(TempAgra)
+temp<-as.data.table(Aerial)
 #reformatting KDR genotypes
 temp$KDRg<-temp$KDR
 levels(temp$KDRg)<-c("K-RR","K-RS","K-SS")
@@ -58,14 +58,14 @@ dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
                         pop=AerTrap_ClustK4$Clust_K4,
                         ploidy=2,NA.char="999")
 #pick a set of color
-coloor<-c("royalblue4","firebrick","khaki2",
-          "chartreuse4","grey80")[c(1,2,3,5,4)]
+coloor<-c("khaki2","royalblue4","firebrick",
+          "grey80","chartreuse4")
 #plotting the network
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),
                 include.ties=TRUE)
-#1,8,9,13,20,23,24
-set.seed(24)
+#16,36,51,1750,135712
+set.seed(36)
 plot_poppr_msn(dataNetwo,
                truc,cex.main=3,
                nodescale=8,pop.leg=FALSE,size.leg=FALSE,
@@ -93,7 +93,7 @@ coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),
                 include.ties=TRUE)
-set.seed(24)
+set.seed(36)
 plot_poppr_msn(dataNetwo,
                truc,
                nodescale=8,pop.leg=FALSE,size.leg=FALSE,
@@ -121,7 +121,7 @@ coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),
                 include.ties=TRUE)
-set.seed(24)
+set.seed(36)
 plot_poppr_msn(dataNetwo,
                truc,
                nodescale=8,pop.leg=FALSE,size.leg=FALSE,
@@ -131,7 +131,6 @@ plot_poppr_msn(dataNetwo,
                inds="",nodelab=200)
 par(mfg=c(2,1))
 mtext("skdr",side=3,cex=1.8,line=-2.5,font=4)
-
 
 par(mfg=c(2,2))
 #grouped by MACE
@@ -150,7 +149,7 @@ coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),
                 include.ties=TRUE)
-set.seed(24)
+set.seed(36)
 plot_poppr_msn(dataNetwo,
                truc,
                nodescale=8,pop.leg=FALSE,size.leg=FALSE,
