@@ -61,7 +61,7 @@ datArb.mean<-missingno(datArb,type="mean")
 mat<-read.table("data/AgraDAS_mat.txt",header=FALSE,
                 check.names=TRUE,row.names=1)
 mat<-as.dist(mat)
-treeDAS<-nj(mat)
+treeDAS<-bionj(mat)
 labord<-as.data.frame(attr(mat,"Labels"))
 colnames(labord)="labels"
 labord<-merge(labord,AerTrap_ClustK4,by.x="labels",by.y="indiv_ID",sort=FALSE)
@@ -69,24 +69,25 @@ labord<-merge(labord,AerTrap_ClustK4,by.x="labels",by.y="indiv_ID",sort=FALSE)
 coloor<-c("khaki2","royalblue4","firebrick",
           "grey80","chartreuse4")
 op<-par(mfrow=c(2,3))
-plot(treeDAS,type="radial",show.tip=FALSE)
+plot(treeDAS,type="radial",show.tip=FALSE,main="Radial")
 tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
-plot(treeDAS,type="cladogram",show.tip=FALSE)
+plot(treeDAS,type="cladogram",show.tip=FALSE,main="Cladogram")
 tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
-plot(treeDAS,type="fan",show.tip=FALSE)
+plot(treeDAS,type="fan",show.tip=FALSE,main="Fan")
 tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
-plot(treeDAS,type="unrooted",show.tip=FALSE)
+plot(treeDAS,type="unrooted",show.tip=FALSE,main="Unrooted")
 tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
-plot(treeDAS,type="phylogram",show.tip=FALSE)
+plot(treeDAS,type="phylogram",show.tip=FALSE,main="Phylogram")
 tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
 par(op)
+#export to .pdf 18 x 13 inches
 
 #final DAS plot
 op<-par(mar=c(0.1,0.1,0.1,0.1))
 plot(treeDAS,type="unrooted",show.tip=FALSE)
 tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
 par(op)
-#export to .pdf 9 x 9 inches
+#export to .pdf 6 x 10 inches
 
 #with a dissimilarity distance
 distDASArb<-diss.dist(datArb)
