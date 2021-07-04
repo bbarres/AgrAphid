@@ -81,6 +81,20 @@ datAgraccHost<-datAgra[datAgra$one_MLG_host==1,]
 datAgraccHost<-drop.levels(datAgraccHost)
 dim(datAgraccHost)[1]
 
+#for the tree analyses, we isolate the samples from the 
+#aerial trap from the host clone-corrected dataset
+Aerial_CC<-datAgraccHost[datAgraccHost$data_batch=="AgrAphid" &
+                           !is.na(datAgraccHost$data_batch),]
+Aerial_CC<-drop.levels(Aerial_CC)
+dim(Aerial_CC)[1]
+
+#for the network analyses, we isolate the samples from the 
+#aerial trap 
+Aerial<-datAgra[datAgra$data_batch=="AgrAphid" &
+                           !is.na(datAgra$data_batch),]
+Aerial<-drop.levels(Aerial)
+dim(Aerial)[1]
+
 #we will investigate the variation of MLG diversity indices in the aerial 
 #trap only. We therefore built a dataset which contain only these 
 #samples. Note that we also remove the 2 samples collected in 2000
