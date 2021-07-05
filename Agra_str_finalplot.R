@@ -104,7 +104,7 @@ op<-par(mar=c(0.1,1.1,0.1,0),oma=c(4.1,4,3.5,0),font=2)
 coloor<-c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
 structplot(strK3,coloor,effpop,poptiquet,spacepop=4,
            leg_y="K=3",cexy=1,mef=c(0,1,1,0,0),colbord=NA)
-mtext("Genetic\ncluster\nK=3",side=2,line=-2,cex=1.2,las=1,font=2,adj=1)
+mtext("K=3",side=2,line=-2,cex=1.2,las=1,font=2,adj=1)
 rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal)[12:19],
      rep(0,length(temp2$cumu))[12:19],
      c(temp2$cumu+temp2$decal)[12:19],
@@ -122,7 +122,7 @@ text(c(c(0,temp2$cumu[1:18])+temp2$decal+
 
 structplot(strK4,coloor[c(1,3,2,4,5)],effpop,poptiquet,spacepop=4,
            leg_y="K=4",cexy=1,mef=c(0,1,1,0,0),colbord=NA)
-mtext("Genetic\ncluster\nK=4",side=2,line=-2,cex=1.2,las=1,font=2,adj=1)
+mtext("K=4",side=2,line=-2,cex=1.2,las=1,font=2,adj=1)
 rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal)[12:19],
      rep(0,length(temp2$cumu))[12:19],
      c(temp2$cumu+temp2$decal)[12:19],
@@ -182,7 +182,7 @@ op<-par(mar=c(0.1,1.1,0.1,0),oma=c(4.1,4,3.5,0),font=2)
 coloor<-c("firebrick","royalblue4","chartreuse4","khaki2","darkorange")
 structplot(strK3,coloor,effpop,poptiquet,spacepop=4,
            leg_y="K=3",cexy=1,mef=c(0,1,1,0,0),colbord=NA)
-mtext("Genetic\ncluster\nK=3",side=2,line=-2,cex=1.2,las=1,font=2,adj=1)
+mtext("K=3",side=2,line=-2,cex=1.2,las=1,font=2,adj=1)
 rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal),
      rep(0,length(temp2$cumu)),
      c(temp2$cumu+temp2$decal),
@@ -200,7 +200,7 @@ text(c(c(0,temp2$cumu[1:18])+temp2$decal+c(0,0,0,0,0,0,-1,1,2,0,0,0,0,0,0,0,0,0,
 
 structplot(strK4,coloor[c(1,3,2,4,5)],effpop,poptiquet,spacepop=4,
            leg_y="K=4",cexy=1,mef=c(0,1,1,0,0),colbord=NA)
-mtext("Genetic\ncluster\nK=4",side=2,line=-2,cex=1.2,las=1,font=2,adj=1)
+mtext("K=4",side=2,line=-2,cex=1.2,las=1,font=2,adj=1)
 rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal),
      rep(0,length(temp2$cumu)),
      c(temp2$cumu+temp2$decal),
