@@ -13,25 +13,17 @@ source("Agra_load.R")
 
 #here is the structure of the datafile, for explanation of each columns, see 
 #ReadMe.txt file in the repository
-head(datAgra)
+head(datAgracc)
 #a summary of the different variables
-summary(datAgra)
-colnames(datAgra)
+summary(datAgracc)
+colnames(datAgracc)
 #total number of individuals
-dim(datAgra)[1] #1320 individuals
+dim(datAgracc)[1] #309 individuals
 #we reorganize the levels of the host_corrected column, because the 
 #alphabetical order doesn't fit our needs
-datAgra$host_corrected<-factor(datAgra$host_corrected,
+datAgracc$host_corrected<-factor(datAgracc$host,
                                levels=c("peach","oilseed_rape","tobacco",
-                                        "other_crops","Aerial_trap",
-                                        "several_hosts"))
-
-#we reorganize the levels of the host_corrected column, because the 
-#alphabetical order doesn't fit our needs for the clone-corrected dataset
-datAgracc$host_corrected<-factor(datAgracc$host_corrected,
-                                 levels=c("peach","oilseed_rape","tobacco",
-                                          "other_crops","Aerial_trap",
-                                          "several_hosts"))
+                                        "other_crops","Aerial_trap"))
 #we reorder the individuals according to the host_corrected factor
 datAgracc<-datAgracc[order(datAgracc$host_corrected),]
 JDD<-datAgracc #name of the input file
@@ -49,7 +41,7 @@ JDDmicro<-df2genind(JDD[,c("MP_27","MP_39","MP_44","MP_5","MP_7","MP_23",
                            "MP_45","MP_28","MP_9","MP_13","MP_2","MP_38",
                            "MP_4","MP_46")],
                     ncode=3,ind.names=JDD$sample_ID, 
-                    pop=JDD$host_corrected,ploidy=2,NA.char="999")
+                    pop=JDD$host,ploidy=2,NA.char="999")
 #include the coordinates of the samples
 JDDmicro@other$xy<-JDD[,c("longitude","latitude")]
 #we can also include the resistance genotypes as supplementary information
@@ -62,8 +54,8 @@ JDDmicro@other$R81T<-JDD[,"R81T"]
 JDDade<-JDDmicro
 #determination of the number of clusters
 clustJDDade<-find.clusters(JDDade,max.n.clust=30)
-#with 50 PCs, we lost nearly no information and after K=5, the decrease of 
-#the BIC value is smaller, so we chose the maximum number of clusters to be 5 
+#with 50 PCs, we lost nearly no information and after K=4, the decrease of 
+#the BIC value is smaller, so we chose the maximum number of clusters to be 4 
 #which individuals in which clusters per population
 table(pop(JDDade),clustJDDade$grp)
 #We try to optimize the number of principal component (PCs) to retain to 
@@ -96,23 +88,19 @@ clustJDDade4<-find.clusters(JDDade,n.pca=50,n.clust=4)
 dapcJDDade4<-dapc(JDDade,clustJDDade4$grp,n.da=4,n.pca=8)
 compoplot(dapcJDDade4,lab=pop(JDDade),legend=FALSE,
           cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
-clustJDDade5<-find.clusters(JDDade,n.pca=50,n.clust=5)
-dapcJDDade5<-dapc(JDDade,clustJDDade5$grp,n.da=4,n.pca=8)
-compoplot(dapcJDDade5,lab=pop(JDDade),legend=FALSE,
-          cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
 
-#a more beautifull scatter plot, the colors are matching colors used in 
+#a more beautiful scatter plot, the colors are matching colors used in 
 #the structure-like plot
-scatter(dapcJDDade5,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
+scatter(dapcJDDade4,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
         solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
-scatter(dapcJDDade5,xax=2,yax=3,cstar=1,cell=0,clab=0,main="Axis 2 & 3",
+scatter(dapcJDDade4,xax=2,yax=3,cstar=1,cell=0,clab=0,main="Axis 2 & 3",
         solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
 
 #the same plot with resistance genotypes added
-scatter(dapcJDDade5,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
+scatter(dapcJDDade4,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
         solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
 #adding KDR resistotype
-points(dapcJDDade5$ind.coord[,1],dapcJDDade5$ind.coord[,2],pch=21,xpd=NA,
+points(dapcJDDade4$ind.coord[,1],dapcJDDade4$ind.coord[,2],pch=21,xpd=NA,
        col="black",cex=1.5,bg=as.numeric(as.factor(JDDmicro@other$KDR)))
 legend("topright",levels(as.factor(JDDmicro@other$KDR)),col="black",pch=21,
        pt.bg=levels(as.factor(as.numeric(as.factor(JDDmicro@other$KDR)))),
@@ -120,9 +108,9 @@ legend("topright",levels(as.factor(JDDmicro@other$KDR)),col="black",pch=21,
 title("KDR resistotypes")
 
 #adding sKDR resistotype
-scatter(dapcJDDade5,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
+scatter(dapcJDDade4,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
         solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
-points(dapcJDDade5$ind.coord[,1],dapcJDDade5$ind.coord[,2],pch=21,xpd=NA,
+points(dapcJDDade4$ind.coord[,1],dapcJDDade4$ind.coord[,2],pch=21,xpd=NA,
        col="black",cex=1.5,bg=as.numeric(as.factor(JDDmicro@other$sKDR)))
 legend("topright",levels(as.factor(JDDmicro@other$sKDR)),col="black",pch=21,
        pt.bg=levels(as.factor(as.numeric(as.factor(JDDmicro@other$sKDR)))),
@@ -130,9 +118,9 @@ legend("topright",levels(as.factor(JDDmicro@other$sKDR)),col="black",pch=21,
 title("sKDR resistotypes")
 
 #adding MACE resistotype
-scatter(dapcJDDade5,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
+scatter(dapcJDDade4,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
         solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
-points(dapcJDDade5$ind.coord[,1],dapcJDDade5$ind.coord[,2],pch=21,xpd=NA,
+points(dapcJDDade4$ind.coord[,1],dapcJDDade4$ind.coord[,2],pch=21,xpd=NA,
        col="black",cex=1.5,bg=as.numeric(as.factor(JDDmicro@other$MACE)))
 legend("topright",levels(as.factor(JDDmicro@other$MACE)),col="black",pch=21,
        pt.bg=levels(as.factor(as.numeric(as.factor(JDDmicro@other$MACE)))),
@@ -158,18 +146,18 @@ write.table(dapcJDDade5$posterior,file="AgrAphDAPCK5.txt",sep="\t",
 #'Agra_strplot_fun.R'
 
 #first you need to gather the number of individuals in each populations
-effpop<-as.numeric(table(JDDade$pop))[c(4,2,6,3,1,5)]
+effpop<-as.numeric(table(JDDade$pop))[c(4,2,5,3,1)]
 #the names of the different populations might be useful too
-poptiquet<-levels(JDDade$pop)[c(4,2,6,3,1,5)]
+poptiquet<-levels(JDDade$pop)[c(4,2,5,3,1)]
 #be careful to use the same dataset that has been used for the DAPC 
 #computation
-structplot(t(dapcJDDade5$posterior),rainbow(5),effpop,poptiquet)
-structplot(t(dapcJDDade5$posterior),rainbow(5),effpop,poptiquet,
+structplot(t(dapcJDDade4$posterior),rainbow(4),effpop,poptiquet)
+structplot(t(dapcJDDade4$posterior),rainbow(5),effpop,poptiquet,
            colbord="grey70",leg_y="K=5",angl=30,distxax=0.01)
 structplot(t(dapcJDDade5$posterior),coloor,effpop,poptiquet,
            leg_y="K=5",mef=c(1,0,1,1,1),cexpop=0.5,cexy=5)
-structplot(t(dapcJDDade2$posterior),coloor,effpop,poptiquet,
-           colbord=0,leg_y="K=2",mef=c(0,1,0,1,1))
+structplot(t(dapcJDDade4$posterior),coloor,effpop,poptiquet,
+           colbord=0,leg_y="K=4",mef=c(0,1,0,1,1))
 
 #Now, we can easily plot several structure-like plot in the same figure
 op<-par(mfrow=c(4,1),mar=c(0,4,0,0),oma=c(3,0,0,0))
