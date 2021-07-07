@@ -49,23 +49,23 @@ AerTrap_ClustK4<-drop.levels(AerTrap_ClustK4)
 op<-par(mfrow=c(2,2),mar=c(0,0,0,0),oma=c(0,0,0,0))
 
 #converting to genind object
-dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
-                                        "MP_7","MP_23","MP_45","MP_28",
-                                        "MP_9","MP_13","MP_2","MP_38",
-                                        "MP_4","MP_46")],
+dataNetwo<-df2genind(AerTrap_ClustK4[,c("cor_MP_27","cor_MP_39","cor_MP_44",
+                                        "cor_MP_5","cor_MP_7","cor_MP_23",
+                                        "cor_MP_45","cor_MP_28","cor_MP_9",
+                                        "cor_MP_13","cor_MP_2","cor_MP_38",
+                                        "cor_MP_4","cor_MP_46")],
                         ncode=3,
                         ind.names=AerTrap_ClustK4$indiv_ID, 
                         pop=AerTrap_ClustK4$Clust_K4,
                         ploidy=2,NA.char="999")
 #pick a set of color
-coloor<-c("khaki2","royalblue4","firebrick",
-          "grey80","chartreuse4")
+coloor<-c("royalblue4","firebrick","khaki2","chartreuse4","grey80")
 #plotting the network
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),
                 include.ties=TRUE)
-#16,36,51,1750,135712
-set.seed(36)
+#5,9,13,17,24,30,320
+set.seed(320)
 plot_poppr_msn(dataNetwo,
                truc,cex.main=3,
                nodescale=8,pop.leg=FALSE,size.leg=FALSE,
@@ -78,10 +78,11 @@ mtext("Genetic Cluster (K=4)",side=3,cex=1.8,line=-2.5,font=2)
 
 par(mfg=c(1,2))
 #grouped by KDR
-dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
-                                        "MP_7","MP_23","MP_45","MP_28",
-                                        "MP_9","MP_13","MP_2","MP_38",
-                                        "MP_4","MP_46")],
+dataNetwo<-df2genind(AerTrap_ClustK4[,c("cor_MP_27","cor_MP_39","cor_MP_44",
+                                        "cor_MP_5","cor_MP_7","cor_MP_23",
+                                        "cor_MP_45","cor_MP_28","cor_MP_9",
+                                        "cor_MP_13","cor_MP_2","cor_MP_38",
+                                        "cor_MP_4","cor_MP_46")],
                      ncode=3,
                      ind.names=AerTrap_ClustK4$indiv_ID, 
                      pop=as.character(AerTrap_ClustK4$KDRg),
@@ -93,7 +94,7 @@ coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),
                 include.ties=TRUE)
-set.seed(36)
+set.seed(320)
 plot_poppr_msn(dataNetwo,
                truc,
                nodescale=8,pop.leg=FALSE,size.leg=FALSE,
@@ -106,10 +107,11 @@ mtext("kdr",side=3,cex=1.8,line=-2.5,font=4)
 
 par(mfg=c(2,1))
 #grouped by sKDR
-dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
-                                        "MP_7","MP_23","MP_45","MP_28",
-                                        "MP_9","MP_13","MP_2","MP_38",
-                                        "MP_4","MP_46")],
+dataNetwo<-df2genind(AerTrap_ClustK4[,c("cor_MP_27","cor_MP_39","cor_MP_44",
+                                        "cor_MP_5","cor_MP_7","cor_MP_23",
+                                        "cor_MP_45","cor_MP_28","cor_MP_9",
+                                        "cor_MP_13","cor_MP_2","cor_MP_38",
+                                        "cor_MP_4","cor_MP_46")],
                      ncode=3,
                      ind.names=AerTrap_ClustK4$indiv_ID, 
                      pop=as.character(AerTrap_ClustK4$sKDRg),
@@ -121,7 +123,7 @@ coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),
                 include.ties=TRUE)
-set.seed(36)
+set.seed(320)
 plot_poppr_msn(dataNetwo,
                truc,
                nodescale=8,pop.leg=FALSE,size.leg=FALSE,
@@ -134,10 +136,11 @@ mtext("skdr",side=3,cex=1.8,line=-2.5,font=4)
 
 par(mfg=c(2,2))
 #grouped by MACE
-dataNetwo<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
-                                        "MP_7","MP_23","MP_45","MP_28",
-                                        "MP_9","MP_13","MP_2","MP_38",
-                                        "MP_4","MP_46")],
+dataNetwo<-df2genind(AerTrap_ClustK4[,c("cor_MP_27","cor_MP_39","cor_MP_44",
+                                        "cor_MP_5","cor_MP_7","cor_MP_23",
+                                        "cor_MP_45","cor_MP_28","cor_MP_9",
+                                        "cor_MP_13","cor_MP_2","cor_MP_38",
+                                        "cor_MP_4","cor_MP_46")],
                      ncode=3,
                      ind.names=AerTrap_ClustK4$indiv_ID, 
                      pop=as.character(AerTrap_ClustK4$MACEg),
@@ -149,7 +152,7 @@ coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),
                 include.ties=TRUE)
-set.seed(36)
+set.seed(320)
 plot_poppr_msn(dataNetwo,
                truc,
                nodescale=8,pop.leg=FALSE,size.leg=FALSE,
