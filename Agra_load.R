@@ -27,7 +27,7 @@ source("Agra_div_fun.R")
 ##############################################################################/
 
 #first, we load the genetic dataset
-datAgra<-read.table("data/AgrAph4.dat",header=T,sep="\t",
+datAgra<-read.table("data/AgrAph5.dat",header=T,sep="\t",
                     stringsAsFactors=TRUE)
 head(datAgra)
 #turn the 'sampling_date column in the R 'date format'
