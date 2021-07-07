@@ -42,10 +42,11 @@ AerTrap_ClustK4$Clust_K4[is.na(AerTrap_ClustK4$Clust_K4)]<-"undef"
 AerTrap_ClustK4<-drop.levels(AerTrap_ClustK4)
 
 #converting to genind object
-datArb<-df2genind(AerTrap_ClustK4[,c("MP_27","MP_39","MP_44","MP_5",
-                                        "MP_7","MP_23","MP_45","MP_28",
-                                        "MP_9","MP_13","MP_2","MP_38",
-                                        "MP_4","MP_46")],
+datArb<-df2genind(AerTrap_ClustK4[,c("cor_MP_27","cor_MP_39","cor_MP_44",
+                                     "cor_MP_5","cor_MP_7","cor_MP_23",
+                                     "cor_MP_45","cor_MP_28","cor_MP_9",
+                                     "cor_MP_13","cor_MP_2","cor_MP_38",
+                                     "cor_MP_4","cor_MP_46")],
                      ncode=3,
                      ind.names=AerTrap_ClustK4$indiv_ID, 
                      pop=AerTrap_ClustK4$Clust_K4,
@@ -89,12 +90,12 @@ tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
 par(op)
 #export to .pdf 6 x 10 inches
 
-#with a dissimilarity distance
+
+#with a dissimilarity distance computed with an ape function
 distDASArb<-diss.dist(datArb)
 treenj<-bionj(distDASArb)
 #pick a set of color
-coloor<-c("khaki2","royalblue4","firebrick",
-          "grey80","chartreuse4")
+coloor<-c("royalblue4","firebrick","khaki2","chartreuse4","grey80")
 op<-par(mfrow=c(2,3))
 plot(treenj,type="radial",show.tip=FALSE)
 tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
@@ -108,8 +109,12 @@ plot(treenj,type="phylogram",show.tip=FALSE)
 tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
 par(op)
 
-#export pdf 15 x 22
-apply(datArb,1,function(x) is.na(x)<-"0/0")
+#final DAS plot
+op<-par(mar=c(0.1,0.1,0.1,0.1))
+plot(treenj,type="unrooted",show.tip=FALSE)
+tiplabels(pch=20,col=coloor[datArb@pop],cex=2)
+par(op)
+#export to .pdf 6 x 8 inches
 
 
 ##############################################################################/
