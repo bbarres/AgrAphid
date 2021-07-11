@@ -19,8 +19,6 @@ source("Agra_load.R")
 #with underscore, replace "?1" by "alpha", and remove double white spaces or 
 #it will provoke importation problem or failure
 
-#run the 'Agra_deltaKplot_fun.R' code before running this code
-
 resstr_cccons<-read.table(file="data/AgrAphout2.str",header=T,sep=" ",
                           blank.lines.skip=T)
 deltastr_cccons<-chooseK(resstr_cccons,15,100)
@@ -89,7 +87,6 @@ poptiquet<-c("Peach","Oilseed\nrape","Tobacco","Other\nCrops","Aerial Trap")
 effpop<-as.numeric(table(temp$host))
 strK3<-t(temp[,c("K3_Q1","K3_Q2","K3_Q3")])
 strK4<-t(temp[,c("K4_Q1","K4_Q2","K4_Q3","K4_Q4")])
-#strK5<-t(temp[,c("K5_Q1","K5_Q2","K5_Q3","K5_Q4","K5_Q5")])
 strKDR<-t(temp[,c("K-RR","K-RS","K-SS","K-miss")])
 strsKDR<-t(temp[,c("sK-RR","sK-RS","sK-SS","sK-miss")])
 strMACE<-t(temp[,c("M-RS","M-SS","M-miss")])
@@ -192,7 +189,8 @@ rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal),
 axis(3,at=c(c(0,temp2$cumu[1:18])+temp2$decal+
                     (temp2$cumu-c(0,temp2$cumu[1:18]))/2),
      labels=FALSE,pos=1,lwd.ticks=2,lwd=0)
-text(c(c(0,temp2$cumu[1:18])+temp2$decal+c(0,0,0,0,0,0,-1,1,2,0,0,0,0,0,0,0,0,0,0)+
+text(c(c(0,temp2$cumu[1:18])+temp2$decal+
+               c(0,0,0,0,0,0,-1,1,2,0,0,0,0,0,0,0,0,0,0)+
                (temp2$cumu-c(0,temp2$cumu[1:18]))/2)-2,
      rep(par("usr")[4]+0.05,19),
      labels=temp2$Var1,
