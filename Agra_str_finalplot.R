@@ -25,7 +25,7 @@ deltastr_cccons<-chooseK(resstr_cccons,15,100)
 
 op<-par(mar=c(5.1,5.1,4.1,6.1))
 plotdeltaK(deltastr_cccons,15,
-           "Clone corrected dataset (n=309)")
+           "Clone corrected dataset (n=305)")
 par(op)
 
 #export to .pdf 8 x 7 inches
