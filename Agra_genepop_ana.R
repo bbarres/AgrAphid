@@ -16,6 +16,7 @@ onebyhost<-"data/onebyhost.txt"
 
 basic_info(onebyhost,"output/onebyhost.txt.INF")
 test_LD(onebyhost,"output/onebyhost.txt.DIS")
+clean_workdir()
 
 #the output file have to be edited so it can be used for representation
 LDbyhost<-readLines("output/onebyhost.txt.DIS")
@@ -56,18 +57,16 @@ chaudemap<-LDheatmap(temp,title=NULL,
                      add.map=FALSE,distances=NULL,SNP.name=row.names(temp),
                      color=c(rep(grey(0.8),3),
                              brewer.pal(6,"YlOrRd")[c(2,4,6)]),
-                     name="CHR",flip=FALSE,add.key=FALSE)
+                     name="CHR",flip=TRUE,add.key=FALSE)
 grid.edit(gPath("CHR","heatMap","heatmap"),gp=gpar(col="white",lwd=2.5))
 grid.edit(gPath("CHR","SNPnames"),
-          gp=gpar(col="black",rot="0",cex=1.5,font=2),
-          rot=0,hjust=0.6)
-grid.lines(x=unit(c(0.1,0.5),"npc"),y=unit(c(0.5,0.5),"npc"),
-           gp=gpar(lwd=5))
-grid.lines(x=unit(c(0.5,0.5),"npc"),y=unit(c(0.5,0.9),"npc"),
-           gp=gpar(lwd=5))
+          gp=gpar(col="black",rot="0",cex=1.2,font=2),
+          rot=0,hjust=0.8)
 grid.text("B",x=unit(0.048,"npc"),y=unit(0.955,"npc"),gp=gpar(fontsize=50),
           check=TRUE)
-#export to pdf 7 x 7 inches
+grid.text("Peach population",x=unit(0.5,"npc"),y=unit(0.75,"npc"),gp=gpar(fontsize=40),
+          check=TRUE)
+#export to pdf 8 x 8 inches
 
 
 
