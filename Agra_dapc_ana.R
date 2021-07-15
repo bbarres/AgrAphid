@@ -8,10 +8,10 @@ source("Agra_load.R")
 
 
 ##############################################################################/
-#DAPC analysis: loading and preparing the dataset####
+#DAPC analysis: loading and preparing the data set####
 ##############################################################################/
 
-#here is the structure of the datafile, for explanation of each columns, see 
+#here is the structure of the data file, for explanation of each columns, see 
 #ReadMe.txt file in the repository
 head(datAgracc)
 #a summary of the different variables
@@ -50,7 +50,7 @@ JDDmicro@other$sKDR<-JDD[,"sKDR"]
 JDDmicro@other$MACE<-JDD[,"MACE"]
 JDDmicro@other$R81T<-JDD[,"R81T"]
 
-#now we format the data set to analyse it with dapc from the adegenet package
+#now we format the data set to analyse it with DAPC from the adegenet package
 JDDade<-JDDmicro
 #determination of the number of clusters
 clustJDDade<-find.clusters(JDDade,max.n.clust=30)
@@ -93,6 +93,7 @@ scatter(dapcJDDade4,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
         solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
 scatter(dapcJDDade4,xax=2,yax=3,cstar=1,cell=0,clab=0,main="Axis 2 & 3",
         solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
+
 
 ##############################################################################/
 #Figure S3: Scatter plot for best K####
@@ -145,7 +146,7 @@ par(op)
 #export to pdf 14 X 3 inches
 
 #in order to compare DAPC and STRUCTURE output, we prepare the STRUCTURE
-#output for the same dataset
+#output for the same data set
 strK3<-t(datAgracc[,c("K3_Q1","K3_Q2","K3_Q3")])
 strK4<-t(datAgracc[,c("K4_Q1","K4_Q2","K4_Q3","K4_Q4")])
 #now we plot STRUCTURE and DAPC alongside
@@ -179,147 +180,3 @@ par(op)
 ##############################################################################/
 #END
 ##############################################################################/
-
-
-
-
-
-
-
-
-##############################################################################/
-#Structure-like plot####
-##############################################################################/
-
-#some examples of the use of the function you can load from 
-#'Agra_strplot_fun.R'
-
-#be careful to use the same dataset that has been used for the DAPC 
-#computation
-structplot(t(dapcJDDade4$posterior),rainbow(4),effpop,poptiquet)
-structplot(t(dapcJDDade4$posterior),rainbow(5),effpop,poptiquet,
-           colbord="grey70",leg_y="K=5",angl=30,distxax=0.01)
-structplot(t(dapcJDDade5$posterior),coloor,effpop,poptiquet,
-           leg_y="K=5",mef=c(1,0,1,1,1),cexpop=0.5,cexy=5)
-structplot(t(dapcJDDade4$posterior),coloor,effpop,poptiquet,
-           colbord=0,leg_y="K=4",mef=c(0,1,0,1,1))
-
-
-
-
-##############################################################################/
-#DAPC on microsatellites and resistance genotypes####
-##############################################################################/
-
-#converting data to a genind format including the resistance genotypes
-JDDall<-df2genind(JDD[,c("MP_27","MP_39","MP_44","MP_5","MP_7","MP_23",
-                         "MP_45","MP_28","MP_9","MP_13","MP_2","MP_38",
-                         "MP_4","MP_46","KDR","sKDR","MACE","R81T")],
-                  ncode=3,ind.names=JDD$sample_ID, 
-                  pop=JDD$year,ploidy=2,NA.char="999")
-#include the coordinates of the samples
-JDDall@other$xy<-JDD[,c("longitude","latitude")]
-
-#now we analyse the adegenet format dataset with dapc
-JDDade<-JDDall
-#determination of the number of clusters
-clustJDDade<- find.clusters(JDDade,max.n.clust=35)
-#with 40 PCs, we lost nearly no information
-clustJDDade<- find.clusters(JDDade,n.pca=30,max.n.clust=35) #chose 5 clusters
-#which individuals in which clusters per population
-table(pop(JDDade),clustJDDade$grp)
-#DAPC by itself, first we try to optimized the number of principal component 
-#(PCs) to retain to perform the analysis
-dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=5,n.pca=30)
-temp<-optim.a.score(dapcJDDade)
-dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=5,n.pca=15)
-temp<-optim.a.score(dapcJDDade)
-dapcJDDade<-dapc(JDDade,clustJDDade$grp,n.da=3,n.pca=10)
-#STRUCTURE-like graphic
-compoplot(dapcJDDade,lab=pop(JDDade),legend=FALSE,
-          cex.names=0.3,cex.lab=0.5,cex.axis=0.5,col=coloor)
-#or with the function we designed
-poptiquet<-c("2000","2001","2002","2003","2004","2005","2006","2007")
-structplot(t(dapcJDDade$posterior),coloor,summary(JDDade)$pop.eff,
-           poptiquet,spacepop=2,leg_y="Assignement",cexy=1.2,mef=c(0,1,1,1,0),
-           colbord="grey70",angl=0,distxax=0.001)
-title(main="DAPC clusterisation",cex.main=1.5,outer=FALSE)
-#scatter plot
-scatter(dapcJDDade,xax=1, yax=2,col=coloor)
-#a more beautifull scatter plot
-scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
-        solid=0.3,pch=19,cex=3,scree.da=TRUE)
-
-
-##############################################################################/
-#trash####
-##############################################################################/
-
-#scatter plot with the different K groups and then plotting the population
-scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
-        solid=0.3,pch=19,cex=3,scree.da=FALSE)
-#oilseed_rape
-points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==1,1],
-       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==1,2],
-       col="black",cex=2,bg="black",pch=21)
-#peach
-points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==3,1],
-       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==3,2],
-       col="black",cex=2,bg="black",pch=21)
-#tobacco
-points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==4,1],
-       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==4,2],
-       col="black",cex=2,bg="black",pch=21)
-#other_crop
-points(dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==2,1],
-       dapcJDDade$ind.coord[as.numeric(as.factor(JDDade@other$host))==2,2],
-       col="black",cex=2,bg="black",pch=21)
-
-
-scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
-        solid=0.0,pch=19,cex=3,scree.da=FALSE)
-points(dapcJDDade$ind.coord[,1],dapcJDDade$ind.coord[,2],
-       col=coloor[dapcJDDade$assign],cex=2,
-       pch=(as.numeric(as.factor(JDDade@other$host))+20))
-
-scatter(dapcJDDade,xax=1,yax=2,cstar=1,cell=0,clab=0,col=coloor,
-        solid=0.0,pch=19,cex=3,scree.da=FALSE)
-points(dapcJDDade$ind.coord[,1],dapcJDDade$ind.coord[,2],
-       col=coloor[dapcJDDade$assign],pch=21,
-       bg=coloor[(as.numeric(as.factor(JDDade@other$host)))])
-
-
-plot(JDDade@other$xy,cex=3,col=dapcJDDade$assign,
-     pch=as.numeric(as.factor(JDDade@other$host)))
-
-
-#the same plot with resistance genotypes added
-scatter(dapcJDDade4,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
-        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
-#adding KDR resistotype
-points(dapcJDDade4$ind.coord[,1],dapcJDDade4$ind.coord[,2],pch=21,xpd=NA,
-       col="black",cex=1.5,bg=as.numeric(as.factor(JDDmicro@other$KDR)))
-legend("topright",levels(as.factor(JDDmicro@other$KDR)),col="black",pch=21,
-       pt.bg=levels(as.factor(as.numeric(as.factor(JDDmicro@other$KDR)))),
-       xpd=NA)
-title("KDR resistotypes")
-
-#adding sKDR resistotype
-scatter(dapcJDDade4,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
-        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
-points(dapcJDDade4$ind.coord[,1],dapcJDDade4$ind.coord[,2],pch=21,xpd=NA,
-       col="black",cex=1.5,bg=as.numeric(as.factor(JDDmicro@other$sKDR)))
-legend("topright",levels(as.factor(JDDmicro@other$sKDR)),col="black",pch=21,
-       pt.bg=levels(as.factor(as.numeric(as.factor(JDDmicro@other$sKDR)))),
-       xpd=NA)
-title("sKDR resistotypes")
-
-#adding MACE resistotype
-scatter(dapcJDDade4,xax=1,yax=2,cstar=1,cell=0,clab=0,main="Axis 1 & 2",
-        solid=0.3,col=rainbow(5)[c(2,3,5,1,4)],pch=19,cex=3,scree.da=FALSE)
-points(dapcJDDade4$ind.coord[,1],dapcJDDade4$ind.coord[,2],pch=21,xpd=NA,
-       col="black",cex=1.5,bg=as.numeric(as.factor(JDDmicro@other$MACE)))
-legend("topright",levels(as.factor(JDDmicro@other$MACE)),col="black",pch=21,
-       pt.bg=levels(as.factor(as.numeric(as.factor(JDDmicro@other$MACE)))),
-       xpd=NA)
-title("MACE resistotypes")
