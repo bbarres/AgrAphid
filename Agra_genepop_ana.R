@@ -109,7 +109,7 @@ grid.edit(gPath("peach","heatMap","heatmap"),gp=gpar(col="white",lwd=2.5))
 grid.edit(gPath("peach","SNPnames"),
           gp=gpar(col="black",rot="0",cex=1.2,font=2),
           rot=0,hjust=0.8)
-grid.text("Peach population",x=unit(0.5,"npc"),y=unit(0.75,"npc"),
+grid.text("Peach",x=unit(0.5,"npc"),y=unit(0.75,"npc"),
           gp=gpar(fontsize=40),check=TRUE)
 upViewport()
 
@@ -136,7 +136,7 @@ grid.edit(gPath("oils","heatMap","heatmap"),gp=gpar(col="white",lwd=2.5))
 grid.edit(gPath("oils","SNPnames"),
           gp=gpar(col="black",rot="0",cex=1.2,font=2),
           rot=0,hjust=0.8)
-grid.text("Oilseed population",x=unit(0.5,"npc"),y=unit(0.75,"npc"),
+grid.text("Oilseed",x=unit(0.5,"npc"),y=unit(0.75,"npc"),
           gp=gpar(fontsize=40),check=TRUE)
 upViewport()
 
@@ -163,7 +163,7 @@ grid.edit(gPath("taba","heatMap","heatmap"),gp=gpar(col="white",lwd=2.5))
 grid.edit(gPath("taba","SNPnames"),
           gp=gpar(col="black",rot="0",cex=1.2,font=2),
           rot=0,hjust=0.8)
-grid.text("Tobacco population",x=unit(0.5,"npc"),y=unit(0.75,"npc"),
+grid.text("Tobacco",x=unit(0.5,"npc"),y=unit(0.75,"npc"),
           gp=gpar(fontsize=40),check=TRUE)
 upViewport()
 
@@ -190,7 +190,7 @@ grid.edit(gPath("othe","heatMap","heatmap"),gp=gpar(col="white",lwd=2.5))
 grid.edit(gPath("othe","SNPnames"),
           gp=gpar(col="black",rot="0",cex=1.2,font=2),
           rot=0,hjust=0.8)
-grid.text("Other hosts population",x=unit(0.5,"npc"),y=unit(0.75,"npc"),
+grid.text("Other hosts",x=unit(0.5,"npc"),y=unit(0.75,"npc"),
           gp=gpar(fontsize=40),check=TRUE)
 upViewport()
 
