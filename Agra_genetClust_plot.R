@@ -29,9 +29,9 @@ abline(h=60,lty=2,col=grey(0.7),lwd=2)
 abline(h=80,lty=2,col=grey(0.7),lwd=2)
 box(bty="l",lwd=2)
 
-barplot(table(TempAgra[,"Clust_K5"],
-              month(TempAgra[,"sampling_date"]))[c(3,1,2,4,5),],
-        col=coloor[c(1,3,5,4,2)],beside=TRUE,las=1,ylim=c(0,85),
+barplot(table(TempAgra[,"Clust_K4"],
+              month(TempAgra[,"sampling_date"]))[c(2,1,3,4),],
+        col=coloor[c(1,3,4,2)],beside=TRUE,las=1,ylim=c(0,85),
         names.arg=c("January","February","March","April","May","June",
                     "July","August","September","October","November",
                     "December"),
