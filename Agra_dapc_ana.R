@@ -143,7 +143,6 @@ structplot(t(dapcJDDade4$posterior)[c(1,4,2,3),],coloor,effpop,poptiquet,
 mtext("DAPC\nK=4",side=2,line=1,cex=1.2,las=1,adj=0.5)
 par(op)
 
-#export to pdf 14 X 3 inches
 
 #in order to compare DAPC and STRUCTURE output, we prepare the STRUCTURE
 #output for the same data set

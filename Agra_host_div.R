@@ -25,18 +25,18 @@ Host_pielou_even<-vegan::diversity(hostocc)/log(specnumber(hostocc))
 
 
 ##############################################################################/
-#Genetic Diversity indices by Cluster on the complete dataset####
+#Genetic Diversity indices by Cluster on the complete data set####
 ##############################################################################/
 
-#converting data to a genind format for the full dataset
+#converting data to a genind format for the full data set
 compdiv<-datHost #name of the input file
 COMPDI<-df2genind(compdiv[,11:24],ncode=3,pop=compdiv$host,ploidy=2,
                   NA.char=c("999"),ind.names=as.character(compdiv$indiv_ID))
-#Allelic richness for the full temporal dataset
+#Allelic richness for the full temporal data set
 Host_Ar<-apply(AllRich(COMPDI)[[2]],1,mean)
-#Private Allelic richness for the full temporal dataset
+#Private Allelic richness for the full temporal data set
 Host_PrivAr<-apply(PrivAllRich(COMPDI)[[2]],1,mean)
-#Nei heterozygosity for the full temporal dataset
+#Nei heterozygosity for the full temporal data set
 Host_HetNei<-Hs(COMPDI)
 
 
@@ -49,8 +49,6 @@ divHosttable<-cbind(Host_nb_samples,Host_nb_MLG,Host_GsurN,Host_MLG_richness,
                    Host_HetNei)
 write.table(divHosttable,file="output/divHosttable.txt",
             quote=FALSE,sep="\t")
-
-
 
 
 ##############################################################################/
@@ -70,10 +68,10 @@ Clust_pielou_even<-vegan::diversity(clustocc)/log(specnumber(clustocc))
 
 
 ##############################################################################/
-#Genetic Diversity indices by Cluster on the complete dataset####
+#Genetic Diversity indices by Cluster on the complete data set####
 ##############################################################################/
 
-#converting data to a genind format for the full dataset
+#converting data to a genind format for the full data set
 compdiv<-Aerial_cor #name of the input file
 COMPDI<-df2genind(compdiv[,11:24],ncode=3,pop=compdiv$Clust_K4,ploidy=2,
                   NA.char=c("999"),ind.names=as.character(compdiv$indiv_ID))
@@ -83,11 +81,11 @@ COMPDIcc<-df2genind(compdiv[,11:24],ncode=3,pop=compdiv$Clust_K4,ploidy=2,
                     ind.names=as.character(compdiv$indiv_ID),
                     NA.char=c("999"))
 
-#Allelic richness for the full temporal dataset
+#Allelic richness for the full temporal data set
 Clust_Ar<-apply(AllRich(COMPDI)[[2]],1,mean)
-#Private Allelic richness for the full temporal dataset
+#Private Allelic richness for the full temporal data set
 Clust_PrivAr<-apply(PrivAllRich(COMPDI)[[2]],1,mean)
-#Nei heterozygosity for the full temporal dataset
+#Nei heterozygosity for the full temporal data set
 Clust_HetNei<-Hs(COMPDI)
 
 

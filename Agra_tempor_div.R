@@ -41,7 +41,7 @@ Ypielou_even<-diversity(AgrOcc)/log(specnumber(AgrOcc))
 #Genetic Diversity indices by semester####
 ##############################################################################/
 
-#converting data to a genind format for the full dataset
+#converting data to a genind format for the full data set
 compdiv<-TempAgra #name of the input file
 COMPDI<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$semester,ploidy=2,
                   NA.char=c("999999"),ind.names=as.character(compdiv$indiv_ID))
@@ -51,25 +51,25 @@ COMPDIcc<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$semester,ploidy=2,
                    ind.names=as.character(compdiv$indiv_ID),
                    NA.char=c("999999"))
 
-#Allelic richness for the full temporal dataset
+#Allelic richness for the full temporal data set
 Ar<-apply(AllRich(COMPDI)[[2]],1,mean)
 #we set the minimum number of samples to 5 (the minimum in the 
-#clone-corrected dataset)
+#clone-corrected data set)
 Ar<-apply(AllRich(COMPDI,5)[[2]],1,mean)
-#Allelic richness for the clone-corrected temporal dataset
+#Allelic richness for the clone-corrected temporal data set
 Arcc<-apply(AllRich(COMPDIcc)[[2]],1,mean)
 
-#Private Allelic richness for the full temporal dataset
+#Private Allelic richness for the full temporal data set
 PrivAr<-apply(PrivAllRich(COMPDI)[[2]],1,mean)
 #we set the minimum number of samples to 5 (the minimum in the 
-#clone-corrected dataset)
+#clone-corrected data set)
 PrivAr<-apply(PrivAllRich(COMPDI,5)[[2]],1,mean)
-#Private Allelic richness for the clone-corrected temporal dataset
+#Private Allelic richness for the clone-corrected temporal data set
 PrivArcc<-apply(PrivAllRich(COMPDIcc)[[2]],1,mean)
 
-#Nei heterozygosity for the full temporal dataset
+#Nei heterozygosity for the full temporal data set
 HetNei<-HeterNei(COMPDI)
-#Nei heterozygosity for the clone-corrected temporal dataset
+#Nei heterozygosity for the clone-corrected temporal data set
 HetNeicc<-HeterNei(COMPDIcc)
 
 
@@ -77,7 +77,7 @@ HetNeicc<-HeterNei(COMPDIcc)
 #Genetic Diversity indices by year####
 ##############################################################################/
 
-#converting data to a genind format for the full dataset
+#converting data to a genind format for the full data set
 compdiv<-TempAgra #name of the input file
 COMPDI<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$year,ploidy=2,
                   NA.char=c("999999"),ind.names=as.character(compdiv$indiv_ID))
@@ -87,25 +87,25 @@ COMPDIcc<-df2genind(compdiv[,11:24],ncode=6,pop=compdiv$year,ploidy=2,
                     ind.names=as.character(compdiv$indiv_ID),
                     NA.char=c("999999"))
 
-#Allelic richness for the full temporal dataset
+#Allelic richness for the full temporal data set
 YAr<-apply(AllRich(COMPDI)[[2]],1,mean)
 #we set the minimum number of samples to 5 (the minimum in the 
-#clone-corrected dataset)
+#clone-corrected data set)
 YAr<-apply(AllRich(COMPDI,19)[[2]],1,mean)
-#Allelic richness for the clone-corrected temporal dataset
+#Allelic richness for the clone-corrected temporal data set
 YArcc<-apply(AllRich(COMPDIcc)[[2]],1,mean)
 
-#Private Allelic richness for the full temporal dataset
+#Private Allelic richness for the full temporal data set
 YPrivAr<-apply(PrivAllRich(COMPDI)[[2]],1,mean)
 #we set the minimum number of samples to 5 (the minimum in the 
-#clone-corrected dataset)
+#clone-corrected data set)
 YPrivAr<-apply(PrivAllRich(COMPDI,19)[[2]],1,mean)
-#Private Allelic richness for the clone-corrected temporal dataset
+#Private Allelic richness for the clone-corrected temporal data set
 YPrivArcc<-apply(PrivAllRich(COMPDIcc)[[2]],1,mean)
 
-#Nei heterozygosity for the full temporal dataset
+#Nei heterozygosity for the full temporal data set
 YHetNei<-HeterNei(COMPDI)
-#Nei heterozygosity for the clone-corrected temporal dataset
+#Nei heterozygosity for the clone-corrected temporal data set
 YHetNeicc<-HeterNei(COMPDIcc)
 
 

@@ -45,51 +45,48 @@ barplot(t(table(datAgra$host,datAgra$Clust_K3))[2,c(4,2,5,3,1)],las=1,
         col=coloor[3],main="Cluster Secondary",axisnames=FALSE)
 barplot(t(table(datAgra$host,datAgra$Clust_K3))[3,c(4,2,5,3,1)],las=1,
         col=coloor[2],main="Cluster Weird",axisnames=FALSE)
-Xsemest<-barplot(t(table(datAgra$host,datAgra$Clust_K5)),plot=FALSE,
+Xsemest<-barplot(t(table(datAgra$host,datAgra$Clust_K3)),plot=FALSE,
                  beside=FALSE)
 text(x=Xsemest,y=rep(par("usr")[3],5)-(par("usr")[4]-par("usr")[3])/20,
      labels=c("Peach tree\nsamples","Oilseed rape\nsamples",
               "Tobacco\nsamples","Other crops\nsamples","Aerial\nsamples"),
      srt=0,xpd=NA,pos=1,cex=1.2)
 par(op)
-
 #export pdf 6 x 6
 
-#for K=5 genetic clusters
-table(datAgra$host,datAgra$Clust_K5)
+#for K=4 genetic clusters
+table(datAgra$host,datAgra$Clust_K4)
 #distribution of genetic cluster for each sampled host
 op<-par(mfrow=c(5,1),mar=c(0,0,3,0),oma=c(4,3,0,0))
-barplot((table(datAgra$host,datAgra$Clust_K5))[4,c(3,1,2,4,5)],las=1,
-        col=coloor[c(1,3,5,4,2)],main="Peach tree samples",axisnames=FALSE)
-barplot((table(datAgra$host,datAgra$Clust_K5))[2,c(3,1,2,4,5)],las=1,
-        col=coloor[c(1,3,5,4,2)],main="Oilseed rape samples",axisnames=FALSE)
-barplot((table(datAgra$host,datAgra$Clust_K5))[5,c(3,1,2,4,5)],las=1,
-        col=coloor[c(1,3,5,4,2)],main="Tobacco samples",axisnames=FALSE)
-barplot((table(datAgra$host,datAgra$Clust_K5))[3,c(3,1,2,4,5)],las=1,
-        col=coloor[c(1,3,5,4,2)],main="Other crops samples",axisnames=FALSE)
-barplot((table(datAgra$host,datAgra$Clust_K5))[1,c(3,1,2,4,5)],las=1,
-        col=coloor[c(1,3,5,4,2)],main="Aerial samples",axisnames=FALSE)
-Xsemest<-barplot(table(datAgra$host,datAgra$Clust_K5),plot=FALSE,beside=FALSE)
+barplot((table(datAgra$host,datAgra$Clust_K4))[4,c(2,1,3,4)],las=1,
+        col=coloor[c(1,3,4,2)],main="Peach tree samples",axisnames=FALSE)
+barplot((table(datAgra$host,datAgra$Clust_K4))[2,c(2,1,3,4)],las=1,
+        col=coloor[c(1,3,4,2)],main="Oilseed rape samples",axisnames=FALSE)
+barplot((table(datAgra$host,datAgra$Clust_K4))[5,c(2,1,3,4)],las=1,
+        col=coloor[c(1,3,4,2)],main="Tobacco samples",axisnames=FALSE)
+barplot((table(datAgra$host,datAgra$Clust_K4))[3,c(2,1,3,4)],las=1,
+        col=coloor[c(1,3,4,2)],main="Other crops samples",axisnames=FALSE)
+barplot((table(datAgra$host,datAgra$Clust_K4))[1,c(2,1,3,4)],las=1,
+        col=coloor[c(1,3,4,2)],main="Aerial trap samples",axisnames=FALSE)
+Xsemest<-barplot(table(datAgra$host,datAgra$Clust_K4),plot=FALSE,beside=FALSE)
 text(x=Xsemest,y=rep(par("usr")[3],5)-(par("usr")[4]-par("usr")[3])/20,
-     labels=c("Cluster\nPeach","Cluster\nOilseed1","Cluster\nOilseed2",
+     labels=c("Cluster\nPeach","Cluster\nOilseed",
               "Cluster\nTobacco","Cluster\nWild"),
      srt=0,xpd=NA,pos=1,cex=1.2)
 par(op)
 
 #distribution of sampled host by genetic cluster
-t(table(datAgra$host,datAgra$Clust_K5))
-op<-par(mfrow=c(5,1),mar=c(0,0,3,0),oma=c(4,3,0,0))
-barplot(t(table(datAgra$host,datAgra$Clust_K5))[3,c(4,2,5,3,1)],las=1,
+t(table(datAgra$host,datAgra$Clust_K4))
+op<-par(mfrow=c(4,1),mar=c(0,0,3,0),oma=c(4,3,0,0))
+barplot(t(table(datAgra$host,datAgra$Clust_K4))[2,c(4,2,5,3,1)],las=1,
         col=coloor[1],main="Cluster Peach",axisnames=FALSE)
-barplot(t(table(datAgra$host,datAgra$Clust_K5))[1,c(4,2,5,3,1)],las=1,
-        col=coloor[3],main="Cluster Oilseed1",axisnames=FALSE)
-barplot(t(table(datAgra$host,datAgra$Clust_K5))[2,c(4,2,5,3,1)],las=1,
-        col=coloor[5],main="Cluster Oilseed2",axisnames=FALSE)
-barplot(t(table(datAgra$host,datAgra$Clust_K5))[4,c(4,2,5,3,1)],las=1,
+barplot(t(table(datAgra$host,datAgra$Clust_K4))[1,c(4,2,5,3,1)],las=1,
+        col=coloor[3],main="Cluster Oilseed",axisnames=FALSE)
+barplot(t(table(datAgra$host,datAgra$Clust_K4))[3,c(4,2,5,3,1)],las=1,
         col=coloor[4],main="Cluster Tobacco",axisnames=FALSE)
-barplot(t(table(datAgra$host,datAgra$Clust_K5))[5,c(4,2,5,3,1)],las=1,
-        col=coloor[2],main="Cluster Enigma",axisnames=FALSE)
-Xsemest<-barplot(t(table(datAgra$host,datAgra$Clust_K5)),plot=FALSE,
+barplot(t(table(datAgra$host,datAgra$Clust_K4))[4,c(4,2,5,3,1)],las=1,
+        col=coloor[2],main="Cluster Wild",axisnames=FALSE)
+Xsemest<-barplot(t(table(datAgra$host,datAgra$Clust_K4)),plot=FALSE,
                  beside=FALSE)
 text(x=Xsemest,y=rep(par("usr")[3],5)-(par("usr")[4]-par("usr")[3])/20,
      labels=c("Peach tree\nsamples","Oilseed rape\nsamples",
@@ -106,9 +103,9 @@ par(op)
 
 #for assigning a color according to the genetic cluster, we 
 #build a table of MLG x Cluster belonging
-clustbelong<-datAgracc[,c("MLG_ID","Clust_K3","Clust_K5")]
+clustbelong<-datAgracc[,c("MLG_ID","Clust_K3","Clust_K4")]
 levels(clustbelong$Clust_K3)<-c("firebrick","chartreuse4","royalblue4")
-levels(clustbelong$Clust_K5)<-c("chartreuse4","darkorange","firebrick",
+levels(clustbelong$Clust_K4)<-c("chartreuse4","firebrick",
                                 "khaki2","royalblue4")
 row.names(clustbelong)<-clustbelong$MLG_ID
 
@@ -119,26 +116,26 @@ barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))],
         col=as.character(clustbelong[names(table(datAgra$MLG_ID)
                               [order(-table(datAgra$MLG_ID))]),"Clust_K3"]))
 #same figure but MLG are colored according to the cluster to which they belong
-#for K=5
+#for K=4
 barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))],
         col=as.character(clustbelong[names(table(datAgra$MLG_ID)
-                              [order(-table(datAgra$MLG_ID))]),"Clust_K5"]))
+                              [order(-table(datAgra$MLG_ID))]),"Clust_K4"]))
 
 #only with MLG that are repeated more than once
 summary(table(datAgra$MLG_ID)>1)
-barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:74])
+barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:71])
 #same figure but MLG are colored according to the cluster to which they belong
 #for K=3
-barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:74],
+barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:71],
         col=as.character(clustbelong[names(table(datAgra$MLG_ID)
                               [order(-table(datAgra$MLG_ID))]),
                         "Clust_K3"][1:74]),cex.names=0.8,las=2)
 #same figure but MLG are colored according to the cluster to which they belong
-#for K=5
-barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:74],
+#for K=4
+barplot(table(datAgra$MLG_ID)[order(-table(datAgra$MLG_ID))][1:71],
         col=as.character(clustbelong[names(table(datAgra$MLG_ID)
                               [order(-table(datAgra$MLG_ID))]),
-                        "Clust_K5"][1:74]),cex.names=0.8,las=2)
+                        "Clust_K4"][1:74]),cex.names=0.8,las=2)
 
 
 ##############################################################################/
@@ -152,10 +149,10 @@ barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))],
         col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
                               [order(-table(TempAgra$MLG_ID))]),"Clust_K3"]))
 #same figure but MLG are colored according to the cluster to which they belong
-#for K=5
+#for K=4
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))],
         col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
-                              [order(-table(TempAgra$MLG_ID))]),"Clust_K5"]))
+                              [order(-table(TempAgra$MLG_ID))]),"Clust_K4"]))
 
 #only MLG that are repeated more than once
 summary(table(TempAgra$MLG_ID)>1)
@@ -168,11 +165,11 @@ barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32],
                               [order(-table(TempAgra$MLG_ID))])[1:32],
                         "Clust_K3"]),cex.names=0.8,las=2)
 #same figure but MLG are colored according to the cluster to which they belong
-#for K=5
+#for K=4
 barplot(table(TempAgra$MLG_ID)[order(-table(TempAgra$MLG_ID))][1:32],
         col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
                               [order(-table(TempAgra$MLG_ID))])[1:32],
-                        "Clust_K5"]),cex.names=0.8,las=2)
+                        "Clust_K4"]),cex.names=0.8,las=2)
 
 #now we plot the distribution of the major MLG (ie at least repeated 10 times
 #across years
@@ -208,7 +205,7 @@ par(op)
 
 #export pdf 6 x 12 inches
 
-#K=5
+#K=4
 op<-par(mfrow=c(majMLG,1),mar=c(1,3,2,0),oma=c(5,0,0,0))
 for (i in 1:majMLG){
   if (i<majMLG) {
@@ -216,7 +213,7 @@ for (i in 1:majMLG){
             [,order(-table(TempAgra$MLG_ID))[i]],
             col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
                                          [order(-table(TempAgra$MLG_ID))])[i],
-                                         "Clust_K5"]),axisnames=FALSE,las=2,
+                                         "Clust_K4"]),axisnames=FALSE,las=2,
             ylim=c(0,maxMLG),space=0,
             main=dimnames(table(TempAgra$semester,TempAgra$MLG_ID)
                           [,order(-table(TempAgra$MLG_ID))])[[2]][i])
@@ -225,7 +222,7 @@ for (i in 1:majMLG){
             [,order(-table(TempAgra$MLG_ID))[i]],
             col=as.character(clustbelong[names(table(TempAgra$MLG_ID)
                                          [order(-table(TempAgra$MLG_ID))])[i],
-                                         "Clust_K5"]),cex.names=1,las=2,
+                                         "Clust_K4"]),cex.names=1,las=2,
             ylim=c(0,maxMLG),space=0,
             main=dimnames(table(TempAgra$semester,TempAgra$MLG_ID)
                           [,order(-table(TempAgra$MLG_ID))])[[2]][i])
@@ -281,13 +278,13 @@ par(op)
 
 #export to pdf 10 x 6
 
-#plot the of the amount of the different genetic clusters with K=5
+#plot the of the amount of the different genetic clusters with K=4
 #all aerial trapped individuals
 Xsemest<- barplot(t(table(TempAgra$semester,TempAgra$Clust_K3)),plot=FALSE,
                   col=coloor[c(1,3,2)],beside=FALSE,axisnames=FALSE)
-barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[c(3,1,2,4,5),],
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K4))[c(3,1,2,4,5),],
         col=coloor[c(1,3,5,4,2)],beside=TRUE,las=1)
-barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[c(3,1,2,4,5),],
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K4))[c(3,1,2,4,5),],
         col=coloor[c(1,3,5,4,2)],beside=FALSE,axisnames=FALSE,las=1)
 text(x=Xsemest-0.4,y=rep(par("usr")[3],14)-(par("usr")[4]-par("usr")[3])/30,
      labels=names(HetNei),srt=45,xpd=NA,pos=1,cex=1)
@@ -295,30 +292,30 @@ text(x=Xsemest-0.4,y=rep(par("usr")[3],14)-(par("usr")[4]-par("usr")[3])/30,
 #clone-corrected by year aerial trapped individuals
 Xsemest<- barplot(t(table(TempAgra$semester,TempAgra$Clust_K3)),plot=FALSE,
                   col=coloor[c(1,3,2)],beside=FALSE,axisnames=FALSE)
-barplot(t(table(TempAgracc$semester,TempAgracc$Clust_K5))[c(3,1,2,4,5),],
+barplot(t(table(TempAgracc$semester,TempAgracc$Clust_K4))[c(3,1,2,4,5),],
         col=coloor[c(1,3,5,4,2)],beside=TRUE,las=1)
-barplot(t(table(TempAgracc$semester,TempAgracc$Clust_K5))[c(3,1,2,4,5),],
+barplot(t(table(TempAgracc$semester,TempAgracc$Clust_K4))[c(3,1,2,4,5),],
         col=coloor[c(1,3,5,4,2)],beside=FALSE,axisnames=FALSE,las=1)
 text(x=Xsemest-0.4,y=rep(par("usr")[3],14)-(par("usr")[4]-par("usr")[3])/30,
      labels=names(HetNei),srt=45,xpd=NA,pos=1,cex=1)
 
 op<-par(mfrow=c(5,1),mar=c(0,0,1,0),oma=c(5,3,0,0))
-barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[3,],col=coloor[1],
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K4))[3,],col=coloor[1],
         beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,las=1,
-        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
-barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[1,],col=coloor[3],
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K4))))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K4))[1,],col=coloor[3],
         beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,las=1,
-        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
-barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[2,],col=coloor[5],
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K4))))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K4))[2,],col=coloor[5],
         beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,las=1,
-        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
-barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[4,],col=coloor[4],
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K4))))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K4))[4,],col=coloor[4],
         beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,las=1,
-        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
-barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[5,],col=coloor[2],
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K4))))
+barplot(t(table(TempAgra$semester,TempAgra$Clust_K4))[5,],col=coloor[2],
         beside=TRUE,axisnames=FALSE,ann=FALSE,axes=TRUE,space=0,las=1,
-        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K5))))
-Xsemest<-barplot(t(table(TempAgra$semester,TempAgra$Clust_K5))[3,],space=0,
+        ylim=c(0,max(table(TempAgra$semester,TempAgra$Clust_K4))))
+Xsemest<-barplot(t(table(TempAgra$semester,TempAgra$Clust_K4))[3,],space=0,
                  plot=FALSE,beside=TRUE)
 text(x=Xsemest-0.4,y=rep(par("usr")[3],14)-(par("usr")[4]-par("usr")[3])/10,
      labels=names(HetNei),srt=45,xpd=NA,pos=1,cex=1)
@@ -508,26 +505,6 @@ box()
 par(op)
 
 #export to pdf 8 x 10 inches
-
-
-##############################################################################/
-#Trash####
-##############################################################################/
-
-def.par <- par(no.readonly = TRUE)
-layout(matrix(c(1,2,3,4,5),5,1,byrow=TRUE),
-       widths=c(2,2,2,2,2),heights=c(1,1,1,1,1))
-par(mar = c(2,2,1,1))
-barplot(rowSums(AgrOcc),axes=TRUE,axisnames=FALSE,space=0,xlim=c(0.5,13.5))
-plot(specnumber(AgrOcc)/rowSums(AgrOcc),type="b",main="G/N",xlim=c(1,14))
-plot(rarefy(AgrOcc,min(rowSums(AgrOcc))),type="b",main="MLG richness",
-     xlim=c(1,14))
-#plot(diversity(AgrOcc,index="shannon"),type="b",main="Shannon",xlim=c(1,14))
-plot(diversity(AgrOcc,index="simpson"),type="b",main="Simpson",xlim=c(1,14))
-#plot(diversity(AgrOcc,index="invsimpson"),type="b",main="Invert Simpson")
-plot(diversity(AgrOcc)/log(specnumber(AgrOcc)),type="b", 
-     main="Pielou's evenness",xlim=c(1,14))
-par(def.par)
 
 
 ##############################################################################/

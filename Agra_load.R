@@ -1,6 +1,6 @@
 ##############################################################################/
 ##############################################################################/
-#Loading and preparing the datasets####
+#Loading and preparing the data sets####
 ##############################################################################/
 ##############################################################################/
 
@@ -25,7 +25,7 @@ source("Agra_div_fun.R")
 
 
 ##############################################################################/
-#Four different datasets based on the same original data####
+#Four different data sets based on the same original data####
 ##############################################################################/
 
 #first, we load the genetic dataset
@@ -65,18 +65,18 @@ datAgra$semester[datAgra$sampling_date>=as.Date("2007-01-01") &
 datAgra$semester[datAgra$sampling_date>=as.Date("2007-08-01") &
                    datAgra$sampling_date<as.Date("2008-01-01")]<-"2007-2S"
 
-#We work with 3 different datasets
-#the first one is the complete dataset, including samples from the aerial 
+#We work with 3 different data sets
+#the first one is the complete data set, including samples from the aerial 
 #traps as well as other samples from canola fields and peach orchards
 head(datAgra)
-dim(datAgra)[1] #number of samples in the dataset
+dim(datAgra)[1] #number of samples in the data set
 
-#We also work with a "clone-corrected" dataset: we keep only a single 
+#We also work with a "clone-corrected" data set: we keep only a single 
 #copy of each MLG. This will be especially useful to compare DAPC and 
 #STRUCTURE analyses or to perform network analyses
 datAgracc<-datAgra[datAgra$one_MLG==1,]
 datAgracc<-drop.levels(datAgracc)
-dim(datAgracc)[1] #number of samples in the dataset
+dim(datAgracc)[1] #number of samples in the data set
 
 #in order to plot structure like plot by host, we need a clone-corrected
 #dataset, but only at the host level (assuming aerial trap is a "host")
@@ -85,7 +85,7 @@ datAgraccHost<-drop.levels(datAgraccHost)
 dim(datAgraccHost)[1]
 
 #for the tree analyses, we isolate the samples from the 
-#aerial trap from the host clone-corrected dataset
+#aerial trap from the host clone-corrected data set
 Aerial_CC<-datAgraccHost[datAgraccHost$data_batch=="AgrAphid" &
                            !is.na(datAgraccHost$data_batch),]
 Aerial_CC<-drop.levels(Aerial_CC)
@@ -99,11 +99,11 @@ Aerial<-drop.levels(Aerial)
 dim(Aerial)[1]
 
 #we will investigate the variation of MLG diversity indices in the aerial 
-#trap only. We therefore built a dataset which contain only these 
+#trap only. We therefore built a data set which contain only these 
 #samples. Note that we also remove the 2 samples collected in 2000
 TempAgra<-datAgra[!is.na(datAgra$semester),]
 TempAgra<-drop.levels(TempAgra)
-dim(TempAgra)[1] #number of samples in the dataset
+dim(TempAgra)[1] #number of samples in the data set
 
 #we will also investigate the genetic diversity with or without taking
 #into account repeated MLG. Therefore we need also a "clone-corrected" 
@@ -111,7 +111,7 @@ dim(TempAgra)[1] #number of samples in the dataset
 #only based on the samples collected in the aerial trap
 TempAgracc<-TempAgra[TempAgra$one_MLG_year==1,]
 TempAgracc<-drop.levels(TempAgracc)
-dim(TempAgracc)[1] #number of samples in the dataset
+dim(TempAgracc)[1] #number of samples in the data set
 
 
 ##############################################################################/
