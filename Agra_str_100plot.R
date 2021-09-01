@@ -8,7 +8,7 @@ source("Agra_load.R")
 
 
 ##############################################################################/
-#plot a list of 100 STRUCTURE output files for each K####
+#Figure S2: plot of 100 STRUCTURE run for each K####
 ##############################################################################/
 
 #Usually, you run STRUCTURE several times for the same K values. After that, 
@@ -19,11 +19,11 @@ source("Agra_load.R")
 #We first need to edit a little the output file in excel prior to the 
 #importation: just keep the q matrix without any other information
 
-#for K=2, import the 100 run datafile (100 q matrix)
-K2_100runs<-read.table("data/AgrAccconsK2.ind_datafile",header=FALSE,
+#for K=2, import the 100 run data file (100 q matrix)
+K2_100runs<-read.table("data/100str/AgrAccconsK2.ind_datafile",header=FALSE,
                        blank.lines.skip=TRUE,sep="\t")
 #import the column order for the best CLUMPP "permutation"
-K2_colorder<-read.table("data/AgrAccconsK2.ind_colorder",header=FALSE,
+K2_colorder<-read.table("data/100str/AgrAccconsK2.ind_colorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
@@ -34,7 +34,7 @@ for (i in 1:100){
 }
 #importing the order of the run so that the different repetition corresponding
 #to the same clustering solution followed each other
-K2_reporder<-read.table("data/AgrAccconsK2.ind_linorder",header=FALSE,
+K2_reporder<-read.table("data/100str/AgrAccconsK2.ind_linorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")+1
 
 coloor<-c("chartreuse4","firebrick","khaki2","darkorange","royalblue4")
@@ -60,10 +60,10 @@ par(op)
 #export pdf 15 x 22
 
 #for K=3, import the 100 run datafile (100 q matrix)
-K3_100runs<-read.table("data/AgrAccconsK3.ind_datafile",header=FALSE,
+K3_100runs<-read.table("data/100str/AgrAccconsK3.ind_datafile",header=FALSE,
                        blank.lines.skip=TRUE,sep="\t")
 #import the column order for the best CLUMPP "permutation"
-K3_colorder<-read.table("data/AgrAccconsK3.ind_colorder",header=FALSE,
+K3_colorder<-read.table("data/100str/AgrAccconsK3.ind_colorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
@@ -74,7 +74,7 @@ for (i in 1:100){
 }
 #importing the order of the run so that the different repetition corresponding
 #to the same clustering solution followed each other
-K3_reporder<-read.table("data/AgrAccconsK3.ind_linorder",header=FALSE,
+K3_reporder<-read.table("data/100str/AgrAccconsK3.ind_linorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")+1
 
 coloor <- c("chartreuse4","firebrick","royalblue4","khaki2","darkorange")
@@ -100,10 +100,10 @@ par(op)
 #export pdf 15 x 22
 
 #for K=4, import the 100 run datafile (100 q matrix)
-K4_100runs<-read.table("data/AgrAccconsK4.ind_datafile",header=FALSE,
+K4_100runs<-read.table("data/100str/AgrAccconsK4.ind_datafile",header=FALSE,
                        blank.lines.skip=TRUE,sep="\t")
 #import the column order for the best CLUMPP "permutation"
-K4_colorder<-read.table("data/AgrAccconsK4.ind_colorder",header=FALSE,
+K4_colorder<-read.table("data/100str/AgrAccconsK4.ind_colorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
@@ -114,7 +114,7 @@ for (i in 1:100){
 }
 #importing the order of the run so that the different repetition corresponding
 #to the same clustering solution followed each other
-K4_reporder<-read.table("data/AgrAccconsK4.ind_linorder",header=FALSE,
+K4_reporder<-read.table("data/100str/AgrAccconsK4.ind_linorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")+1
 
 coloor <- c("royalblue4","khaki2","firebrick","chartreuse4","darkorange")
@@ -140,10 +140,10 @@ par(op)
 #export pdf 15 x 22
 
 #for K=5, import the 100 run datafile (100 q matrix)
-K5_100runs<-read.table("data/AgrAccconsK5.ind_datafile",header=FALSE,
+K5_100runs<-read.table("data/100str/AgrAccconsK5.ind_datafile",header=FALSE,
                        blank.lines.skip=TRUE,sep="\t")
 #import the column order for the best CLUMPP "permutation"
-K5_colorder<-read.table("data/AgrAccconsK5.ind_colorder",header=FALSE,
+K5_colorder<-read.table("data/100str/AgrAccconsK5.ind_colorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
@@ -154,7 +154,7 @@ for (i in 1:100){
 }
 #importing the order of the run so that the different repetition corresponding
 #to the same clustering solution followed each other
-K5_reporder<-read.table("data/AgrAccconsK5.ind_linorder",header=FALSE,
+K5_reporder<-read.table("data/100str/AgrAccconsK5.ind_linorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")+1
 
 coloor<-c("darkorange","khaki2","royalblue4","firebrick","chartreuse4")
@@ -180,10 +180,10 @@ par(op)
 #export pdf 15 x 22
 
 #for K=6, import the 100 run datafile (100 q matrix)
-K6_100runs<-read.table("data/AgrAccconsK6.ind_datafile",header=FALSE,
+K6_100runs<-read.table("data/100str/AgrAccconsK6.ind_datafile",header=FALSE,
                        blank.lines.skip=TRUE,sep="\t")
 #import the column order for the best CLUMPP "permutation"
-K6_colorder<-read.table("data/AgrAccconsK6.ind_colorder",header=FALSE,
+K6_colorder<-read.table("data/100str/AgrAccconsK6.ind_colorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")
 #then we split the dataframe in as many repetition that has been made
 #by the number of individuals (here 309)
@@ -194,7 +194,7 @@ for (i in 1:100){
 }
 #importing the order of the run so that the different repetition corresponding
 #to the same clustering solution followed each other
-K6_reporder<-read.table("data/AgrAccconsK6.ind_linorder",header=FALSE,
+K6_reporder<-read.table("data/100str/AgrAccconsK6.ind_linorder",header=FALSE,
                         blank.lines.skip=TRUE,sep="\t")+1
 
 coloor <- c("chartreuse4","firebrick","khaki2","darkorange","royalblue4",

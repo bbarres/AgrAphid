@@ -107,7 +107,7 @@ dim(TempAgra)[1] #number of samples in the data set
 
 #we will also investigate the genetic diversity with or without taking
 #into account repeated MLG. Therefore we need also a "clone-corrected" 
-#dataset for the temporal sampling only. But it has to be corrected 
+#data set for the temporal sampling only. But it has to be corrected 
 #only based on the samples collected in the aerial trap
 TempAgracc<-TempAgra[TempAgra$one_MLG_year==1,]
 TempAgracc<-drop.levels(TempAgracc)
