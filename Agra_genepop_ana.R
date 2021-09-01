@@ -83,7 +83,7 @@ LDothe<-as.matrix(LDothe[c(2,8,12,13,14,1,3:7,9:11),
 
 
 ##############################################################################/
-#Plot for the host populations####
+#Figure S6: LD between markers within host populations####
 ##############################################################################/
 
 #peach
@@ -198,7 +198,7 @@ upViewport()
 
 
 ##############################################################################/
-#Linkage disequilibrium in Host populations: computing and formatting####
+#Linkage disequilibrium in genetic clusters: computing and formatting####
 ##############################################################################/
 
 oneclustrap4<-"data/oneclustrap4.txt"
@@ -273,7 +273,7 @@ LDcluBlu<-as.matrix(LDcluBlu[c(2,8,12,13,14,1,3:7,9:11),
 
 
 ##############################################################################/
-#Plot for the genetic cluster populations####
+#Figure S7: LD between markers within genetic cluster populations####
 ##############################################################################/
 
 #Red cluster
