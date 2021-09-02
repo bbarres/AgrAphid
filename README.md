@@ -10,9 +10,9 @@ Here a small text on why and how we did this study
 
 
 ## Datasets
-There are X datasets used in this study. The files can be found in the "data" folder. 
+There are 5 data sets used in this study. The files can be found in the "data" folder. 
 
-+ **AgrAph3.dat:** the first dataset contains the data for all the indivudals analyzed
++ **AgrAph5.dat:** the first data set contains the data for all the indivudals analyzed. Each line correspond to one individuals and the following information for each individuals can be found in this table: 
   + *indiv_ID*:
   + *data_batch*:
   + *country	year*:
@@ -39,16 +39,39 @@ There are X datasets used in this study. The files can be found in the "data" fo
   + *one_MLG_year*:
   + *K3_Q1,	K3_Q2, K3_Q3*:
   + *Clust_K3*:
-  + *K5_Q1,	K5_Q2,	K5_Q3,	K5_Q4,	K5_Q5*:
-  + *Clust_K5*:
+  + *K4_Q1,	K4_Q2,	K4_Q3,	K4_Q4*:
+  + *Clust_K4*:
 
-+ **outK2.str:** 
++ **AgrAphout2.str:** the data set summarizing the STRUCTURE runs performed to analyze individual based genetic clusterisation. This data set allows to perform the Delta-K analysis and plot
 
-+ **AgrAccconsK2.ind_datafile:** 
++ **onebyhost.txt:** Microsatellite results for Myzus grouped by sampling host. For multicopies MLG, only one copy of each MLG by host was kept. The data file is formated as a Genepop file. 
+
++ **oneclustrap4.txt:** Microsatellite results for Myzus grouped by genetic clusters for K=4. For multicopies MLG, only one copy of each MLG by genetic cluster was kept. The data file is formated as a Genepop file.  
+
++ **100str:** a folder containing 15 files that allow the plotting of 100 STRUCTURE runs for each K of interest (from K=2 to K=6)
+
 
 
 ## R scripts
-+ **Agra_load.R:** the script to load the different datasets, functions and pacakges in the environment
++ **Agra_load.R:** the script to load the different data sets, functions and packages that are useful for the data analyses and representation in the R environment
+
++ **Agra_deltaK_fun.R:** functions to perform the delta-K analysis
+
++ **Agra_div_fun.R:** a script that includes several function to compute a set of different genetic diversity indices
+
++ **Agra_strplot_fun.R:** a function to plot beautiful STRUCTURE-like plot with several parameters to control the output
+
++ **Agra_dapc_ana.R:** a script for DAPC analysis of the microsatellite data set. 
+
++ **Agra_DAStree.R:** a script to compute a dissimilarity matrix as well as to build a neighbour joining tree
+
++ **Agra_genepop_ana.R:** a script that use some of the functions of the genepop package to compute Fst, Linkage disequilibrium between loci and related tests of significance
+
++ **Agra_netw.R:** a script to compute dissimilarity matrix between MLG and to build a network of MLG
+
++ **Agra_str_100plot.R:** the code to plot the multiple runs of STRUCTURE for K ranging from 2 to 6. 
+
++ **Agra_str_finalplot.R:** the code to produce Figure 1
 
 
 
