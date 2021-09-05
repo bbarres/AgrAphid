@@ -44,12 +44,11 @@ In this section, you will find the list of the datasets used in this study. The 
 
 + **AgrAphout2.str:** the data set summarizing the STRUCTURE runs performed to analyze individual based genetic clusterisation. This data set allows to perform the Delta-K analysis and plot
 
++ **100str:** a folder containing 15 files that allow the plotting of 100 STRUCTURE runs for each K of interest (from K=2 to K=6)
+
 + **onebyhost.txt:** Microsatellite results for Myzus grouped by sampling host. For multicopies MLG, only one copy of each MLG by host was kept. The data file is formated as a Genepop file. 
 
 + **oneclustrap4.txt:** Microsatellite results for Myzus grouped by genetic clusters for K=4. For multicopies MLG, only one copy of each MLG by genetic cluster was kept. The data file is formated as a Genepop file.  
-
-+ **100str:** a folder containing 15 files that allow the plotting of 100 STRUCTURE runs for each K of interest (from K=2 to K=6)
-
 
 
 ## R scripts
@@ -59,13 +58,12 @@ In this section, you will find the list of the different scripts used in the art
 + **Agra_deltaK_fun.R:** functions to perform the delta-K analysis
 + **Agra_div_fun.R:** a script that includes several function to compute a set of different genetic diversity indices
 + **Agra_strplot_fun.R:** a function to plot beautiful STRUCTURE-like plot with several parameters to control the output
++ **Agra_str_100plot.R:** the code to plot the multiple runs of STRUCTURE for K ranging from 2 to 6. 
++ **Agra_str_finalplot.R:** the code to produce Figure 1
 + **Agra_dapc_ana.R:** a script for DAPC analysis of the microsatellite data set. 
 + **Agra_DAStree.R:** a script to compute a dissimilarity matrix as well as to build a neighbour joining tree
 + **Agra_genepop_ana.R:** a script that use some of the functions of the genepop package to compute Fst, Linkage disequilibrium between loci and related tests of significance
 + **Agra_netw.R:** a script to compute dissimilarity matrix between MLG and to build a network of MLG
-+ **Agra_str_100plot.R:** the code to plot the multiple runs of STRUCTURE for K ranging from 2 to 6. 
-+ **Agra_str_finalplot.R:** the code to produce Figure 1
-
 
 
 ## Citation
