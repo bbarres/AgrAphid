@@ -10,9 +10,11 @@ Here a small text on why and how we did this study
 
 
 ## Datasets
-In this section, you will find the list of the datasets used in this study. The data files can be found in the "data" folder. For the data tables, the name of the different variables are listed and explained as well. There are 5 data sets used in this study.  
+In this section, you will find the list of the data sets used in this study. The data files can be found in the "data" folder. For the data tables, the name of the different variables are listed and explained as well. There are 5 data sets used in this study.  
 
 + **AgrAph5.dat:** the first data set contains the data for all the indivudals analyzed. Each line correspond to one individuals and the following information for each individuals can be found in this table: 
+  +indiv_ID	data_batch	country	year	sampling_date	patch_ID	host	host_corrected	longitude	latitude	MP_27	MP_39	MP_44	MP_5	MP_7	MP_23	MP_45	MP_28	MP_9	MP_13	MP_2	MP_38	MP_4	MP_46	MLG	MLG_ID	missing_data	KDR	sKDR	MACE	R81T	RG3loci	pot_PB	repeated	one_MLG	several_hosts	one_MLG_host	several_years	one_MLG_year	K3_Q1	K3_Q2	K3_Q3	Clust_K3	K4_Q1	K4_Q2	K4_Q3	K4_Q4	Clust_K4	cor_MP_27	cor_MP_39	cor_MP_44	cor_MP_5	cor_MP_7	cor_MP_23	cor_MP_45	cor_MP_28	cor_MP_9	cor_MP_13	cor_MP_2	cor_MP_38	cor_MP_4	cor_MP_46
+
   + *indiv_ID*:
   + *data_batch*:
   + *country	year*:
