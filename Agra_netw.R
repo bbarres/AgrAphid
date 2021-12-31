@@ -88,8 +88,10 @@ dataNetwo<-df2genind(AerTrap_ClustK4[,c("cor_MP_27","cor_MP_39","cor_MP_44",
                      pop=as.character(AerTrap_ClustK4$KDRg),
                      ploidy=2,NA.char="999")
 #pick a set of color
-coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
-          brewer.pal(9,"Greens")[5],"grey80")[c(2,3,4,1)]
+coloor<-coloor<-c(brewer.pal(9,"Purples")[7],
+                  brewer.pal(9,"Oranges")[6],
+                  brewer.pal(9,"Greens")[5],
+                  "grey80")[c(2,3,4,1)]
 #plotting the network
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),
@@ -117,8 +119,10 @@ dataNetwo<-df2genind(AerTrap_ClustK4[,c("cor_MP_27","cor_MP_39","cor_MP_44",
                      pop=as.character(AerTrap_ClustK4$sKDRg),
                      ploidy=2,NA.char="999")
 #pick a set of color
-coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
-          brewer.pal(9,"Greens")[5],"grey80")[c(3,4,2,1)]
+coloor<-coloor<-c(brewer.pal(9,"Purples")[7],
+                  brewer.pal(9,"Oranges")[6],
+                  brewer.pal(9,"Greens")[5],
+                  "grey80")[c(3,4,2,1)]
 #plotting the network
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),
@@ -146,8 +150,10 @@ dataNetwo<-df2genind(AerTrap_ClustK4[,c("cor_MP_27","cor_MP_39","cor_MP_44",
                      pop=as.character(AerTrap_ClustK4$MACEg),
                      ploidy=2,NA.char="999")
 #pick a set of color
-coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],
-          brewer.pal(9,"Greens")[5],"grey80")[c(3,4,2)]
+coloor<-coloor<-c(brewer.pal(9,"Purples")[7],
+                  brewer.pal(9,"Oranges")[6],
+                  brewer.pal(9,"Greens")[5],
+                  "grey80")[c(3,4,2)]
 #plotting the network
 truc<-poppr.msn(dataNetwo,showplot=FALSE,
                 diss.dist(dataNetwo),

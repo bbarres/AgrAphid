@@ -26,6 +26,8 @@ deltastr_cccons<-chooseK(resstr_cccons,15,100)
 op<-par(mar=c(5.1,5.1,4.1,6.1))
 plotdeltaK(deltastr_cccons,15,
            "Clone corrected dataset (n=305)")
+box(bty="u",lwd=3,col="gray50")
+box(bty="l",lwd=3)
 par(op)
 
 #export to .pdf 8 x 7 inches
@@ -130,7 +132,10 @@ rect(c(c(0,temp2$cumu)[1:length(temp2$cumu)]+temp2$decal)[11:17],
      rep(1,length(temp2$cumu))[11:17],
      lwd=2)
 
-coloor<-c(brewer.pal(9,"YlOrRd")[c(8,6)],brewer.pal(9,"Greens")[5],"grey80")
+coloor<-c(brewer.pal(9,"Purples")[7],
+          brewer.pal(9,"Oranges")[6],
+          brewer.pal(9,"Greens")[5],
+          "grey80")
 structplot(strKDR,coloor,effpop,poptiquet,spacepop=4,
            leg_y="KDR",cexy=1,mef=c(0,1,1,0,0),colbord=NA)
 mtext("kdr",side=2,line=-2,cex=1.2,las=1,font=4,adj=1)
