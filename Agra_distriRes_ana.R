@@ -95,5 +95,49 @@ fisher.test(xx)
 
 
 ##############################################################################/
+#testing distribution of MACE genotypes by hosts####
+##############################################################################/
+
+temp2<-temp[temp$host!="Aerial_trap" & temp$host!="other_crops" 
+            & temp$`M-miss`!=1,
+            c(2,13:14)]
+temp2<-drop.levels(temp2)
+dd<-temp2 %>% 
+  group_by(host) %>% 
+  summarise(MRS=sum(`M-RS`),MSS=sum(`M-SS`))
+dd
+
+yy<-as.matrix(dd[c(2,1,3),2:3])
+dimnames(yy)[[1]]<-c("Peach","Oilseed rape","tobacco")
+yy
+barplot(t(yy),beside=TRUE,col=coloor[c(2:3)],main="MACE by hosts")
+legend(legend=c("RS","SS"),fill=coloor[c(2:3)],x="topright")
+fisher.test(yy)
+
+
+##############################################################################/
+#testing distribution of R81T genotypes by hosts####
+##############################################################################/
+
+temp2<-temp[temp$host!="Aerial_trap" & temp$host!="other_crops" 
+            & temp$`Neo-miss`!=1,
+            c(2,16:18)]
+temp2<-drop.levels(temp2)
+dd<-temp2 %>% 
+  group_by(host) %>% 
+  summarise(NeoRR=sum(`Neo-RR`),NeoRS=sum(`Neo-RS`),NeoSS=sum(`Neo-SS`))
+dd
+
+ww<-as.matrix(dd[c(2,1,3),2:4])
+dimnames(ww)[[1]]<-c("Peach","Oilseed rape","tobacco")
+ww
+barplot(t(ww),beside=TRUE,col=coloor,main="MACE by hosts")
+legend(legend=c("RS","SS"),fill=coloor,x="topright")
+fisher.test(ww)
+
+
+
+
+##############################################################################/
 #END
 ##############################################################################/
