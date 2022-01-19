@@ -68,7 +68,7 @@ dd
 zz<-as.matrix(dd[c(2,1,3),2:4])
 dimnames(zz)[[1]]<-c("Peach","Oilseed rape","tobacco")
 zz
-barplot(t(zz),beside=TRUE,col=coloor)
+barplot(t(zz),beside=TRUE,col=coloor,main="KDR by host")
 legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
 fisher.test(zz)
 
@@ -89,7 +89,7 @@ dd
 xx<-as.matrix(dd[c(2,1,3),2:4])
 dimnames(xx)[[1]]<-c("Peach","Oilseed rape","tobacco")
 xx
-barplot(t(xx),beside=TRUE,col=coloor,main="sKDR by hosts")
+barplot(t(xx),beside=TRUE,col=coloor,main="sKDR by host")
 legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
 fisher.test(xx)
 
@@ -110,7 +110,7 @@ dd
 yy<-as.matrix(dd[c(2,1,3),2:3])
 dimnames(yy)[[1]]<-c("Peach","Oilseed rape","tobacco")
 yy
-barplot(t(yy),beside=TRUE,col=coloor[c(2:3)],main="MACE by hosts")
+barplot(t(yy),beside=TRUE,col=coloor[c(2:3)],main="MACE by host")
 legend(legend=c("RS","SS"),fill=coloor[c(2:3)],x="topright")
 fisher.test(yy)
 
@@ -131,11 +131,26 @@ dd
 ww<-as.matrix(dd[c(2,1,3),2:4])
 dimnames(ww)[[1]]<-c("Peach","Oilseed rape","tobacco")
 ww
-barplot(t(ww),beside=TRUE,col=coloor,main="MACE by hosts")
-legend(legend=c("RS","SS"),fill=coloor,x="topright")
+barplot(t(ww),beside=TRUE,col=coloor,main="R81T by host")
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
 fisher.test(ww)
 
 
+##############################################################################/
+#combined plots of R genotype distribution loci by host####
+##############################################################################/
+
+op<-par(mfrow=c(2,2))
+barplot(t(zz),beside=TRUE,col=coloor,main="KDR by host")
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
+barplot(t(xx),beside=TRUE,col=coloor,main="sKDR by host")
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
+barplot(t(yy),beside=TRUE,col=coloor[c(2:3)],main="MACE by host")
+legend(legend=c("RS","SS"),fill=coloor[c(2:3)],x="topright")
+barplot(t(ww),beside=TRUE,col=coloor,main="R81T by host")
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
+par(op)
+#export to .pdf 8 x 7 inches
 
 
 ##############################################################################/
