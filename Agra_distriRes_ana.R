@@ -5,7 +5,10 @@
 ##############################################################################/
 
 source("Agra_load.R")
-
+#defining a vector of colors
+coloor<-c(brewer.pal(9,"Purples")[7],
+          brewer.pal(9,"Oranges")[6],
+          brewer.pal(9,"Greens")[5])
 
 ##############################################################################/
 #preparing the data set for the comparison of resistance genotype####
@@ -56,14 +59,17 @@ temp2<-temp[temp$host!="Aerial_trap" & temp$host!="other_crops"
             & temp$`K-miss`!=1,
             c(2,5:7)]
 temp2<-drop.levels(temp2)
+
 dd<-temp2 %>% 
   group_by(host) %>% 
   summarise(KRR=sum(`K-RR`),KRS=sum(`K-RS`),KSS=sum(`K-SS`))
 dd
 
-zz<-as.matrix(dd[1:3,2:4])
-dimnames(zz)[[1]]<-as.character(dd$host)
+zz<-as.matrix(dd[c(2,1,3),2:4])
+dimnames(zz)[[1]]<-c("Peach","Oilseed rape","tobacco")
 zz
+barplot(t(zz),beside=TRUE,col=coloor)
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
 fisher.test(zz)
 
 
@@ -80,10 +86,12 @@ dd<-temp2 %>%
   summarise(sKRR=sum(`sK-RR`),sKRS=sum(`sK-RS`),sKSS=sum(`sK-SS`))
 dd
 
-zz<-as.matrix(dd[1:3,2:4])
-dimnames(zz)[[1]]<-as.character(dd$host)
-zz
-fisher.test(zz)
+xx<-as.matrix(dd[c(2,1,3),2:4])
+dimnames(xx)[[1]]<-c("Peach","Oilseed rape","tobacco")
+xx
+barplot(t(xx),beside=TRUE,col=coloor,main="sKDR by hosts")
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
+fisher.test(xx)
 
 
 ##############################################################################/
