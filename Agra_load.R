@@ -8,6 +8,7 @@
 library(adegenet)
 library(combinat)
 library(data.table)
+library(dplyr)
 library(gdata)
 library(genepop)
 library(grid)

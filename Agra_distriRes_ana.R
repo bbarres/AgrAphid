@@ -10,6 +10,7 @@ coloor<-c(brewer.pal(9,"Purples")[7],
           brewer.pal(9,"Oranges")[6],
           brewer.pal(9,"Greens")[5])
 
+
 ##############################################################################/
 #preparing the data set for the comparison of resistance genotype####
 ##############################################################################/
@@ -52,7 +53,7 @@ temp<-temp[,c(1,7,43,64:78)]
 
 
 ##############################################################################/
-#testing distribution of kdr genotypes by hosts####
+#testing distribution of kdr genotypes by host####
 ##############################################################################/
 
 temp2<-temp[temp$host!="Aerial_trap" & temp$host!="other_crops" 
@@ -74,7 +75,7 @@ fisher.test(zz)
 
 
 ##############################################################################/
-#testing distribution of skdr genotypes by hosts####
+#testing distribution of skdr genotypes by host####
 ##############################################################################/
 
 temp2<-temp[temp$host!="Aerial_trap" & temp$host!="other_crops" 
@@ -95,7 +96,7 @@ fisher.test(xx)
 
 
 ##############################################################################/
-#testing distribution of MACE genotypes by hosts####
+#testing distribution of MACE genotypes by host####
 ##############################################################################/
 
 temp2<-temp[temp$host!="Aerial_trap" & temp$host!="other_crops" 
@@ -116,7 +117,7 @@ fisher.test(yy)
 
 
 ##############################################################################/
-#testing distribution of R81T genotypes by hosts####
+#testing distribution of R81T genotypes by host####
 ##############################################################################/
 
 temp2<-temp[temp$host!="Aerial_trap" & temp$host!="other_crops" 
@@ -149,6 +150,109 @@ barplot(t(yy),beside=TRUE,col=coloor[c(2:3)],main="MACE by host")
 legend(legend=c("RS","SS"),fill=coloor[c(2:3)],x="topright")
 barplot(t(ww),beside=TRUE,col=coloor,main="R81T by host")
 legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
+par(op)
+#export to .pdf 8 x 7 inches
+
+
+##############################################################################/
+#testing distribution of kdr genotypes by cluster in aerial trap####
+##############################################################################/
+
+temp2<-temp[temp$host=="Aerial_trap" & !is.na(temp$Clust_K3) 
+            & temp$`K-miss`!=1,
+            c(3,5:7)]
+temp2<-drop.levels(temp2)
+
+dd<-temp2 %>% 
+  group_by(Clust_K3) %>% 
+  summarise(KRR=sum(`K-RR`),KRS=sum(`K-RS`),KSS=sum(`K-SS`))
+dd
+
+zz<-as.matrix(dd[,2:4])
+dimnames(zz)[[1]]<-c("Cluster Primary host","Cluster Secondary host",
+                     "Cluster unidentified host")
+zz
+barplot(t(zz),beside=TRUE,col=coloor,main="KDR by genetic cluster")
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
+fisher.test(zz)
+
+
+##############################################################################/
+#testing distribution of skdr genotypes by cluster in aerial trap####
+##############################################################################/
+
+temp2<-temp[temp$host=="Aerial_trap" & !is.na(temp$Clust_K3) 
+            & temp$`sK-miss`!=1,
+            c(3,9:11)]
+temp2<-drop.levels(temp2)
+dd<-temp2 %>% 
+  group_by(Clust_K3) %>% 
+  summarise(sKRR=sum(`sK-RR`),sKRS=sum(`sK-RS`),sKSS=sum(`sK-SS`))
+dd
+
+xx<-as.matrix(dd[,2:4])
+dimnames(xx)[[1]]<-c("Cluster Primary host","Cluster Secondary host",
+                     "Cluster unidentified host")
+xx
+barplot(t(xx),beside=TRUE,col=coloor,main="sKDR by genetic cluster")
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
+fisher.test(xx)
+
+
+##############################################################################/
+#testing distribution of MACE genotypes by cluster in aerial trap####
+##############################################################################/
+
+temp2<-temp[temp$host=="Aerial_trap" & !is.na(temp$Clust_K3)
+            & temp$`M-miss`!=1,
+            c(3,13:14)]
+temp2<-drop.levels(temp2)
+dd<-temp2 %>% 
+  group_by(Clust_K3) %>% 
+  summarise(MRS=sum(`M-RS`),MSS=sum(`M-SS`))
+dd
+
+yy<-as.matrix(dd[,2:3])
+dimnames(yy)[[1]]<-c("Cluster Primary host","Cluster Secondary host",
+                     "Cluster unidentified host")
+yy
+barplot(t(yy),beside=TRUE,col=coloor[c(2:3)],main="MACE by genetic cluster")
+legend(legend=c("RS","SS"),fill=coloor[c(2:3)],x="topright")
+fisher.test(yy)
+
+
+##############################################################################/
+#testing distribution of R81T genotypes by cluster in aerial trap####
+##############################################################################/
+
+temp2<-temp[temp$host=="Aerial_trap" & !is.na(temp$Clust_K3) 
+            & temp$`Neo-miss`!=1,
+            c(3,16:18)]
+temp2<-drop.levels(temp2)
+dd<-temp2 %>% 
+  group_by(Clust_K3) %>% 
+  summarise(NeoRR=sum(`Neo-RR`),NeoRS=sum(`Neo-RS`),NeoSS=sum(`Neo-SS`))
+dd
+
+ww<-as.matrix(dd[c(2,1,3),2:4])
+dimnames(ww)[[1]]<-c("Peach","Oilseed rape","tobacco")
+ww
+barplot(t(ww),beside=TRUE,col=coloor,main="R81T by genetic cluster")
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
+fisher.test(ww)
+
+
+##############################################################################/
+#combined plots of R genotype distribution loci by cluster in aerial trap####
+##############################################################################/
+
+op<-par(mfrow=c(2,2))
+barplot(t(zz),beside=TRUE,col=coloor,main="KDR by genetic cluster")
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
+barplot(t(xx),beside=TRUE,col=coloor,main="sKDR by genetic cluster")
+legend(legend=c("RR","RS","SS"),fill=coloor,x="topright")
+barplot(t(yy),beside=TRUE,col=coloor[c(2:3)],main="MACE by genetic cluster")
+legend(legend=c("RS","SS"),fill=coloor[c(2:3)],x="topright")
 par(op)
 #export to .pdf 8 x 7 inches
 
