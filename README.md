@@ -72,8 +72,8 @@ In this section, you will find the list of the different scripts used in the art
 
 ## Citation
 You will soon be able (hopefully) to cite the related study as follow: 
-+ Lise Roy, Benoit Barrès, Cécile Capderrey, Frédérique Mahéo, Annie Micoud, Maurice Hullé, Jean-Christophe Simon
++ Roy L.`*`, Barrès B.`*`, Capderrey C., Mahéo F., Micoud A., Hullé M. and Simon J.-C.
 [Host plant species and insecticides shape the evolution of genetic and clonal diversity in a major aphid crop pest. *submitted*.]()
 
 If you want to use (some of) the code found on this page or if you want to cite this repository:
-+ Benoit Barrès. bbarres/AgrAphid: [Supporting data and code for: Host plant species and insecticides shape the evolution of genetic and clonal diversity in a major aphid crop pest. Zenodo; 2021.](https://zenodo.org/badge/latestdoi/41293576)
++ Benoit Barrès. [Supporting data and code for: Host plant species and insecticides shape the evolution of genetic and clonal diversity in a major aphid crop pest. Zenodo; 2021.](https://zenodo.org/badge/latestdoi/41293576)
