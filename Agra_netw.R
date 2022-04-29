@@ -75,6 +75,7 @@ plot_poppr_msn(dataNetwo,
                inds="",nodelab=200)
 par(mfg=c(1,1))
 mtext("Genetic Cluster (K=4)",side=3,cex=1.8,line=-2.5,font=2)
+mtext("  A.",side=3,cex=3,line=-3,font=2,las=0,adj=0)
 
 par(mfg=c(1,2))
 #grouped by KDR
@@ -106,6 +107,7 @@ plot_poppr_msn(dataNetwo,
                inds="",nodelab=200)
 par(mfg=c(1,2))
 mtext("kdr",side=3,cex=1.8,line=-2.5,font=4)
+mtext("  B.",side=3,cex=3,line=-3,font=2,las=0,adj=0)
 
 par(mfg=c(2,1))
 #grouped by sKDR
@@ -137,6 +139,7 @@ plot_poppr_msn(dataNetwo,
                inds="",nodelab=200)
 par(mfg=c(2,1))
 mtext("skdr",side=3,cex=1.8,line=-2.5,font=4)
+mtext("  C.",side=3,cex=3,line=-3,font=2,las=0,adj=0)
 
 par(mfg=c(2,2))
 #grouped by MACE
@@ -168,6 +171,7 @@ plot_poppr_msn(dataNetwo,
                inds="",nodelab=200)
 par(mfg=c(2,2))
 mtext("MACE",side=3,cex=1.8,line=-2.5,font=2)
+mtext("  D.",side=3,cex=3,line=-3,font=2,las=0,adj=0)
 
 par(op)
 
