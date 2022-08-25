@@ -70,6 +70,10 @@ In this section, you will find the list of the different scripts used in the art
 + **Agra_netw.R:** a script to compute dissimilarity matrix between MLG and to build a network of MLG. 
 
 
+## R session info
+For reproducibility purpose, you will find all the information about the versions of R, Rstudio, OS etc., as well as the list and version number of the packages used at the time of publishing this script in the **session_info.txt** file.
+
+
 ## Citation
 You can cite the related study as follow: 
 + Roy L.\*, Barrès B.\*, Capderrey C., Mahéo F., Micoud A., Hullé M. and Simon J.-C.
