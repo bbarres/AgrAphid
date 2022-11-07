@@ -77,7 +77,7 @@ For reproducibility purpose, you will find all the information about the version
 ## Citation
 You can cite the related study as follow: 
 + Roy L.\*, Barrès B.\*, Capderrey C., Mahéo F., Micoud A., Hullé M. and Simon J.-C.
-[Host plant species and insecticides shape the evolution of genetic and clonal diversity in a major aphid crop pest. *Evolutionary Applications*.](https://onlinelibrary.wiley.com/doi/10.1111/eva.13417)
+[Host plant species and insecticides shape the evolution of genetic and clonal diversity in a major aphid crop pest. *Evolutionary Applications*, 15:1653-1669, 2022. doi:10.1111/eva.13417.](https://onlinelibrary.wiley.com/doi/10.1111/eva.13417)
 
 If you want to use (some of) the code found on this page or if you want to cite this repository:
 + Benoit Barrès. [Supporting data and code for: Host plant species and insecticides shape the evolution of genetic and clonal diversity in a major aphid crop pest. Zenodo.](https://zenodo.org/badge/latestdoi/41293576)
